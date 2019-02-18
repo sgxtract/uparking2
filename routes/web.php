@@ -62,7 +62,8 @@ Route::prefix('admin')->group(function(){
 
 // Payment Controller
 Route::prefix('pay')->group(function(){
-    Route::get('checkout/{id}/load', 'PaymentController@checkoutOrder')->name('pay.checkoutOrder');
-    Route::get('confirm/{amount}', 'PaymentController@confirmOrder')->name('pay.confirmOrder');
+    Route::get('checkout/{amount}/{id}', 'PaymentController@checkoutOrder')->name('pay.checkoutOrder');
+    Route::post('checkout/{id}/continue', 'PaymentController@continueCheckOut')->name('pay.continueCheckOut');
+    Route::get('confirm/{id}/execute', 'PaymentController@executeOrder')->name('pay.executeOrder');
 });
 

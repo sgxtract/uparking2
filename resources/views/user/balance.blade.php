@@ -64,7 +64,7 @@ Load Wallet
                         <div class="row">
                             <div class="col-md-12">
                                 {{-- Form Start --}}
-                                <form action="{{ route('pay.checkoutOrder', $wallet->user_id) }}" method="GET">
+                                <form action="{{ route('pay.continueCheckOut', $wallet->user_id) }}" method="POST">
                                     @csrf
                                     {{-- Row 2 Start --}}
                                     <div class="row">
