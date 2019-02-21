@@ -25,9 +25,10 @@ class PaymentController extends Controller
         $amount = $request['options'];
         return view('shop.checkout')->with(['amount' => $amount, 'id' => $id]);
     }
+    
     public function checkoutOrder($load_amount, $id){
 
-        $wallet = Wallet::findOrFail($id);
+        $wallet = Wallet::where('user_id', $id)->first();
 
         $apiContext = PayPal::apiContext();
 

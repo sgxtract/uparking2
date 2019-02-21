@@ -154,4 +154,8 @@ class UserController extends Controller
         $logs = Log::orderBy('created_at')->where('user_id', Auth::user()->id)->paginate(5);
         return view('user.history')->with('logs', $logs);
     }
+
+    public function reserve(){
+        return view('user.reserve');
+    }
 }

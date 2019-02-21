@@ -19,9 +19,15 @@
                     <button class="btn btn-success btn-block" onclick="location.href = '{{ route('reserveSlot') }}';">Reserve
                         <i class="mdi mdi-plus"></i>
                     </button>
+                @else
+                    <button class="btn btn-success btn-block" onclick="location.href = '{{ route('userReserve') }}';">Reserve
+                        <i class="mdi mdi-plus"></i>
+                    </button>
                 @endif
             </div>
         </li>
+
+        {{-- User Sidebar --}}
 
         @if(Auth::user()->staff == false || Auth::user()->admin == true)
 
@@ -59,6 +65,8 @@
 
         @endif
 
+        {{-- Staff Sidebar --}}
+
         @if(Auth::user()->staff == true)
 
         <li class="nav-item">
@@ -72,14 +80,21 @@
             </a>
         </li>
 
-        <li class="nav-item" {{ Route::currentRouteName() == 'staffCheckIn' ? 'active' : '' }}>
+        <li class="nav-item {{ Route::currentRouteName() == 'staffWalkIn' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('staffWalkIn') }}">
+                <i class="menu-icon mdi mdi-walk"></i>
+                <span class="menu-title">Walk-In</span>
+            </a>
+        </li>
+
+        <li class="nav-item {{ Route::currentRouteName() == 'staffCheckIn' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('staffCheckIn') }}">
                 <i class="menu-icon mdi mdi-arrow-right-thick"></i>
                 <span class="menu-title">Check In</span>
             </a>
         </li>
 
-        <li class="nav-item" {{ Route::currentRouteName() == 'staffCheckOut' ? 'active' : '' }}>
+        <li class="nav-item {{ Route::currentRouteName() == 'staffCheckOut' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('staffCheckOut') }}">
                 <i class="menu-icon mdi mdi-arrow-left-thick"></i>
                 <span class="menu-title">Check Out</span>
@@ -94,6 +109,8 @@
         </li>
 
         @endif
+
+        {{-- Admin Sidebar --}}
 
         @if(Auth::user()->admin == true)
 

@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function wallets(){
         return $this->hasMany('App\Wallet');
     }
+
+    public function reserves(){
+        return $this->hasMany('App\Reserve');
+    }
 }

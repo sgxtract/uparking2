@@ -22,8 +22,8 @@ class StaffController extends Controller
         return view('staff.history')->with('logs', $logs);
     }
 
-    public function reserve(){
-        return view('staff.reserve');
+    public function walkIn(){
+        return view('staff.walkin');
     }
 
     public function checkIn(){

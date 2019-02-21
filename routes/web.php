@@ -32,15 +32,16 @@ Route::prefix('user')->group(function(){
     Route::post('vehicle/{id}/remove', 'UserController@removeVehicle')->name('userRemoveVehicle');
     Route::get('balance', 'UserController@balance')->name('userBalance');
     Route::get('history', 'UserController@history')->name('userHistory');
+    Route::get('reserve', 'UserController@reserve')->name('userReserve');
 });
 
 // Staff Controller
 Route::prefix('staff')->group(function(){
     Route::get('dashboard', 'StaffController@dashboard')->name('staffDashboard');
     Route::get('history', 'StaffController@history')->name('staffHistory');
-    Route::get('reserve', 'StaffController@reserve')->name('reserveSlot');
     Route::get('check-in', 'StaffController@checkIn')->name('staffCheckIn');
     Route::get('check-out', 'StaffController@checkOut')->name('staffCheckOut');
+    Route::get('walk-in', 'StaffController@walkIn')->name('staffWalkIn');
 });
 
 // Admin Controller
@@ -65,5 +66,11 @@ Route::prefix('pay')->group(function(){
     Route::get('checkout/{amount}/{id}', 'PaymentController@checkoutOrder')->name('pay.checkoutOrder');
     Route::post('checkout/{id}/continue', 'PaymentController@continueCheckOut')->name('pay.continueCheckOut');
     Route::get('confirm/{id}/execute', 'PaymentController@executeOrder')->name('pay.executeOrder');
+});
+
+// Reserve Controller
+Route::prefix('reserve')->group(function(){
+    Route::get('slot', 'ReservationController@reserve')->name('reserveSlot');
+    Route::post('slot', 'ReservationController@checkIn')->name('checkIn');
 });
 

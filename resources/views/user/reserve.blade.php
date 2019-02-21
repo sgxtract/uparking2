@@ -13,7 +13,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Reserve (Staff)
+Reserve
 @endsection
 
 @section('content')
@@ -24,7 +24,7 @@ Reserve (Staff)
                 <!--reserve card-->
                 <div class="card" style="background-image: url(" {{ asset('images/reserve.jpg') }}");">
                     <div class="card-body">
-                        <h4>Walk-In</h4>
+                        <h4>Reserve a slot</h4>
                         <p class="card-description">
                             <small>These are the list of your registered vehicles.</small>
                         </p>

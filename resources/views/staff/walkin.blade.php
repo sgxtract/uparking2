@@ -13,7 +13,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Reserve (Staff)
+Walk-In
 @endsection
 
 @section('content')
