@@ -1,253 +1,253 @@
 <style>
     .fancy-checkbox-label > input[type=radio] {
-                position: absolute;
-                opacity: 0;
-                cursor: inherit;
-            }
-            .fancy-checkbox-label {
-                font-weight: normal;
-                cursor: pointer;
-            }
-        
-            /* Slots 1 to 62 */
-            #slot-1{
-                position: absolute;
-                left: 133px;
-                top: 615px;"
-            }
-            #slot-2{
-                position: absolute;
-                left: 166px;
-                top: 615px;
-            }
-            #slot-3{
-                position: absolute;
-                left: 209px;
-                top: 615px;
-            }
-            #slot-4{
-                position: absolute;
-                left: 240px;
-                top: 615px;
-            }
-            #slot-5{
-                position: absolute;
-                left: 283px;
-                top: 615px;
-            }
-            #slot-6{
-                position: absolute;
-                left: 314px;
-                top: 615px;
-            }
-            #slot-7{
-                position: absolute;
-                left: 357px;
-                top: 615px;
-            }
-            #slot-8{
-                position: absolute;
-                left: 389px;
-                top: 615px;
-            }
-            #slot-9{
-                position: absolute;
-                left: 431px;
-                top: 615px;
-            }
-            #slot-10{
-                position: absolute;
-                left: 462;
-                top: 615px;
-            }
-            #slot-11{
-                position: absolute;
-                left: 505px;
-                top: 615px;
-            }
-            #slot-12{
-                position: absolute;
-                left: 540px;
-                top: 615px;
-            }
-            #slot-13{
-                position: absolute;
-                left: 787px;
-                top: 555px;
-            }
-            #slot-14{
-                position: absolute;
-                left: 787px;
-                top: 588px;
-            }
-            #slot-15{
-                position: absolute;
-                left: 133px;
-                top: 256px;
-            }
-            #slot-16{
-                position: absolute;
-                left: 167px;
-                top: 256px;
-            }
-            #slot-17{
-                position: absolute;
-                left: 211px;
-                top: 256px;
-            }
-            #slot-18{
-                position: absolute;
-                left: 244px;
-                top: 256px;
-            }
-            #slot-19{
-                position: absolute;
-                left: 284px;
-                top: 256px;
-            }
-            #slot-20{
-                position: absolute;
-                left: 315px;
-                top: 256px;
-            }
-            #slot-21{
-                position: absolute;
-                left: 358px;
-                top: 256px;
-            }
-            #slot-22{
-                position: absolute;
-                left: 390px;
-                top: 256px;
-            }
-            #slot-23{
-                position: absolute;
-                left: 432px;
-                top: 256px;
-            }
-            #slot-24{
-                position: absolute;left: 465px;top: 256px;
-            }
-            #slot-25{
-                position: absolute;left: 507px;top: 256px;
-            }
-            #slot-26{
-                position: absolute;left: 538px;top: 256px;
-            }
-            #slot-27{
-                position: absolute;left: 578px;top: 256px;
-            }
-            #slot-28{
-                position: absolute;left: 612px;top: 256px;
-            }
-            #slot-29{
-                position: absolute;left: 654px;top: 256px;
-            }
-            #slot-30{
-                position: absolute;left: 685px;top: 256px;
-            }
-            #slot-31{
-                position: absolute;left: 728px;top: 256px;
-            }
-            #slot-32{
-                position: absolute;left: 759px;top: 256px;
-            }
-            #slot-33{
-                position: absolute;left: 803px;top: 256px;
-            }
-            #slot-34{
-                position: absolute;left: 836px;top: 256px;
-            }
-            #slot-35{
-                position: absolute;left: 201px;top: 380px;
-            }
-            #slot-36{
-                position: absolute;left: 235px;top: 380px;
-            }
-            #slot-37{
-                position: absolute;left: 278px;top: 380px;
-            }
-            #slot-38{
-                position: absolute;left: 309px;top: 380px;
-            }
-            #slot-39{
-                position: absolute;left: 350px;top: 380px;
-            }
-            #slot-40{
-                position: absolute;left: 382px;top: 380px;
-            }
-            #slot-41{
-                position: absolute;left: 425px;top: 380px;
-            }
-            #slot-42{
-                position: absolute;left: 456px;top: 380px;
-            }
-            #slot-43{
-                position: absolute;left: 500px;top: 380px;
-            }
-            #slot-44{
-                position: absolute;left: 530px;top: 380px;
-            }
-            #slot-45{
-                position: absolute;left: 572px;top: 380px;
-            }
-            #slot-46{
-                position: absolute;left: 604px;top: 380px;
-            }
-            #slot-47{
-                position: absolute;left: 647px;top: 380px;
-            }
-            #slot-48{
-                position: absolute;left: 680px;top: 380px;
-            }
-            #slot-49{
-                position: absolute;left: 201px;top: 468px;
-            }
-            #slot-50{
-                position: absolute;left: 235px;top: 468px;
-            }
-            #slot-51{
-                position: absolute;left: 278px;top: 468px;
-            }
-            #slot-52{
-                position: absolute;left: 309px;top: 468px;
-            }
-            #slot-53{
-                position: absolute;left: 350px;top: 468px;
-            }
-            #slot-54{
-                position: absolute;left: 382px;top: 468px;
-            }
-            #slot-55{
-                position: absolute;left: 425px;top: 468px;
-            }
-            #slot-56{
-                position: absolute;left: 456px;top: 468px;
-            }
-            #slot-57{
-                position: absolute;left: 500px;top: 468px;
-            }
-            #slot-58{
-                position: absolute;left: 530px;top: 468px;
-            }
-            #slot-59{
-                position: absolute;left: 572px;top: 468px;
-            }
-            #slot-60{
-                position: absolute;left: 604px;top: 468px;
-            }
-            #slot-61{
-                position: absolute;left: 647px;top: 468px;
-            }
-            #slot-62{
-                position: absolute;left: 680px;top: 468px;
-            }
-        </style>
+                    position: absolute;
+                    opacity: 0;
+                    cursor: inherit;
+                }
+                .fancy-checkbox-label {
+                    font-weight: normal;
+                    cursor: pointer;
+                }
+            
+                /* Slots 1 to 62 */
+                #slot-1{
+                    position: absolute;
+                    left: 133px;
+                    top: 615px;"
+                }
+                #slot-2{
+                    position: absolute;
+                    left: 166px;
+                    top: 615px;
+                }
+                #slot-3{
+                    position: absolute;
+                    left: 209px;
+                    top: 615px;
+                }
+                #slot-4{
+                    position: absolute;
+                    left: 240px;
+                    top: 615px;
+                }
+                #slot-5{
+                    position: absolute;
+                    left: 283px;
+                    top: 615px;
+                }
+                #slot-6{
+                    position: absolute;
+                    left: 314px;
+                    top: 615px;
+                }
+                #slot-7{
+                    position: absolute;
+                    left: 357px;
+                    top: 615px;
+                }
+                #slot-8{
+                    position: absolute;
+                    left: 389px;
+                    top: 615px;
+                }
+                #slot-9{
+                    position: absolute;
+                    left: 431px;
+                    top: 615px;
+                }
+                #slot-10{
+                    position: absolute;
+                    left: 462;
+                    top: 615px;
+                }
+                #slot-11{
+                    position: absolute;
+                    left: 505px;
+                    top: 615px;
+                }
+                #slot-12{
+                    position: absolute;
+                    left: 540px;
+                    top: 615px;
+                }
+                #slot-13{
+                    position: absolute;
+                    left: 787px;
+                    top: 555px;
+                }
+                #slot-14{
+                    position: absolute;
+                    left: 787px;
+                    top: 588px;
+                }
+                #slot-15{
+                    position: absolute;
+                    left: 133px;
+                    top: 256px;
+                }
+                #slot-16{
+                    position: absolute;
+                    left: 167px;
+                    top: 256px;
+                }
+                #slot-17{
+                    position: absolute;
+                    left: 211px;
+                    top: 256px;
+                }
+                #slot-18{
+                    position: absolute;
+                    left: 244px;
+                    top: 256px;
+                }
+                #slot-19{
+                    position: absolute;
+                    left: 284px;
+                    top: 256px;
+                }
+                #slot-20{
+                    position: absolute;
+                    left: 315px;
+                    top: 256px;
+                }
+                #slot-21{
+                    position: absolute;
+                    left: 358px;
+                    top: 256px;
+                }
+                #slot-22{
+                    position: absolute;
+                    left: 390px;
+                    top: 256px;
+                }
+                #slot-23{
+                    position: absolute;
+                    left: 432px;
+                    top: 256px;
+                }
+                #slot-24{
+                    position: absolute;left: 465px;top: 256px;
+                }
+                #slot-25{
+                    position: absolute;left: 507px;top: 256px;
+                }
+                #slot-26{
+                    position: absolute;left: 538px;top: 256px;
+                }
+                #slot-27{
+                    position: absolute;left: 578px;top: 256px;
+                }
+                #slot-28{
+                    position: absolute;left: 612px;top: 256px;
+                }
+                #slot-29{
+                    position: absolute;left: 654px;top: 256px;
+                }
+                #slot-30{
+                    position: absolute;left: 685px;top: 256px;
+                }
+                #slot-31{
+                    position: absolute;left: 728px;top: 256px;
+                }
+                #slot-32{
+                    position: absolute;left: 759px;top: 256px;
+                }
+                #slot-33{
+                    position: absolute;left: 803px;top: 256px;
+                }
+                #slot-34{
+                    position: absolute;left: 836px;top: 256px;
+                }
+                #slot-35{
+                    position: absolute;left: 201px;top: 380px;
+                }
+                #slot-36{
+                    position: absolute;left: 235px;top: 380px;
+                }
+                #slot-37{
+                    position: absolute;left: 278px;top: 380px;
+                }
+                #slot-38{
+                    position: absolute;left: 309px;top: 380px;
+                }
+                #slot-39{
+                    position: absolute;left: 350px;top: 380px;
+                }
+                #slot-40{
+                    position: absolute;left: 382px;top: 380px;
+                }
+                #slot-41{
+                    position: absolute;left: 425px;top: 380px;
+                }
+                #slot-42{
+                    position: absolute;left: 456px;top: 380px;
+                }
+                #slot-43{
+                    position: absolute;left: 500px;top: 380px;
+                }
+                #slot-44{
+                    position: absolute;left: 530px;top: 380px;
+                }
+                #slot-45{
+                    position: absolute;left: 572px;top: 380px;
+                }
+                #slot-46{
+                    position: absolute;left: 604px;top: 380px;
+                }
+                #slot-47{
+                    position: absolute;left: 647px;top: 380px;
+                }
+                #slot-48{
+                    position: absolute;left: 680px;top: 380px;
+                }
+                #slot-49{
+                    position: absolute;left: 201px;top: 468px;
+                }
+                #slot-50{
+                    position: absolute;left: 235px;top: 468px;
+                }
+                #slot-51{
+                    position: absolute;left: 278px;top: 468px;
+                }
+                #slot-52{
+                    position: absolute;left: 309px;top: 468px;
+                }
+                #slot-53{
+                    position: absolute;left: 350px;top: 468px;
+                }
+                #slot-54{
+                    position: absolute;left: 382px;top: 468px;
+                }
+                #slot-55{
+                    position: absolute;left: 425px;top: 468px;
+                }
+                #slot-56{
+                    position: absolute;left: 456px;top: 468px;
+                }
+                #slot-57{
+                    position: absolute;left: 500px;top: 468px;
+                }
+                #slot-58{
+                    position: absolute;left: 530px;top: 468px;
+                }
+                #slot-59{
+                    position: absolute;left: 572px;top: 468px;
+                }
+                #slot-60{
+                    position: absolute;left: 604px;top: 468px;
+                }
+                #slot-61{
+                    position: absolute;left: 647px;top: 468px;
+                }
+                #slot-62{
+                    position: absolute;left: 680px;top: 468px;
+                }
+            </style>
 
 @extends('layouts.admin')
 
 @section('title')
-Reserve (Staff)
+Reserve (Admin)
 @endsection
 
 @section('content')

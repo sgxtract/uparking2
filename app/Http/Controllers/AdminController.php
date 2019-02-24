@@ -174,4 +174,12 @@ class AdminController extends Controller
 
         return back();
     }
+
+    public function reserve(){
+        return view('admin.reserve');
+    }
+    
+    public function walkIn(){
+        return view('admin.walkin');
+    }
 }

@@ -1,19 +1,253 @@
 <style>
     .fancy-checkbox-label > input[type=radio] {
-      position: absolute;
-      opacity: 0;
-      cursor: inherit;
-    }
-    .fancy-checkbox-label {
-      font-weight: normal;
-      cursor: pointer;
-    }
-</style>
+                    position: absolute;
+                    opacity: 0;
+                    cursor: inherit;
+                }
+                .fancy-checkbox-label {
+                    font-weight: normal;
+                    cursor: pointer;
+                }
+            
+                /* Slots 1 to 62 */
+                #slot-1{
+                    position: absolute;
+                    left: 133px;
+                    top: 615px;"
+                }
+                #slot-2{
+                    position: absolute;
+                    left: 166px;
+                    top: 615px;
+                }
+                #slot-3{
+                    position: absolute;
+                    left: 209px;
+                    top: 615px;
+                }
+                #slot-4{
+                    position: absolute;
+                    left: 240px;
+                    top: 615px;
+                }
+                #slot-5{
+                    position: absolute;
+                    left: 283px;
+                    top: 615px;
+                }
+                #slot-6{
+                    position: absolute;
+                    left: 314px;
+                    top: 615px;
+                }
+                #slot-7{
+                    position: absolute;
+                    left: 357px;
+                    top: 615px;
+                }
+                #slot-8{
+                    position: absolute;
+                    left: 389px;
+                    top: 615px;
+                }
+                #slot-9{
+                    position: absolute;
+                    left: 431px;
+                    top: 615px;
+                }
+                #slot-10{
+                    position: absolute;
+                    left: 462;
+                    top: 615px;
+                }
+                #slot-11{
+                    position: absolute;
+                    left: 505px;
+                    top: 615px;
+                }
+                #slot-12{
+                    position: absolute;
+                    left: 540px;
+                    top: 615px;
+                }
+                #slot-13{
+                    position: absolute;
+                    left: 787px;
+                    top: 555px;
+                }
+                #slot-14{
+                    position: absolute;
+                    left: 787px;
+                    top: 588px;
+                }
+                #slot-15{
+                    position: absolute;
+                    left: 133px;
+                    top: 256px;
+                }
+                #slot-16{
+                    position: absolute;
+                    left: 167px;
+                    top: 256px;
+                }
+                #slot-17{
+                    position: absolute;
+                    left: 211px;
+                    top: 256px;
+                }
+                #slot-18{
+                    position: absolute;
+                    left: 244px;
+                    top: 256px;
+                }
+                #slot-19{
+                    position: absolute;
+                    left: 284px;
+                    top: 256px;
+                }
+                #slot-20{
+                    position: absolute;
+                    left: 315px;
+                    top: 256px;
+                }
+                #slot-21{
+                    position: absolute;
+                    left: 358px;
+                    top: 256px;
+                }
+                #slot-22{
+                    position: absolute;
+                    left: 390px;
+                    top: 256px;
+                }
+                #slot-23{
+                    position: absolute;
+                    left: 432px;
+                    top: 256px;
+                }
+                #slot-24{
+                    position: absolute;left: 465px;top: 256px;
+                }
+                #slot-25{
+                    position: absolute;left: 507px;top: 256px;
+                }
+                #slot-26{
+                    position: absolute;left: 538px;top: 256px;
+                }
+                #slot-27{
+                    position: absolute;left: 578px;top: 256px;
+                }
+                #slot-28{
+                    position: absolute;left: 612px;top: 256px;
+                }
+                #slot-29{
+                    position: absolute;left: 654px;top: 256px;
+                }
+                #slot-30{
+                    position: absolute;left: 685px;top: 256px;
+                }
+                #slot-31{
+                    position: absolute;left: 728px;top: 256px;
+                }
+                #slot-32{
+                    position: absolute;left: 759px;top: 256px;
+                }
+                #slot-33{
+                    position: absolute;left: 803px;top: 256px;
+                }
+                #slot-34{
+                    position: absolute;left: 836px;top: 256px;
+                }
+                #slot-35{
+                    position: absolute;left: 201px;top: 380px;
+                }
+                #slot-36{
+                    position: absolute;left: 235px;top: 380px;
+                }
+                #slot-37{
+                    position: absolute;left: 278px;top: 380px;
+                }
+                #slot-38{
+                    position: absolute;left: 309px;top: 380px;
+                }
+                #slot-39{
+                    position: absolute;left: 350px;top: 380px;
+                }
+                #slot-40{
+                    position: absolute;left: 382px;top: 380px;
+                }
+                #slot-41{
+                    position: absolute;left: 425px;top: 380px;
+                }
+                #slot-42{
+                    position: absolute;left: 456px;top: 380px;
+                }
+                #slot-43{
+                    position: absolute;left: 500px;top: 380px;
+                }
+                #slot-44{
+                    position: absolute;left: 530px;top: 380px;
+                }
+                #slot-45{
+                    position: absolute;left: 572px;top: 380px;
+                }
+                #slot-46{
+                    position: absolute;left: 604px;top: 380px;
+                }
+                #slot-47{
+                    position: absolute;left: 647px;top: 380px;
+                }
+                #slot-48{
+                    position: absolute;left: 680px;top: 380px;
+                }
+                #slot-49{
+                    position: absolute;left: 201px;top: 468px;
+                }
+                #slot-50{
+                    position: absolute;left: 235px;top: 468px;
+                }
+                #slot-51{
+                    position: absolute;left: 278px;top: 468px;
+                }
+                #slot-52{
+                    position: absolute;left: 309px;top: 468px;
+                }
+                #slot-53{
+                    position: absolute;left: 350px;top: 468px;
+                }
+                #slot-54{
+                    position: absolute;left: 382px;top: 468px;
+                }
+                #slot-55{
+                    position: absolute;left: 425px;top: 468px;
+                }
+                #slot-56{
+                    position: absolute;left: 456px;top: 468px;
+                }
+                #slot-57{
+                    position: absolute;left: 500px;top: 468px;
+                }
+                #slot-58{
+                    position: absolute;left: 530px;top: 468px;
+                }
+                #slot-59{
+                    position: absolute;left: 572px;top: 468px;
+                }
+                #slot-60{
+                    position: absolute;left: 604px;top: 468px;
+                }
+                #slot-61{
+                    position: absolute;left: 647px;top: 468px;
+                }
+                #slot-62{
+                    position: absolute;left: 680px;top: 468px;
+                }
+            </style>
 
 @extends('layouts.admin')
 
 @section('title')
-Reserve
+Reserve (User)
 @endsection
 
 @section('content')
@@ -24,459 +258,204 @@ Reserve
                 <!--reserve card-->
                 <div class="card" style="background-image: url(" {{ asset('images/reserve.jpg') }}");">
                     <div class="card-body">
-                        <h4>Reserve a slot</h4>
+                        <h4>Reserve</h4>
                         <p class="card-description">
-                            <small>These are the list of your registered vehicles.</small>
+                            <small>Choose a slot to be reserved.</small>
                         </p>
                         <hr>
 
-                        @if (session('success2'))
-                        <div class="alert alert-danger">
-                            {{ session('success2') }}
+                        @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
                         </div>
                         @endif
 
                         <div class="row">
                             {{-- cars start --}}
                             <div class="col-md-12">
-                                {{-- Slot 1 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 133px;top: 615px;">
-                                    <input type="radio" onclick="func()" value="Slot 1" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 2 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 166px;top: 615px;">
-                                    <input type="radio" onclick="func()" value="Slot 2" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 3 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 209px;top: 615px;">
-                                    <input type="radio" onclick="func()" value="Slot 3" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 4 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 240px;top: 615px;">
-                                    <input type="radio" onclick="func()" value="Slot 4" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 5 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 283px;top: 615px;">
-                                    <input type="radio" onclick="func()" value="Slot 5" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 6 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 314px;top: 615px;">
-                                    <input type="radio" onclick="func()" value="Slot 6" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 7 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 357px;top: 615px;">
-                                    <input type="radio" onclick="func()" value="Slot 7" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 8 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 389px;top: 615px;">
-                                    <input type="radio" onclick="func()" value="Slot 8" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 9 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 431px;top: 615px;">
-                                    <input type="radio" onclick="func()" value="Slot 9" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 10 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 462;top: 615px;">
-                                    <input type="radio" onclick="func()" value="Slot 10" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 11 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 505px;top: 615px;">
-                                    <input type="radio" onclick="func()" value="Slot 11" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 12 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 540px;top: 615px;">
-                                    <input type="radio" onclick="func()" value="Slot 12" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 13 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 787px;top: 555px;">
-                                    <input type="radio" onclick="func()" value="Slot 13" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-pwd.png') }}" width="55" height="27">
-                                </label>
-                                {{-- Slot 14 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 787px;top: 588px;">
-                                    <input type="radio" onclick="func()" value="Slot 14" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-pwd.png') }}" width="55" height="27">
-                                </label>
-                                {{-- Slot 15 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 133px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 15" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 16 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 167px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 16" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 17 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 211px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 17" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 18 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 244px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 18" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 19 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 284px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 19" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 20 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 315px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 20" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 21 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 358px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 21" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 22 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 390px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 22" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 23 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 432px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 23" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 24 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 465px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 24" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 25 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 507px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 25" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 26 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 538px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 26" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 27 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 578px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 27" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 28 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 612px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 28" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 29 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 654px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 29" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 30 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 685px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 30" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 31 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 728px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 31" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 32 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 759px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 32" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 33 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 803px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 33" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 34 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 836px;top: 256px;">
-                                    <input type="radio" onclick="func()" value="Slot 34" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 35 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 201px;top: 380px;">
-                                    <input type="radio" onclick="func()" value="Slot 35" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 36 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 235px;top: 380px;">
-                                    <input type="radio" onclick="func()" value="Slot 36" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 37 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 278px;top: 380px;">
-                                    <input type="radio" onclick="func()" value="Slot 37" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 38 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 309px;top: 380px;">
-                                    <input type="radio" onclick="func()" value="Slot 38" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 39 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 350px;top: 380px;">
-                                    <input type="radio" onclick="func()" value="Slot 39" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 40 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 382px;top: 380px;">
-                                    <input type="radio" onclick="func()" value="Slot 40" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 41 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 425px;top: 380px;">
-                                    <input type="radio" onclick="func()" value="Slot 41" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 42 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 456px;top: 380px;">
-                                    <input type="radio" onclick="func()" value="Slot 42" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 43 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 500px;top: 380px;">
-                                    <input type="radio" onclick="func()" value="Slot 43" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 44 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 530px;top: 380px;">
-                                    <input type="radio" onclick="func()" value="Slot 44" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 45 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 572px;top: 380px;">
-                                    <input type="radio" onclick="func()" value="Slot 45" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 46 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 604px;top: 380px;">
-                                    <input type="radio" onclick="func()" value="Slot 46" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 47 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 647px;top: 380px;">
-                                    <input type="radio" onclick="func()" value="Slot 47" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 48 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 680px;top: 380px;">
-                                    <input type="radio" onclick="func()" value="Slot 48" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 49 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 201px;top: 468px;">
-                                    <input type="radio" onclick="func()" value="Slot 49" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 50 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 235px;top: 468px;">
-                                    <input type="radio" onclick="func()" value="Slot 50" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 51 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 278px;top: 468px;">
-                                    <input type="radio" onclick="func()" value="Slot 51" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 52 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 309px;top: 468px;">
-                                    <input type="radio" onclick="func()" value="Slot 52" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 53 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 350px;top: 468px;">
-                                    <input type="radio" onclick="func()" value="Slot 53" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 54 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 382px;top: 468px;">
-                                    <input type="radio" onclick="func()" value="Slot 54" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 55 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 425px;top: 468px;">
-                                    <input type="radio" onclick="func()" value="Slot 55" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 56 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 456px;top: 468px;">
-                                    <input type="radio" onclick="func()" value="Slot 56" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 57 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 500px;top: 468px;">
-                                    <input type="radio" onclick="func()" value="Slot 57" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 58 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 530px;top: 468px;">
-                                    <input type="radio" onclick="func()" value="Slot 58" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 59 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 572px;top: 468px;">
-                                    <input type="radio" onclick="func()" value="Slot 59" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 60 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 604px;top: 468px;">
-                                    <input type="radio" onclick="func()" value="Slot 60" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 61 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 647px;top: 468px;">
-                                    <input type="radio" onclick="func()" value="Slot 61" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                {{-- Slot 62 --}}
-                                <label class="fancy-checkbox-label" id="myBtn" data-toggle="modal" data-target="#myModal"
-                                    style="position: absolute;left: 680px;top: 468px;">
-                                    <input type="radio" onclick="func()" value="Slot 62" name="slots">
-                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
-                                    <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27" height="55">
-                                </label>
-                                <img src="{{ asset('images/reserve.jpg') }}" alt="" width="1150">
+
+                                {{-- Slot 1 to 12 --}}
+                                @for ($i = 1; $i <= 12; $i++) @php $obj=\App\Reserve::where('slot_number', "Slot $i" )->get();
+                                    if(count($obj)):
+                                    $obj = json_decode($obj)[0];
+                                    @endphp
+
+                                    @if ($obj->status =='reserved')
+                                    <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                        data-target="#modalReserved">
+                                        <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                        <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                        <img src="{{ asset('images/cars/car-orange-top.png') }}" width="27" height="55">
+                                    </label>
+                                    @elseif ($obj->status == 'occupied')
+                                    <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                        data-target="#modalOccupied">
+                                        <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                        <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                        <img src="{{ asset('images/cars/car-red-top.png') }}" width="27" height="55">
+                                    </label>
+                                    @else
+                                    <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                        data-target="#myModal">
+                                        <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                        <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                        <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
+                                    </label>
+                                    @endif
+
+                                    @php endif; @endphp
+                                    @endfor
+
+                                    {{-- Slot 13 to 14 --}}
+                                    @for ($i = 13; $i <= 14; $i++) @php $obj=\App\Reserve::where('slot_number',
+                                        "Slot $i" )->get();
+                                        if(count($obj)):
+                                        $obj = json_decode($obj)[0];
+                                        @endphp
+
+                                        @if ($obj->status =='reserved')
+                                        <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                            data-target="#modalReserved">
+                                            <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                            <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                            <img src="{{ asset('images/cars/car-orange-pwd.png') }}" width="54" height="27">
+                                        </label>
+
+                                        @elseif ($obj->status =='occupied')
+                                        <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                            data-target="#modalOccupied">
+                                            <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                            <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                            <img src="{{ asset('images/cars/car-red-pwd.png') }}" width="54" height="27">
+                                        </label>
+
+                                        @else
+                                        <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                            data-target="#myModal">
+                                            <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                            <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                            <img src="{{ asset('images/cars/car-grey-pwd.png') }}" width="54" height="27">
+                                        </label>
+                                        @endif
+
+                                        @php endif; @endphp
+                                        @endfor
+
+                                        {{-- Slot 15 to 34 --}}
+                                        @for ($i = 15; $i <= 34; $i++) @php $obj=\App\Reserve::where('slot_number',
+                                            "Slot $i" )->get();
+                                            if(count($obj)):
+                                            $obj = json_decode($obj)[0];
+                                            @endphp
+
+                                            @if ($obj->status =='reserved')
+                                            <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                                data-target="#modalReserved">
+                                                <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                                <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                                <img src="{{ asset('images/cars/car-orange-btm.png') }}" width="27"
+                                                    height="55">
+                                            </label>
+
+                                            @elseif ($obj->status =='occupied')
+                                            <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                                data-target="#modalOccupied">
+                                                <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                                <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                                <img src="{{ asset('images/cars/car-red-btm.png') }}" width="27" height="55">
+                                            </label>
+
+                                            @else
+                                            <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                                data-target="#myModal">
+                                                <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                                <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                                <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27"
+                                                    height="55">
+                                            </label>
+                                            @endif
+
+                                            @php endif; @endphp
+                                            @endfor
+
+                                            {{-- Slot 35 to 48 --}}
+                                            @for ($i = 35; $i <= 48; $i++) @php $obj=\App\Reserve::where('slot_number',
+                                                "Slot $i" )->get();
+                                                if(count($obj)):
+                                                $obj = json_decode($obj)[0];
+                                                @endphp
+
+                                                @if ($obj->status =='reserved')
+                                                <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                                    data-target="#modalReserved">
+                                                    <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                                    <img src="{{ asset('images/cars/car-orange-top.png') }}" width="27"
+                                                        height="55">
+                                                </label>
+
+                                                @elseif ($obj->status =='occupied')
+                                                <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                                    data-target="#modalOccupied">
+                                                    <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                                    <img src="{{ asset('images/cars/car-red-top.png') }}" width="27"
+                                                        height="55">
+                                                </label>
+
+                                                @else
+                                                <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                                    data-target="#myModal">
+                                                    <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                                    <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                                    <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27"
+                                                        height="55">
+                                                </label>
+                                                @endif
+
+                                                @php endif; @endphp
+                                                @endfor
+
+                                                {{-- Slot 49 to 62 --}}
+                                                @for ($i = 49; $i <= 62; $i++) @php $obj=\App\Reserve::where('slot_number',
+                                                    "Slot $i" )->get();
+                                                    if(count($obj)):
+                                                    $obj = json_decode($obj)[0];
+                                                    @endphp
+
+                                                    @if ($obj->status =='reserved')
+                                                    <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                                        data-target="#modalReserved">
+                                                        <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                                        <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                                        <img src="{{ asset('images/cars/car-orange-btm.png') }}" width="27"
+                                                            height="55">
+                                                    </label>
+
+                                                    @elseif ($obj->status =='occupied')
+                                                    <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                                        data-target="#modalOccupied">
+                                                        <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                                        <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                                        <img src="{{ asset('images/cars/car-red-btm.png') }}" width="27"
+                                                            height="55">
+                                                    </label>
+                                                    @else
+                                                    <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
+                                                        data-target="#myModal">
+                                                        <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                                        <span class="fancy-checkbox fancy-checkbox-img"></span>
+                                                        <img src="{{ asset('images/cars/car-grey-btm.png') }}" width="27"
+                                                            height="55">
+                                                    </label>
+                                                    @endif
+                                                    @php endif; @endphp
+                                                    @endfor
+                                                    <img src="{{ asset('images/reserve.jpg') }}" alt="" width="1150">
                             </div>
                             {{-- cars end --}}
-                            <!-- Modal -->
+
+                            <!-- Modal Reserve -->
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog">
@@ -487,15 +466,18 @@ Reserve
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <form action="{{ route('checkIn', '') }}" method="POST">
+                                                    <form action="{{ route('userReserveSlot', $user) }}" method="POST">
                                                         @csrf
                                                         <div class="form-group">
                                                             <h5>Enter plate no. (ABC####)</h5>
                                                             <div class="input-group col-xs-12">
-                                                                <input type="text" name="plate_number" class="form-control text-center" placeholder="ABC####">
+                                                                <input type="text" name="plate_number" class="form-control text-center"
+                                                                    placeholder="ABC####">
+                                                                <input type="hidden" name="slot_number" id="myModalLabel2"
+                                                                    value="">
                                                                 <span class="input-group-append">
                                                                     <button type="submit" class="btn btn-dark btn-fw">
-                                                                        <i class="mdi mdi-map-marker-radius"></i>Check In</button>
+                                                                        <i class="mdi mdi-map-marker-radius"></i>Reserve</button>
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -534,7 +516,93 @@ Reserve
                                     </div>
                                 </div>
                             </div>
-                            <!-- Modal End -->
+                            <!-- Modal Reserve End -->
+
+                            <!-- Modal Occupied Start -->
+                            <div class="modal fade" id="modalOccupied" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel"></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            {{-- Parking Information --}}
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h5>Occupied <span class="mdi mdi-alert"></span></h5>
+                                                    <hr>
+                                                    <div class="row mt-3">
+                                                        <div class="col-md-4">
+                                                            <p>Plate Number:</p>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <p></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <p>Start Time: </p>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <p>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- Parking Information End --}}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal Occupied End -->
+
+                            <!-- Modal Reserved Start -->
+                            <div class="modal fade" id="modalReserved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="myModalLabel"></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            {{-- Parking Information --}}
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h5>Reserved <span class="mdi mdi-alert"></span></h5>
+                                                    <hr>
+                                                    <div class="row mt-3">
+                                                        <div class="col-md-4">
+                                                            <p>Plate Number:</p>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <p></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <p>Start Time: </p>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <p>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- Parking Information End --}}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal Reserved End -->
                         </div>
                     </div>
                 </div>
@@ -548,6 +616,7 @@ Reserve
     function func() {
         var val = document.querySelector('input[name="slots"]:checked').value;
         document.getElementById("myModalLabel").innerHTML = '<span class="mdi mdi-car"></span> Selected ' + val;
+        document.getElementById("myModalLabel2").value = val;
     }
 
 </script>

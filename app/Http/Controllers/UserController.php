@@ -9,6 +9,7 @@ use App\Http\Requests\AddVehicle;
 use App\Log;
 use App\Vehicle;
 use App\Wallet;
+use App\Reserve;
 use Carbon\Carbon;
 use Hash;
 
@@ -20,7 +21,8 @@ class UserController extends Controller
 
     public function dashboard(){
         $vehicles = Vehicle::where('user_id', Auth::user()->id)->get();
-        return view('user.dashboard')->with('vehicles', $vehicles);
+        $reserves = Reserve::where('user_id', Auth::user()->id)->get();
+        return view('user.dashboard')->with(['vehicles' => $vehicles, 'reserves' => $reserves]);
     }
 
     public function profile(){
@@ -156,6 +158,23 @@ class UserController extends Controller
     }
 
     public function reserve(){
-        return view('user.reserve');
+        $user = Auth::user()->id;
+        return view('user.reserve')->with('user', $user);
+    }
+
+    public function reserveSlot(Request $request, $id){
+
+        $plate_number = strtoupper($request['plate_number']);
+        $slot_number = $request['slot_number'];
+        
+        $reserve = Reserve::where('slot_number', $slot_number)->first();
+        $reserve->user_id = $id;
+        $reserve->plate_number = $plate_number;
+        $reserve->slot_number = $slot_number;
+        $reserve->status = 'reserved';
+        $reserve->created_at = Carbon::now();
+        $reserve->save();
+
+        return back()->with('success', "Reserved a vehicle with Plate Number : $plate_number at Slot Number : $slot_number");
     }
 }

@@ -37,7 +37,7 @@ User Dashboard
                             <div class="float-right">
                                 <p class="mb-0 text-right">Reserves</p>
                                 <div class="fluid-container">
-                                    <h3 class="font-weight-medium text-right mb-0">{{ 'Wala pa!' }}</h3>
+                                    <h3 class="font-weight-medium text-right mb-0">{{ $reserves->count() }}</h3>
                                 </div>
                             </div>
                         </div>

@@ -15,8 +15,12 @@
                         </div>
                     </div>
                 </div>
-                @if(Auth::user()->staff || Auth::user()->admin)
-                    <button class="btn btn-success btn-block" onclick="location.href = '{{ route('reserveSlot') }}';">Reserve
+                @if(Auth::user()->admin)
+                    <button class="btn btn-success btn-block" onclick="location.href = '{{ route('adminReserve') }}';">Reserve
+                        <i class="mdi mdi-plus"></i>
+                    </button>
+                @elseif(Auth::user()->staff)
+                    <button class="btn btn-success btn-block" onclick="location.href = '{{ route('staffReserve') }}';">Reserve
                         <i class="mdi mdi-plus"></i>
                     </button>
                 @else

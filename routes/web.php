@@ -32,7 +32,9 @@ Route::prefix('user')->group(function(){
     Route::post('vehicle/{id}/remove', 'UserController@removeVehicle')->name('userRemoveVehicle');
     Route::get('balance', 'UserController@balance')->name('userBalance');
     Route::get('history', 'UserController@history')->name('userHistory');
+    // User Slots
     Route::get('reserve', 'UserController@reserve')->name('userReserve');
+    Route::post('slot/{id}', 'UserController@reserveSlot')->name('userReserveSlot');
 });
 
 // Staff Controller
@@ -41,7 +43,9 @@ Route::prefix('staff')->group(function(){
     Route::get('history', 'StaffController@history')->name('staffHistory');
     Route::get('check-in', 'StaffController@checkIn')->name('staffCheckIn');
     Route::get('check-out', 'StaffController@checkOut')->name('staffCheckOut');
+    // Staff Slots
     Route::get('walk-in', 'StaffController@walkIn')->name('staffWalkIn');
+    Route::get('reserve', 'StaffController@reserve')->name('staffReserve');
 });
 
 // Admin Controller
@@ -59,6 +63,9 @@ Route::prefix('admin')->group(function(){
     Route::get('vehicles', 'AdminController@vehicles')->name('adminVehicles');
     Route::post('vehicle/new', 'AdminController@addVehicle')->name('adminAddVehicle');
     Route::post('vehicle/{id}/remove', 'AdminController@removeVehicle')->name('adminRemoveVehicle');
+    // Admin Slots
+    Route::get('reserve', 'AdminController@reserve')->name('adminReserve');
+    Route::get('walk-in', 'AdminController@walkIn')->name('adminWalkIn');
 });
 
 // Payment Controller
@@ -68,9 +75,9 @@ Route::prefix('pay')->group(function(){
     Route::get('confirm/{id}/execute', 'PaymentController@executeOrder')->name('pay.executeOrder');
 });
 
-// Reserve Controller
-Route::prefix('reserve')->group(function(){
-    Route::get('slot', 'ReservationController@reserve')->name('reserveSlot');
-    Route::post('slot', 'ReservationController@checkIn')->name('checkIn');
+// Slots Controller for method posts || Admin / Staff
+Route::prefix('slot')->group(function(){
+    Route::post('check-in', 'SlotController@checkIn')->name('slotCheckIn');
+    Route::post('reserve', 'SlotController@reserve')->name('slotReserve');
 });
 

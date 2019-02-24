@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Log;
+use App\Reserve;
 
 class StaffController extends Controller
 {
@@ -23,7 +24,12 @@ class StaffController extends Controller
     }
 
     public function walkIn(){
-        return view('staff.walkin');
+        $slots = Reserve::all();
+        return view('staff.walkin')->with('slots', $slots);
+    }
+
+    public function reserve(){
+        return view('staff.reserve');
     }
 
     public function checkIn(){
