@@ -10,6 +10,7 @@ use App\Log;
 use App\Vehicle;
 use App\Wallet;
 use App\Reserve;
+use App\User;
 use Carbon\Carbon;
 use Hash;
 
@@ -22,7 +23,8 @@ class UserController extends Controller
     public function dashboard(){
         $vehicles = Vehicle::where('user_id', Auth::user()->id)->get();
         $reserves = Reserve::where('user_id', Auth::user()->id)->get();
-        return view('user.dashboard')->with(['vehicles' => $vehicles, 'reserves' => $reserves]);
+        $user = User::where('id', Auth::user()->id)->first();
+        return view('user.dashboard')->with(['vehicles' => $vehicles, 'reserves' => $reserves, 'user' => $user]);
     }
 
     public function profile(){
@@ -164,17 +166,39 @@ class UserController extends Controller
 
     public function reserveSlot(Request $request, $id){
 
+        // User Wallet
+        $wallet = Wallet::where('user_id', $id)->first();
         $plate_number = strtoupper($request['plate_number']);
         $slot_number = $request['slot_number'];
-        
-        $reserve = Reserve::where('slot_number', $slot_number)->first();
-        $reserve->user_id = $id;
-        $reserve->plate_number = $plate_number;
-        $reserve->slot_number = $slot_number;
-        $reserve->status = 'reserved';
-        $reserve->created_at = Carbon::now();
-        $reserve->save();
+        $vehicle = Vehicle::where('user_id', $id)->get();
 
-        return back()->with('success', "Reserved a vehicle with Plate Number : $plate_number at Slot Number : $slot_number");
+        $add_funds = "Add Funds " . "<a href='".route('userBalance')."'>here.</a>";
+
+        if($vehicle->isEmpty()){
+            return back()->with('error', "No registered vehicle found. Register at least one (1) vehicle to reserve a slot.");
+        }else{
+            if($wallet->user_id == $id){
+                if($wallet->balance < 100){
+                    return back()->with('error', "Balance not enough, must have a minimum of ₱ 100 load. $add_funds");
+                }
+                else{
+                    
+                    $reserve = Reserve::where('slot_number', $slot_number)->first();
+                    $reserve->user_id = $id;
+                    $reserve->plate_number = $plate_number;
+                    $reserve->slot_number = $slot_number;
+                    $reserve->status = 'reserved';
+                    $reserve->walk_in = false;
+                    $reserve->created_at = Carbon::now();
+                    $reserve->save();
+    
+                    $wallet->balance -= 50;
+                    $wallet->save();
+    
+                    return back()->with('success', "Reserved a vehicle with Plate Number : $plate_number at Slot Number : $slot_number");
+                }
+            }
+        }
+
     }
 }

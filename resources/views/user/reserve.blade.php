@@ -270,6 +270,12 @@ Reserve (User)
                         </div>
                         @endif
 
+                        @if (session('error'))
+                        <div class="alert alert-danger">
+                            {!! session('error') !!}
+                        </div>
+                        @endif
+
                         <div class="row">
                             {{-- cars start --}}
                             <div class="col-md-12">

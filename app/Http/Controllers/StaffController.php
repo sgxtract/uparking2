@@ -15,7 +15,10 @@ class StaffController extends Controller
     }
 
     public function dashboard(){
-        return view('staff.dashboard');
+        $occupied = Reserve::where('status', 'occupied')->get();
+        $reserves = Reserve::where('status', 'reserved')->get();
+        $free = Reserve::where('status', 'free')->get();
+        return view('staff.dashboard')->with(['occupied' => $occupied, 'reserves' => $reserves, 'free' => $free]);
     }
 
     public function history(){

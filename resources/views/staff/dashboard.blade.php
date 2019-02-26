@@ -6,23 +6,22 @@ Staff Dashboard
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="row">
-            <div class="col-xl-2 col-lg-2 col-md-2"></div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
                 <div class="card card-statistics">
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
-                                <i class="mdi mdi-comment text-success icon-lg"></i>
+                                <i class="mdi mdi-car text-warning icon-lg"></i>
                             </div>
                             <div class="float-right">
                                 <p class="mb-0 text-right">Reserves</p>
                                 <div class="fluid-container">
-                                    <h3 class="font-weight-medium text-right mb-0">{{ Auth::user()->count() }}</h3>
+                                    <h3 class="font-weight-medium text-right mb-0">{{ $reserves->count() }}</h3>
                                 </div>
                             </div>
                         </div>
                         <p class="text-muted mt-3 mb-0">
-                            <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Weekly Reserves
+                            <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Current reserves
                         </p>
                     </div>
                 </div>
@@ -32,32 +31,65 @@ Staff Dashboard
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
-                                <i class="mdi mdi-account-location text-info icon-lg"></i>
+                                <i class="mdi mdi-car text-danger icon-lg"></i>
                             </div>
                             <div class="float-right">
-                                <p class="mb-0 text-right">Total Reserves</p>
+                                <p class="mb-0 text-right">Occupied</p>
                                 <div class="fluid-container">
-                                    <h3 class="font-weight-medium text-right mb-0">{{ Auth::user()->count() }}</h3>
+                                    <h3 class="font-weight-medium text-right mb-0">{{ $occupied->count() }}</h3>
                                 </div>
                             </div>
                         </div>
                         <p class="text-muted mt-3 mb-0">
-                            <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Product-wise sales
+                            <i class="mdi mdi-car-side mr-1" aria-hidden="true"></i> Current occupied slots
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
+                <div class="card card-statistics">
+                    <div class="card-body">
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <i class="mdi mdi-map-marker-radius text-dark icon-lg"></i>
+                            </div>
+                            <div class="float-right">
+                                <p class="mb-0 text-right">Available Slots</p>
+                                <div class="fluid-container">
+                                    <h3 class="font-weight-medium text-right mb-0">{{ $free->count() }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-muted mt-3 mb-0">
+                            <i class="mdi mdi-parking mr-1" aria-hidden="true"></i> Total available slots
                         </p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-                <!--weather card-->
+            <div class="col-md-12 grid-margin">
                 <div class="card">
-                    <div class="card-header">Reserves by week</div>
                     <div class="card-body">
-                        {{-- {!! $chart->container() !!} --}}
+                        <div class="row d-none d-sm-flex mb-4">
+                            <div class="col-4">
+                                <h5 class="text-primary">Reserves</h5>
+                                <p>34657</p>
+                            </div>
+                            <div class="col-4">
+                                <h5 class="text-primary">Used Slots</h5>
+                                <p>45673</p>
+                            </div>
+                            <div class="col-4">
+                                <h5 class="text-primary">Slots</h5>
+                                <p>45673</p>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="dashboard-area-chart" height="80"></canvas>
+                        </div>
                     </div>
                 </div>
-                <!--weather card ends-->
             </div>
         </div>
     </div>

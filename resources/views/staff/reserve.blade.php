@@ -275,9 +275,11 @@ Reserve (Staff)
                             <div class="col-md-12">
 
                                 {{-- Slot 1 to 12 --}}
-                                @for ($i = 1; $i <= 12; $i++) @php $obj=\App\Reserve::where('slot_number', "Slot $i" )->get();
-                                    if(count($obj)):
-                                    $obj = json_decode($obj)[0];
+                                @for ($i = 1; $i <= 12; $i++)
+                                    @php
+                                        $obj = \App\Reserve::where('slot_number', "Slot $i" )->get();
+                                        if(count($obj)):
+                                        $obj = json_decode($obj)[0];
                                     @endphp
 
                                     @if ($obj->status =='reserved')
@@ -342,10 +344,12 @@ Reserve (Staff)
                                         @endfor
 
                                         {{-- Slot 15 to 34 --}}
-                                        @for ($i = 15; $i <= 34; $i++) @php $obj=\App\Reserve::where('slot_number',
-                                            "Slot $i" )->get();
-                                            if(count($obj)):
-                                            $obj = json_decode($obj)[0];
+                                        @for ($i = 15; $i <= 34; $i++)
+                                            @php 
+                                            
+                                                $obj = \App\Reserve::where('slot_number', "Slot $i" )->get();
+                                                if(count($obj)):
+                                                $obj = json_decode($obj)[0];
                                             @endphp
 
                                             @if ($obj->status =='reserved')

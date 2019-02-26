@@ -41,6 +41,7 @@ Route::prefix('user')->group(function(){
 Route::prefix('staff')->group(function(){
     Route::get('dashboard', 'StaffController@dashboard')->name('staffDashboard');
     Route::get('history', 'StaffController@history')->name('staffHistory');
+    // Check In - Check Out
     Route::get('check-in', 'StaffController@checkIn')->name('staffCheckIn');
     Route::get('check-out', 'StaffController@checkOut')->name('staffCheckOut');
     // Staff Slots
@@ -79,5 +80,9 @@ Route::prefix('pay')->group(function(){
 Route::prefix('slot')->group(function(){
     Route::post('check-in', 'SlotController@checkIn')->name('slotCheckIn');
     Route::post('reserve', 'SlotController@reserve')->name('slotReserve');
+    Route::post('check-out', 'SlotController@checkOutSearch')->name('slotCheckOutSearch');
+    Route::post('check-in/new', 'SlotController@checkInSearch')->name('slotCheckInSearch');
+    Route::post('check-out/{slot}', 'SlotController@checkOut')->name('slotCheckOut');
+    Route::post('check-in/{slot}', 'SlotController@checkInReserve')->name('slotCheckInReserve');
 });
 
