@@ -12,7 +12,7 @@ Check Out
                 <div class="form-group">
                     @if (session('success'))
                         <div class="alert alert-success">
-                            {{ session('success') }}
+                            {!! session('success') !!}
                         </div>
                     @endif
                     @if (session('error'))
@@ -23,7 +23,7 @@ Check Out
                     
                     @if ($errors->any())
                     <div class="alert alert-danger">
-                        <ul>
+                        <ul class="list-ticked">
                             @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                             @endforeach
@@ -50,7 +50,7 @@ Check Out
         <footer class="footer">
             <div class="container-fluid clearfix">
                 <span class="text-muted d-block text-center text-center">Copyright © 2019
-                    <a href="http://www.tonagnis.com/" target="_blank">Grawlix Corp</a>. All rights reserved.</span>
+                    <a href="http://www.parking-ally.com/" target="_blank">Grawlix Corp</a>. All rights reserved.</span>
             </div>
         </footer>
         <!-- partial -->

@@ -18,22 +18,25 @@ Route::get('contact', 'PublicController@contact')->name('contact');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 // Auth Controller
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // User Controller
+// Route::group(['prefix' => 'user', 'middleware' => 'verified', function(){
+    
+// }]);
 Route::prefix('user')->group(function(){
-    Route::get('dashboard', 'UserController@dashboard')->name('userDashboard');
-    Route::get('profile', 'UserController@profile')->name('userProfile');
+    Route::get('dashboard', 'UserController@dashboard')->name('userDashboard')->middleware('verified');
+    Route::get('profile', 'UserController@profile')->name('userProfile')->middleware('verified');
     Route::post('profile', 'UserController@profilePost')->name('userProfilePost');
-    Route::get('vehicle', 'UserController@vehicles')->name('userVehicle');
-    Route::get('vehicle/{id}/edit', 'UserController@editVehicle')->name('userEditVehicle');
+    Route::get('vehicle', 'UserController@vehicles')->name('userVehicle')->middleware('verified');
+    Route::get('vehicle/{id}/edit', 'UserController@editVehicle')->name('userEditVehicle')->middleware('verified');
     Route::post('vehicle/{id}/edit', 'UserController@editVehicleInfo')->name('userEditVehicleInfo');
     Route::post('vehicle/new', 'UserController@addVehicle')->name('userAddVehicle');
     Route::post('vehicle/{id}/remove', 'UserController@removeVehicle')->name('userRemoveVehicle');
-    Route::get('balance', 'UserController@balance')->name('userBalance');
-    Route::get('history', 'UserController@history')->name('userHistory');
+    Route::get('balance', 'UserController@balance')->name('userBalance')->middleware('verified');
+    Route::get('history', 'UserController@history')->name('userHistory')->middleware('verified');
     // User Slots
-    Route::get('reserve', 'UserController@reserve')->name('userReserve');
+    Route::get('reserve', 'UserController@reserve')->name('userReserve')->middleware('verified');
     Route::post('slot/{id}', 'UserController@reserveSlot')->name('userReserveSlot');
 });
 
@@ -83,6 +86,7 @@ Route::prefix('slot')->group(function(){
     Route::post('check-out', 'SlotController@checkOutSearch')->name('slotCheckOutSearch');
     Route::post('check-in/new', 'SlotController@checkInSearch')->name('slotCheckInSearch');
     Route::post('check-out/{slot}', 'SlotController@checkOut')->name('slotCheckOut');
+    Route::post('check-out2/{slot}/{id}/{toPay}', 'SlotController@checkOut2')->name('slotCheckOut2');
     Route::post('check-in/{slot}', 'SlotController@checkInReserve')->name('slotCheckInReserve');
 });
 

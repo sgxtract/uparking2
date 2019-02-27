@@ -135,6 +135,9 @@ return [
             'unique' => 'The :attribute is already registered in our system.',
             'alpha_num' => 'The format is invalid. ABC####',
         ],
+        'options' => [
+            'required' => 'Select amount to continue.',
+        ]
     ],
 
     /*

@@ -10,6 +10,7 @@ use App\Log;
 use App\Vehicle;
 use App\Wallet;
 use App\Reserve;
+use App\Reserve_Log;
 use App\User;
 use Carbon\Carbon;
 use Hash;
@@ -31,24 +32,31 @@ class UserController extends Controller
         return view('user.profile');
     }
 
-    public function profilePost(UserUpdate $request){
+    public function profilePost(Request $request){
         $user = Auth::user();
 
+        $request->validate([
+            'name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'phone_number' => 'required|numeric|digits:11',
+        ]);
+
         // Edit Profile
-        $user->name = $request['name'];
-        $user->last_name = $request['last_name'];
-        $user->email = $request['email'];
-        $user->phone_number = $request['phone_number'];
+        $user->name = strip_tags($request['name']);
+        $user->last_name = strip_tags($request['last_name']);
+        $user->email = strip_tags($request['email']);
+        $user->phone_number = strip_tags($request['phone_number']);
         $user->updated_at = Carbon::now();
         $user->save();
 
         // Change Password
         if($request['password'] != ""){
-            if(!(Hash::check($request['password'], Auth::user()->password))){
+            if(!(sha1(strip_tags($request['password']), Auth::user()->password))){
                 return redirect()->back()->with('error', 'Your current password does not match with the password you provided.');
             }
 
-            if(!(strcmp($request['password'], $request['new_password']))){
+            if(!(strcmp(strip_tags($request['password']), strip_tags($request['new_password'])))){
                 return redirect()->back()->with('error', 'New password cannot be same as your current password.');
             }
 
@@ -57,7 +65,7 @@ class UserController extends Controller
                 'new_password' => 'required|string|min:6|confirmed',
             ]);
 
-            $user->password = bcrypt($request['new_password']);
+            $user->password = sha1(strip_tags($request['new_password']));
             $user->save();
 
             // Post To Logs
@@ -89,7 +97,13 @@ class UserController extends Controller
         return view('user.vehicle')->with('vehicles', $vehicles);
     }
 
-    public function addVehicle(AddVehicle $request){
+    public function addVehicle(Request $request){
+
+        $validation = $request->validate([
+            'plate_number' => 'required|alpha_num|unique:vehicles',
+            'type' => 'required',
+        ]);
+
         $vehicle = new Vehicle;
         $vehicle->user_id = Auth::user()->id;
         $vehicle->plate_number = strtoupper($request['plate_number']);
@@ -156,16 +170,20 @@ class UserController extends Controller
 
     public function history(){
         $logs = Log::orderBy('created_at')->where('user_id', Auth::user()->id)->paginate(5);
-        return view('user.history')->with('logs', $logs);
+        $reserve_logs = Reserve_Log::orderBy('created_at')->where('user_id', Auth::user()->id)->paginate(5);
+        return view('user.history')->with(['logs' => $logs, 'reserve_logs' => $reserve_logs]);
     }
 
     public function reserve(){
         $user = Auth::user()->id;
-        return view('user.reserve')->with('user', $user);
+        $occupied = Reserve::where('status', 'occupied')->get();
+        $reserves = Reserve::where('status', 'reserved')->get();
+        $free = Reserve::where('status', 'free')->get();
+        return view('user.reserve')->with(['occupied' => $occupied, 'reserves' => $reserves, 'free' => $free, 'user' => $user]);
     }
 
     public function reserveSlot(Request $request, $id){
-
+        
         // User Wallet
         $wallet = Wallet::where('user_id', $id)->first();
         $plate_number = strtoupper($request['plate_number']);
@@ -173,6 +191,10 @@ class UserController extends Controller
         $vehicle = Vehicle::where('user_id', $id)->get();
 
         $add_funds = "Add Funds " . "<a href='".route('userBalance')."'>here.</a>";
+
+        $validation = $request->validate([
+            'plate_number' => 'required|unique:reserves|alpha_num|min:6',
+        ]);
 
         if($vehicle->isEmpty()){
             return back()->with('error', "No registered vehicle found. Register at least one (1) vehicle to reserve a slot.");
@@ -194,6 +216,15 @@ class UserController extends Controller
     
                     $wallet->balance -= 50;
                     $wallet->save();
+
+                    // Reserve Logs
+                    $reserve_logs = new Reserve_Log;
+                    $reserve_logs->user_id = $id;
+                    $reserve_logs->slot_number = $slot_number;
+                    $reserve_logs->plate_number = $plate_number;
+                    $reserve_logs->walk_in = false;
+                    $reserve_logs->created_at = Carbon::now();
+                    $reserve_logs->save();
     
                     return back()->with('success', "Reserved a vehicle with Plate Number : $plate_number at Slot Number : $slot_number");
                 }

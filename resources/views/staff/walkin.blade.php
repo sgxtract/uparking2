@@ -270,6 +270,22 @@ Walk-In
                         </div>
                         @endif
 
+                        @if (session('error'))
+                        <div class="alert alert-danger">
+                            {!! session('error') !!}
+                        </div>
+                        @endif
+                        
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="list-ticked">
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
                         <div class="row">
                             {{-- cars start --}}
                             <div class="col-md-12">

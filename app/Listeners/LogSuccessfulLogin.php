@@ -37,5 +37,9 @@ class LogSuccessfulLogin
         $logs->action = 'login';
         $logs->created_at = Carbon::now();
         $logs->save();
+
+        $event->user->last_sign_in_at = $event->user->current_sign_in_at ? $event->user->current_sign_in_at : Carbon::now();
+        $event->user->current_sign_in_at = Carbon::now();
+        $event->user->save();
     }
 }

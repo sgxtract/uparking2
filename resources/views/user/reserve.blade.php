@@ -276,7 +276,78 @@ Reserve (User)
                         </div>
                         @endif
 
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="list-ticked">
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+
                         <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                                <div class="card card-statistics">
+                                    <div class="card-body">
+                                        <div class="clearfix">
+                                            <div class="float-left">
+                                                <i class="mdi mdi-map-marker-radius text-dark icon-lg"></i>
+                                            </div>
+                                            <div class="float-right">
+                                                <p class="mb-0 text-right">Available Slots</p>
+                                                <div class="fluid-container">
+                                                    <h3 class="font-weight-medium text-right mb-0">{{ $free->count() }}</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-muted mt-3 mb-0">
+                                            <i class="mdi mdi-car-connected mr-1" aria-hidden="true"></i> Total available slots
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                                <div class="card card-statistics">
+                                    <div class="card-body">
+                                        <div class="clearfix">
+                                            <div class="float-left">
+                                                <i class="mdi mdi-car text-warning icon-lg"></i>
+                                            </div>
+                                            <div class="float-right">
+                                                <p class="mb-0 text-right">Reserves</p>
+                                                <div class="fluid-container">
+                                                    <h3 class="font-weight-medium text-right mb-0">{{ $reserves->count() }}</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-muted mt-3 mb-0">
+                                            <i class="mdi mdi-car-connected mr-1" aria-hidden="true"></i> Current reserves
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                                <div class="card card-statistics">
+                                    <div class="card-body">
+                                        <div class="clearfix">
+                                            <div class="float-left">
+                                                <i class="mdi mdi-car text-danger icon-lg"></i>
+                                            </div>
+                                            <div class="float-right">
+                                                <p class="mb-0 text-right">Occupied</p>
+                                                <div class="fluid-container">
+                                                    <h3 class="font-weight-medium text-right mb-0">{{ $occupied->count() }}</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="text-muted mt-3 mb-0">
+                                            <i class="mdi mdi-car-connected mr-1" aria-hidden="true"></i> Current occupied slots
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
                             {{-- cars start --}}
                             <div class="col-md-12">
 

@@ -9,7 +9,7 @@ Admin Dashboard
     <div class="content-wrapper">
         <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
-                <div class="card card-statistics">
+                <div class="card card-statistics bg-dark text-white">
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
@@ -29,7 +29,7 @@ Admin Dashboard
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
-                <div class="card card-statistics">
+                <div class="card card-statistics bg-dark text-white">
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
@@ -49,7 +49,7 @@ Admin Dashboard
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
-                <div class="card card-statistics">
+                <div class="card card-statistics bg-dark text-white">
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
@@ -72,17 +72,17 @@ Admin Dashboard
 
         <div class="row">
             <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
+                <div class="card bg-dark">
                     <div class="card-body">
-                        <h4 class="card-title">Sales Report</h4>
+                        <h4 class="card-title text-white">Sales Report</h4>
                         <canvas id="dashboard-area-chart" style="height:250px"></canvas>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
+                <div class="card bg-dark">
                     <div class="card-body">
-                        <h4 class="card-title">Statistics Report</h4>
+                        <h4 class="card-title text-white">Statistics Report</h4>
                         <canvas id="dashboard-area-chart" style="height:250px"></canvas>
                     </div>
                 </div>
@@ -94,12 +94,9 @@ Admin Dashboard
 <!-- content-wrapper ends -->
 <!-- partial:partials/_footer.html -->
 <footer class="footer">
-    <div class="container-fluid clearfix">
+    <div class="container-fluid clearfix text-center">
         <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright &copy; 2019
             <a href="http://www.bootstrapdash.com/" target="_blank">Grawlix Corp.</a>. All rights reserved.</span>
-        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
-            <i class="mdi mdi-heart text-danger"></i>
-        </span>
     </div>
 </footer>
 <!-- partial -->

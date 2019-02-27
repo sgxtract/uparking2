@@ -22,11 +22,14 @@ Vehicle
                             <div class="alert alert-danger">
                                 {{ session('success2') }}
                             </div>
-                            @endif
+                        @endif
+
+
 
                         @if ($vehicles->isEmpty())
                             <h5 class="text-center mt-5">No registered vehicle.</h5>
                         @else
+
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -83,7 +86,7 @@ Vehicle
 
                             @if($errors->any())
                             <div class="alert alert-danger">
-                                <ul>
+                                <ul class="list-ticked">
                                     @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                     @endforeach

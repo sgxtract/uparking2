@@ -71,7 +71,7 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'phone_number' => $data['phone_number'],
-            'password' => Hash::make($data['password']),
+            'password' => sha1($data['password']),
         ]);
 
         $wallet = new Wallet;

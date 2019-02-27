@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -37,6 +37,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $dates = [
+        'current_sign_in_at', 
+        'last_sign_in_at',
+    ];
+
     public function logs(){
         return $this->hasMany('App\Log');
     }
@@ -51,5 +56,9 @@ class User extends Authenticatable
 
     public function reserves(){
         return $this->hasMany('App\Reserve');
+    }
+
+    public function reserveLogs(){
+        return $this->hasMany('App\Reserve_Log');
     }
 }

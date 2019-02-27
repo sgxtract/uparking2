@@ -23,6 +23,10 @@ class PaymentController extends Controller
 {
     public function continueCheckOut(Request $request, $id){
         $amount = $request['options'];
+
+        $request->validate([
+            'options' => 'required',
+        ]);
         return view('shop.checkout')->with(['amount' => $amount, 'id' => $id]);
     }
     

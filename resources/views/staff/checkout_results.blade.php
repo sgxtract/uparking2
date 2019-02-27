@@ -17,6 +17,12 @@ Check Out
                                 {{ session('success') }}
                             </div>
                         @endif
+                        
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {!! session('error') !!}
+                            </div>
+                        @endif    
                         <div class="row">
                             <div class="col-md-3">Information</div>
                             <div class="col-md-3"></div>
@@ -83,9 +89,51 @@ Check Out
                             </div>
                         </div>
                         <hr>
-                        <form style="display: none" method="POST" id="checkout" action="{{ route('slotCheckOut', $check_out->slot_number) }}">@csrf</form>
-                        <button type="button" class="btn btn-success btn-sm mr-2 float-right" onclick="document.getElementById('checkout').submit()">Check Out</button>
-                        <a href="{{ route('staffCheckOut') }}" class="btn btn-light">Back</a>
+                        @if ($toPay == 0)
+                            <form style="display: none" method="POST" id="checkout" action="{{ route('slotCheckOut', $check_out->slot_number) }}">@csrf</form>
+                            <button type="button" class="btn btn-success btn-block btn-sm" onclick="document.getElementById('checkout').submit()"><i
+                                    class="mdi mdi-cash-multiple"></i>Checkout</button>
+                                    <a href="{{ route('staffCheckOut') }}" class="btn btn-light btn-block">Back</a>
+                        @else
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#checkOutModal">Checkout</button>
+                            <a href="{{ route('staffCheckOut') }}" class="btn btn-light">Back</a>
+
+                            {{-- Modal Start --}}
+                            <div class="modal fade" id="checkOutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Checkout</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <form style="display: none" method="POST" id="checkout" action="{{ route('slotCheckOut', $check_out->slot_number) }}">@csrf</form>
+                                                    <button type="button" class="btn btn-success btn-block btn-sm" onclick="document.getElementById('checkout').submit()"><i
+                                                            class="mdi mdi-cash-multiple"></i>Cash</button>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <form style="display: none" method="POST" id="checkout2" action="{{ route('slotCheckOut2', [$check_out->slot_number, $user_id, $toPay]) }}">@csrf</form>
+                                                    <button type="button" class="btn btn-dark btn-block btn-sm" onclick="document.getElementById('checkout2').submit()"><i
+                                                            class="mdi mdi-credit-card-multiple"></i>Load Wallet</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- Modal End --}}
+                        @endif
                     </div>
                 </div>
             </div>
@@ -96,7 +144,7 @@ Check Out
         <footer class="footer">
             <div class="container-fluid clearfix">
                 <span class="text-muted d-block text-center text-center">Copyright © 2019
-                    <a href="http://www.tonagnis.com/" target="_blank">Grawlix Corp</a>. All rights reserved.</span>
+                    <a href="http://www.parking-ally.com/" target="_blank">Grawlix Corp</a>. All rights reserved.</span>
             </div>
         </footer>
         <!-- partial -->

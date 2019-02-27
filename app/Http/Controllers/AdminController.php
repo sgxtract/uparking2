@@ -87,10 +87,10 @@ class AdminController extends Controller
 
     public function addNewUser(UserUpdate $request){
         $user = new User;
-        $user->name = $request['name'];
-        $user->last_name = $request['last_name'];
-        $user->email = $request['email'];
-        $user->phone_number = $request['phone_number'];
+        $user->name = strip_tags($request['name']);
+        $user->last_name = strip_tags($request['last_name']);
+        $user->email = strip_tags($request['email']);
+        $user->phone_number = strip_tags($request['phone_number']);
         $user->created_at = Carbon::now();
 
         $validation = $request->validate([
@@ -130,10 +130,10 @@ class AdminController extends Controller
 
     public function editUserAccount(Request $request, $id){
         $user = User::where('id', $id)->first();
-        $user->name = $request['name'];
-        $user->last_name = $request['last_name'];
-        $user->email = $request['email'];
-        $user->phone_number = $request['phone_number'];
+        $user->name = strip_tags($request['name']);
+        $user->last_name = strip_tags($request['last_name']);
+        $user->email = strip_tags($request['email']);
+        $user->phone_number = strip_tags($request['phone_number']);
         $user->updated_at = Carbon::now();
 
         if($request['staff']){

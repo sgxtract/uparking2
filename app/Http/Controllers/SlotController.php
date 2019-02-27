@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Reserve;
+use App\Reserve_Log;
 use App\User;
 use App\Wallet;
 use App\Vehicle;
@@ -19,6 +20,10 @@ class SlotController extends Controller
         $reserve = Reserve::where('slot_number', $slot_number)->first();
         $vehicle = Vehicle::where('plate_number', $plate_number)->first();
 
+        $validation = $request->validate([
+            'plate_number' => 'required|unique:reserves|alpha_num|min:6',
+        ]);
+
         if($vehicle){
             $reserve->user_id = $vehicle->user_id;
             $reserve->plate_number = $plate_number;
@@ -26,6 +31,15 @@ class SlotController extends Controller
             $reserve->walk_in = true;
             $reserve->created_at = Carbon::now();
             $reserve->save();
+
+            // Reserve Logs
+            $reserve_logs = new Reserve_Log;
+            $reserve_logs->user_id = $vehicle->user_id;
+            $reserve_logs->slot_number = $slot_number;
+            $reserve_logs->plate_number = $plate_number;
+            $reserve_logs->walk_in = true;
+            $reserve_logs->created_at = Carbon::now();
+            $reserve_logs->save();
         }else{
             $reserve->user_id = '0';
             $reserve->plate_number = $plate_number;
@@ -33,6 +47,15 @@ class SlotController extends Controller
             $reserve->walk_in = true;
             $reserve->created_at = Carbon::now();
             $reserve->save();
+
+            // Reserve Logs
+            $reserve_logs = new Reserve_Log;
+            $reserve_logs->user_id = '0';
+            $reserve_logs->slot_number = $slot_number;
+            $reserve_logs->plate_number = $plate_number;
+            $reserve_logs->walk_in = true;
+            $reserve_logs->created_at = Carbon::now();
+            $reserve_logs->save();
         }
 
         return back()->with('success', "Checked In Vehicle : $plate_number at Slot Number : $slot_number");
@@ -47,8 +70,10 @@ class SlotController extends Controller
         $vehicle = Vehicle::where('plate_number', $plate_number)->first();
         $reserve = Reserve::where('slot_number', $slot_number)->first();
 
-        return $vehicle;
-
+        $validation = $request->validate([
+            'plate_number' => 'required|unique:reserves|alpha_num|min:6',
+        ]);
+        
         if($vehicle){
             $reserve->user_id = $vehicle->user_id;
             $reserve->plate_number = $plate_number;
@@ -56,6 +81,15 @@ class SlotController extends Controller
             $reserve->walk_in = true;
             $reserve->created_at = Carbon::now();
             $reserve->save();
+
+            // Reserve Logs
+            $reserve_logs = new Reserve_Log;
+            $reserve_logs->user_id = $vehicle->user_id;
+            $reserve_logs->slot_number = $slot_number;
+            $reserve_logs->plate_number = $plate_number;
+            $reserve_logs->walk_in = true;
+            $reserve_logs->created_at = Carbon::now();
+            $reserve_logs->save();
         }else{
             $reserve->user_id = '0';
             $reserve->plate_number = $plate_number;
@@ -63,6 +97,15 @@ class SlotController extends Controller
             $reserve->walk_in = true;
             $reserve->created_at = Carbon::now();
             $reserve->save();
+
+            // Reserve Logs
+            $reserve_logs = new Reserve_Log;
+            $reserve_logs->user_id = '0';
+            $reserve_logs->slot_number = $slot_number;
+            $reserve_logs->plate_number = $plate_number;
+            $reserve_logs->walk_in = true;
+            $reserve_logs->created_at = Carbon::now();
+            $reserve_logs->save();
         }
 
         return back()->with('success', "Reserved a vehicle with Plate Number : $plate_number at Slot Number : $slot_number");
@@ -79,18 +122,21 @@ class SlotController extends Controller
             'plate_number' => 'required|alpha_num|min:6',
         ]);
 
-        if($check_in){
-            if($vehicle){
-                $user = User::where('id', $check_in->user_id)->first();
-                $wallet = Wallet::where('user_id', $user->id)->first();
-                return view('staff.checkin_results')->with(['check_in' => $check_in, 'user' => $user, 'wallet' => $wallet]);
+        if($plate_number == $check_in->plate_number && $check_in->status == 'reserved'){
+            if($check_in){
+                if($vehicle){
+                    $user = User::where('id', $check_in->user_id)->first();
+                    $wallet = Wallet::where('user_id', $user->id)->first();
+                    return view('staff.checkin_results')->with(['check_in' => $check_in, 'user' => $user, 'wallet' => $wallet]);
+                }else{
+                    return view('staff.checkin_results2')->with('check_in', $check_in);
+                }
             }else{
-                return view('staff.checkin_results2')->with('check_in', $check_in);
+                return back()->with('error', 'There is no reservation found for ' . $plate_number);
             }
         }else{
-            return back()->with('error', 'There is no reservation found for ' . $plate_number);
+            return back()->with('error', 'Plate number ' . $plate_number . ' is already checked in.');
         }
-
     }
 
     public function checkInReserve($slot){
@@ -143,7 +189,7 @@ class SlotController extends Controller
     
             $totalTime /= 3600;
     
-            return view('staff.checkout_results')->with(['check_out' => $check_out, 'totalTime' => $totalTime, 'toPay' => $toPay]);
+            return view('staff.checkout_results')->with(['check_out' => $check_out, 'totalTime' => $totalTime, 'toPay' => $toPay, 'user_id' => $check_out->user_id]);
         }else{
             return back()->with('error', 'Could not find ' . $plate_number . '. <br/> Please check and try again.');
         }
@@ -157,6 +203,38 @@ class SlotController extends Controller
         $check_out->status = 'free';
         $check_out->save();
 
+        $reserve_logs = Reserve_Log::where(['created_at' => $check_out->created_at, 'slot_number' => $slot])->first();
+        $reserve_logs->updated_at = Carbon::now();
+        $reserve_logs->save();
+        
         return redirect(route('staffCheckOut'))->with('success', 'Successfully checked out.');
+    }
+
+    public function checkOut2($slot, $id, $toPay){
+        $wallet = Wallet::where('user_id', $id)->first();
+        if($wallet){
+            if($wallet->balance < $toPay){
+                return redirect(route('staffCheckOut'))->with('error', 'Insufficient load balance.');
+            }else{
+                $wallet->balance -= $toPay;
+                $wallet->save();
+
+                // Update Slot
+                $check_out = Reserve::where('slot_number', $slot)->first();
+                $check_out->user_id = 0;
+                $check_out->plate_number = ' ';
+                $check_out->status = 'free';
+                $check_out->save();
+
+                // Update Check Out Logs
+                $reserve_logs = Reserve_Log::where(['created_at' => $check_out->created_at, 'slot_number' => $slot])->first();
+                $reserve_logs->updated_at = Carbon::now();
+                $reserve_logs->save();
+
+                return redirect(route('staffCheckOut'))->with('success', "Vehicle at <strong>$slot</strong> has successfully checked out.");
+            }
+        }else{
+            return redirect(route('staffCheckOut'))->with('error', 'This customer don\'t have an online wallet.');
+        }
     }
 }

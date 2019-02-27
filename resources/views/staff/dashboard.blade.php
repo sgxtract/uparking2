@@ -7,7 +7,7 @@ Staff Dashboard
     <div class="content-wrapper">
         <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
-                <div class="card card-statistics">
+                <div class="card card-statistics bg-dark text-white">
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
@@ -27,7 +27,7 @@ Staff Dashboard
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
-                <div class="card card-statistics">
+                <div class="card card-statistics bg-dark text-white">
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
@@ -47,11 +47,11 @@ Staff Dashboard
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
-                <div class="card card-statistics">
+                <div class="card card-statistics bg-dark text-white">
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
-                                <i class="mdi mdi-map-marker-radius text-dark icon-lg"></i>
+                                <i class="mdi mdi-map-marker-radius text-info icon-lg"></i>
                             </div>
                             <div class="float-right">
                                 <p class="mb-0 text-right">Available Slots</p>
@@ -69,20 +69,20 @@ Staff Dashboard
         </div>
         <div class="row">
             <div class="col-md-12 grid-margin">
-                <div class="card">
+                <div class="card bg-dark text-white">
                     <div class="card-body">
                         <div class="row d-none d-sm-flex mb-4">
                             <div class="col-4">
                                 <h5 class="text-primary">Reserves</h5>
-                                <p>34657</p>
+                                <p>{{ \App\Reserve_Log::all()->count() }}</p>
                             </div>
                             <div class="col-4">
                                 <h5 class="text-primary">Used Slots</h5>
-                                <p>45673</p>
+                                <p>{{ \App\Reserve::where('status', 'occupied')->count() }}</p>
                             </div>
                             <div class="col-4">
-                                <h5 class="text-primary">Slots</h5>
-                                <p>45673</p>
+                                <h5 class="text-primary">Registered Vehicles</h5>
+                                <p>{{ \App\Vehicle::all()->count() }}</p>
                             </div>
                         </div>
                         <div class="chart-container">

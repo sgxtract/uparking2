@@ -7,7 +7,7 @@ User Dashboard
     <div class="content-wrapper">
         <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
-                <div class="card card-statistics">
+                <div class="card card-statistics bg-dark text-white">
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
@@ -16,7 +16,7 @@ User Dashboard
                             <div class="float-right">
                                 <p class="mb-0 text-right">Last login</p>
                                 <div class="fluid-container">
-                                    <h3 class="font-weight-medium text-right mb-0">{{ $user->updated_at->diffForHumans() }}</h3>
+                                    <h3 class="font-weight-medium text-right mb-0">{{ $user->last_sign_in_at->diffForHumans() }}</h3>
                                 </div>
                             </div>
                         </div>
@@ -27,14 +27,14 @@ User Dashboard
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
-                <div class="card card-statistics">
+                <div class="card card-statistics bg-dark text-white">
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
                                 <i class="mdi mdi-car text-info icon-lg"></i>
                             </div>
                             <div class="float-right">
-                                <p class="mb-0 text-right">Vehicles</p>
+                                <p class="mb-0 text-right">My Vehicles</p>
                                 <div class="fluid-container">
                                     <h3 class="font-weight-medium text-right mb-0">{{ $vehicles->count() }}</h3>
                                 </div>
@@ -47,14 +47,14 @@ User Dashboard
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
-                <div class="card card-statistics">
+                <div class="card card-statistics bg-dark text-white">
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
                                 <i class="mdi mdi-calendar-check text-warning icon-lg"></i>
                             </div>
                             <div class="float-right">
-                                <p class="mb-0 text-right">Reserves</p>
+                                <p class="mb-0 text-right">My Reserves</p>
                                 <div class="fluid-container">
                                     <h3 class="font-weight-medium text-right mb-0">{{ $reserves->count() }}</h3>
                                 </div>
@@ -73,15 +73,15 @@ User Dashboard
                 <div class="card card-weather">
                     <div class="card-body">
                         <div class="weather-date-location">
-                            <h3>Monday</h3>
+                            <h3>Friday</h3>
                             <p class="text-gray">
-                                <span class="weather-date">25 October, 2016</span>
-                                <span class="weather-location">London, UK</span>
+                                <span class="weather-date">01 March, 2019</span>
+                                <span class="weather-location">Manila, Philippines</span>
                             </p>
                         </div>
                         <div class="weather-data d-flex">
                             <div class="mr-auto">
-                                <h4 class="display-3">21
+                                <h4 class="display-3">26
                                     <span class="symbol">&deg;</span>C</h4>
                                 <p>
                                     Mostly Cloudy
@@ -167,8 +167,6 @@ User Dashboard
         <div class="container-fluid clearfix">
             <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2019
                 <a href="http://www.parking-ally.com/" target="_blank">Grawlix Corp.</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with
-                <i class="mdi mdi-heart text-danger"></i>
             </span>
         </div>
     </footer>
