@@ -41,7 +41,12 @@ Check Out
                                 <p class="font-weight-bold">Time in:</p>
                             </div>
                             <div class="col-md-3">
-                                <p>{{ $check_out->created_at }}</p>
+                                <p>
+                                    @php
+                                        $unixTime = strtotime($check_out->created_at);
+                                        echo date('M. d - g:i a', $unixTime);
+                                    @endphp
+                                </p>
                             </div>
                         </div>
                         <div class="row">
@@ -55,7 +60,12 @@ Check Out
                                 <p class="font-weight-bold">Time out:</p>
                             </div>
                             <div class="col-md-3">
-                                <p>{{ $check_out->updated_at }}</p>
+                                <p>
+                                    @php
+                                        $unixTime = strtotime($check_out->updated_at);
+                                        echo date('M. d - g:i a', $unixTime);
+                                    @endphp
+                                </p>
                             </div>
                         </div>
                         <div class="row">

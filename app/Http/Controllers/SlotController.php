@@ -122,21 +122,28 @@ class SlotController extends Controller
             'plate_number' => 'required|alpha_num|min:6',
         ]);
 
-        if($plate_number == $check_in->plate_number && $check_in->status == 'reserved'){
-            if($check_in){
-                if($vehicle){
-                    $user = User::where('id', $check_in->user_id)->first();
-                    $wallet = Wallet::where('user_id', $user->id)->first();
-                    return view('staff.checkin_results')->with(['check_in' => $check_in, 'user' => $user, 'wallet' => $wallet]);
+
+        if(!$check_in){
+            return back()->with('error', 'There is no reservation found for ' . $plate_number);
+        }else{
+            if($plate_number == $check_in->plate_number && $check_in->status == 'reserved'){
+                if($check_in){
+                    if($vehicle){
+                        $user = User::where('id', $check_in->user_id)->first();
+                        $wallet = Wallet::where('user_id', $user->id)->first();
+                        return view('staff.checkin_results')->with(['check_in' => $check_in, 'user' => $user, 'wallet' => $wallet]);
+                    }else{
+                        return view('staff.checkin_results2')->with('check_in', $check_in);
+                    }
                 }else{
-                    return view('staff.checkin_results2')->with('check_in', $check_in);
+                    return back()->with('error', 'There is no reservation found for ' . $plate_number);
                 }
             }else{
-                return back()->with('error', 'There is no reservation found for ' . $plate_number);
+                return back()->with('error', 'Plate number ' . $plate_number . ' is already checked in.');
             }
-        }else{
-            return back()->with('error', 'Plate number ' . $plate_number . ' is already checked in.');
-        }
+        }   
+
+        
     }
 
     public function checkInReserve($slot){

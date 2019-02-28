@@ -302,20 +302,19 @@ Walk-In
                                     @if ($obj->status =='reserved')
                                     <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
                                         data-target="#modalReserved">
-                                        <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                        <input type="radio" onclick="reserved()" value="Slot {{ $i }}" name="slots">
                                         <span class="fancy-checkbox fancy-checkbox-img"></span>
                                         <img src="{{ asset('images/cars/car-orange-top.png') }}" width="27" height="55">
                                     </label>
                                     @elseif ($obj->status == 'occupied')
-                                    <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
-                                        data-target="#modalOccupied">
-                                        <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                    <label class="fancy-checkbox-label" id="slot-{{ $i }}">
+                                        <input type="radio" onclick="occupied()" value="Slot {{ $i }}" name="slots">
                                         <span class="fancy-checkbox fancy-checkbox-img"></span>
                                         <img src="{{ asset('images/cars/car-red-top.png') }}" width="27" height="55">
                                     </label>
                                     @else
                                     <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
-                                        data-target="#myModal">
+                                    data-target="#myModal">
                                         <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
                                         <span class="fancy-checkbox fancy-checkbox-img"></span>
                                         <img src="{{ asset('images/cars/car-grey-top.png') }}" width="27" height="55">
@@ -333,17 +332,15 @@ Walk-In
                                         @endphp
 
                                         @if ($obj->status =='reserved')
-                                        <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
-                                            data-target="#modalReserved">
-                                            <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                        <label class="fancy-checkbox-label" id="slot-{{ $i }}">
+                                            <input type="radio" onclick="reserved()" value="Slot {{ $i }}" name="slots">
                                             <span class="fancy-checkbox fancy-checkbox-img"></span>
                                             <img src="{{ asset('images/cars/car-orange-pwd.png') }}" width="54" height="27">
                                         </label>
 
                                         @elseif ($obj->status =='occupied')
-                                        <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
-                                            data-target="#modalOccupied">
-                                            <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                        <label class="fancy-checkbox-label" id="slot-{{ $i }}">
+                                            <input type="radio" onclick="occupied()" value="Slot {{ $i }}" name="slots">
                                             <span class="fancy-checkbox fancy-checkbox-img"></span>
                                             <img src="{{ asset('images/cars/car-red-pwd.png') }}" width="54" height="27">
                                         </label>
@@ -368,18 +365,16 @@ Walk-In
                                             @endphp
 
                                             @if ($obj->status =='reserved')
-                                            <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
-                                                data-target="#modalReserved">
-                                                <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                            <label class="fancy-checkbox-label" id="slot-{{ $i }}">
+                                                <input type="radio" onclick="reserved()" value="Slot {{ $i }}" name="slots">
                                                 <span class="fancy-checkbox fancy-checkbox-img"></span>
                                                 <img src="{{ asset('images/cars/car-orange-btm.png') }}" width="27"
                                                     height="55">
                                             </label>
 
                                             @elseif ($obj->status =='occupied')
-                                            <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
-                                                data-target="#modalOccupied">
-                                                <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                            <label class="fancy-checkbox-label" id="slot-{{ $i }}">
+                                                <input type="radio" onclick="occupied()" value="Slot {{ $i }}" name="slots">
                                                 <span class="fancy-checkbox fancy-checkbox-img"></span>
                                                 <img src="{{ asset('images/cars/car-red-btm.png') }}" width="27" height="55">
                                             </label>
@@ -405,18 +400,16 @@ Walk-In
                                                 @endphp
 
                                                 @if ($obj->status =='reserved')
-                                                <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
-                                                    data-target="#modalReserved">
-                                                    <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                                <label class="fancy-checkbox-label" id="slot-{{ $i }}">
+                                                    <input type="radio" onclick="reserved()" value="Slot {{ $i }}" name="slots">
                                                     <span class="fancy-checkbox fancy-checkbox-img"></span>
                                                     <img src="{{ asset('images/cars/car-orange-top.png') }}" width="27"
                                                         height="55">
                                                 </label>
 
                                                 @elseif ($obj->status =='occupied')
-                                                <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
-                                                    data-target="#modalOccupied">
-                                                    <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                                <label class="fancy-checkbox-label" id="slot-{{ $i }}">
+                                                    <input type="radio" onclick="occupied()" value="Slot {{ $i }}" name="slots">
                                                     <span class="fancy-checkbox fancy-checkbox-img"></span>
                                                     <img src="{{ asset('images/cars/car-red-top.png') }}" width="27"
                                                         height="55">
@@ -443,18 +436,16 @@ Walk-In
                                                     @endphp
 
                                                     @if ($obj->status =='reserved')
-                                                    <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
-                                                        data-target="#modalReserved">
-                                                        <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                                    <label class="fancy-checkbox-label" id="slot-{{ $i }}">
+                                                        <input type="radio" onclick="reserved()" value="Slot {{ $i }}" name="slots">
                                                         <span class="fancy-checkbox fancy-checkbox-img"></span>
                                                         <img src="{{ asset('images/cars/car-orange-btm.png') }}" width="27"
                                                             height="55">
                                                     </label>
 
                                                     @elseif ($obj->status =='occupied')
-                                                    <label class="fancy-checkbox-label" id="slot-{{ $i }}" data-toggle="modal"
-                                                        data-target="#modalOccupied">
-                                                        <input type="radio" onclick="func()" value="Slot {{ $i }}" name="slots">
+                                                    <label class="fancy-checkbox-label" id="slot-{{ $i }}">
+                                                        <input type="radio" onclick="occupied()" value="Slot {{ $i }}" name="slots">
                                                         <span class="fancy-checkbox fancy-checkbox-img"></span>
                                                         <img src="{{ asset('images/cars/car-red-btm.png') }}" width="27"
                                                             height="55">
@@ -537,92 +528,6 @@ Walk-In
                                 </div>
                             </div>
                             <!-- Modal End -->
-
-                            <!-- Modal Occupied Start -->
-                            <div class="modal fade" id="modalOccupied" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel"></h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            {{-- Parking Information --}}
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <h5>Occupied <span class="mdi mdi-alert"></span></h5>
-                                                    <hr>
-                                                    <div class="row mt-3">
-                                                        <div class="col-md-4">
-                                                            <p>Plate Number:</p>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <p></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <p>Start Time: </p>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <p>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {{-- Parking Information End --}}
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Modal Occupied End -->
-
-                            <!-- Modal Reserved Start -->
-                            <div class="modal fade" id="modalReserved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" id="myModalLabel"></h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            {{-- Parking Information --}}
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <h5>Reserved <span class="mdi mdi-alert"></span></h5>
-                                                    <hr>
-                                                    <div class="row mt-3">
-                                                        <div class="col-md-4">
-                                                            <p>Plate Number:</p>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <p></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <p>Start Time: </p>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <p>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {{-- Parking Information End --}}
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Back</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Modal Reserved End -->
                         </div>
                     </div>
                 </div>
@@ -639,6 +544,27 @@ Walk-In
         document.getElementById("myModalLabel2").value = val;
     }
 
+    function occupied(){
+        var val = document.querySelector('input[name="slots"]:checked').value;
+        swal({
+            title: "Occupied",
+            text: val,
+            icon: "warning",
+            button: true,
+            dangerMode: true,
+        });
+    }
+
+    function reserved(){
+        var val = document.querySelector('input[name="slots"]:checked').value;
+        swal({
+            title: "Reserved",
+            text: val,
+            icon: "warning",
+            button: true,
+            dangerMode: true,
+        });
+    }
 </script>
 
 @endsection

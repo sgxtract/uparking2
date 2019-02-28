@@ -179,7 +179,8 @@ class UserController extends Controller
         $occupied = Reserve::where('status', 'occupied')->get();
         $reserves = Reserve::where('status', 'reserved')->get();
         $free = Reserve::where('status', 'free')->get();
-        return view('user.reserve')->with(['occupied' => $occupied, 'reserves' => $reserves, 'free' => $free, 'user' => $user]);
+        $vehicles = Vehicle::where('user_id', $user)->get();
+        return view('user.reserve')->with(['occupied' => $occupied, 'reserves' => $reserves, 'free' => $free, 'user' => $user, 'vehicles' => $vehicles]);
     }
 
     public function reserveSlot(Request $request, $id){

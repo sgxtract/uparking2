@@ -69,7 +69,12 @@ Check In
                                 <p class="font-weight-bold">Time reserved:</p>
                             </div>
                             <div class="col-md-3">
-                                <p>{{ $check_in->created_at }}</p>
+                                <p>
+                                    @php
+                                        $unixTime = strtotime($check_in->created_at);
+                                        echo date('M. d - g:i a', $unixTime);
+                                    @endphp
+                                </p>
                             </div>
                             <div class="col-md-3">
                                 <p class="font-weight-bold">Load Balance:</p>
