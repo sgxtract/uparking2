@@ -20,9 +20,6 @@ User Dashboard
                                 </div>
                             </div>
                         </div>
-                        <p class="text-muted mt-3 mb-0">
-                            <i class="mdi mdi-car-connected mr-1" aria-hidden="true"></i> Most used vehicle
-                        </p>
                     </div>
                 </div>
             </div>
@@ -41,7 +38,7 @@ User Dashboard
                             </div>
                         </div>
                         <p class="text-muted mt-3 mb-0">
-                            <i class="mdi mdi-car-connected mr-1" aria-hidden="true"></i> Most used vehicle
+                            <button type="button" id="viewVehicles" class="btn btn-inverse-info btn-rounded btn-fw">View vehicles</button>
                         </p>
                     </div>
                 </div>
@@ -56,12 +53,12 @@ User Dashboard
                             <div class="float-right">
                                 <p class="mb-0 text-right">My Reserves</p>
                                 <div class="fluid-container">
-                                    <h3 class="font-weight-medium text-right mb-0">{{ $reserves->count() }}</h3>
+                                    <h3 class="font-weight-medium text-right mb-0">{{ $reserves2->count() }}</h3>
                                 </div>
                             </div>
                         </div>
                         <p class="text-muted mt-3 mb-0">
-                            <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Weekly Reserves
+                            <button type="button" id="getData" class="btn btn-inverse-warning btn-rounded btn-fw view_data">View reserve</button>
                         </p>
                     </div>
                 </div>
@@ -160,6 +157,81 @@ User Dashboard
                 <!--weather card ends-->
             </div>
         </div>
+
+        {{-- Reserve Modal --}}
+        <div id="dataModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Reserve Information <span class="mdi mdi-information 
+                            icon-sm"></span></h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body" id="parking_detail">
+                            @if ($reserves2->count() == 0)
+                                <h5 class="text-center">You have no current reserves.</h5>
+                            @else
+                            <div class="row text-center">
+                                <div class="col-md-4">Slot Number</div>
+                                <div class="col-md-4">Plate Number</div>
+                            </div>
+                            <hr>
+                                @foreach ($reserves as $reserve)
+                                    @if ($reserve->status == 'reserved')
+                                        <div class="row text-center">
+                                            <div class="col-md-4"><p>{{ $reserve->slot_number }}</p></div>
+                                            <div class="col-md-4"><p>{{ $reserve->plate_number }}</p></div>
+                                            <div class="col-md-4"><button class="btn btn-danger btn-sm btn-block">Cancel</button></div>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            @endif
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Reserve Modal End --}}
+
+        {{-- Vehicles Modal --}}
+        <div id="dataModal2" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Vehicle Lists <span class="mdi mdi-information 
+                            icon-sm"></span></h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body" id="parking_detail">
+                            @if ($vehicles->isEmpty())
+                                <h5 class="text-center">You have no registered vehicle/s.</h5>
+                            @else
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4">Type</div>
+                                <div class="col-md-4">Plate Number</div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <hr>
+                                @foreach ($vehicles as $vehicle)
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-4"><p>{{ $vehicle->type }}</p></div>
+                                        <div class="col-md-4"><p>{{ $vehicle->plate_number }}</p></div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                @endforeach
+                            @endif
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Vehicles Modal End --}}
     </div>
     <!-- content-wrapper ends -->
     <!-- partial:partials/_footer.html -->
@@ -171,8 +243,23 @@ User Dashboard
         </div>
     </footer>
     <!-- partial -->
+    
 </div>
 <!-- main-panel ends -->
+
+<script>
+    $(document).ready(function(){
+        $('.view_data').click(function(){
+            $('#dataModal').modal("show");
+        });
+    });
+
+    $(document).ready(function(){
+        $('#viewVehicles').click(function(){
+            $('#dataModal2').modal("show");
+        });
+    });
+</script>
 
 {{-- {!! $chart->script() !!} --}}
 @endsection

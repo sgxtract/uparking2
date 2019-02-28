@@ -36,10 +36,12 @@ class StaffController extends Controller
     }
 
     public function checkIn(){
-        return view('staff.checkin');
+        $vehicles = Reserve::where('status', 'reserved')->get();
+        return view('staff.checkin')->with('vehicles', $vehicles);
     }
 
     public function checkOut(){
-        return view('staff.checkout');
+        $vehicles = Reserve::where('status', 'occupied')->get();
+        return view('staff.checkout')->with('vehicles', $vehicles);
     }
 }

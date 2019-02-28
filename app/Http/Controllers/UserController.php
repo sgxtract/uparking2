@@ -14,6 +14,7 @@ use App\Reserve_Log;
 use App\User;
 use Carbon\Carbon;
 use Hash;
+use Response;
 
 class UserController extends Controller
 {
@@ -24,8 +25,9 @@ class UserController extends Controller
     public function dashboard(){
         $vehicles = Vehicle::where('user_id', Auth::user()->id)->get();
         $reserves = Reserve::where('user_id', Auth::user()->id)->get();
+        $reserves2 = Reserve::where(['user_id' => Auth::user()->id, 'status' => 'reserved'])->get();
         $user = User::where('id', Auth::user()->id)->first();
-        return view('user.dashboard')->with(['vehicles' => $vehicles, 'reserves' => $reserves, 'user' => $user]);
+        return view('user.dashboard')->with(['vehicles' => $vehicles, 'reserves' => $reserves, 'user' => $user, 'reserves2' => $reserves2]);
     }
 
     public function profile(){

@@ -38,8 +38,11 @@ class LogSuccessfulLogin
         $logs->created_at = Carbon::now();
         $logs->save();
 
+        $event->user->status = true;
         $event->user->last_sign_in_at = $event->user->current_sign_in_at ? $event->user->current_sign_in_at : Carbon::now();
         $event->user->current_sign_in_at = Carbon::now();
         $event->user->save();
     }
 }
+
+// last_sign_in_at = current_sign_in at ? current_sign_in_at : time ngayon.

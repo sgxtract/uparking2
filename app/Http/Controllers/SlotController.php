@@ -122,7 +122,6 @@ class SlotController extends Controller
             'plate_number' => 'required|alpha_num|min:6',
         ]);
 
-
         if(!$check_in){
             return back()->with('error', 'There is no reservation found for ' . $plate_number);
         }else{
@@ -165,10 +164,6 @@ class SlotController extends Controller
         $endTime = strtotime($check_out['updated_at']);
         $totalTime = $endTime - $startTime;
 
-        $validation = $request->validate([
-            'plate_number' => 'required|alpha_num|min:6',
-        ]);
-
         if($check_out){
             $check_out->updated_at = Carbon::now();
             $check_out->save();
@@ -202,19 +197,70 @@ class SlotController extends Controller
         }
 
     }
+
+    // Check Out
+    public function checkOutSearch2(Request $request){
+
+        $slot_number = strip_tags($request['slot_number']);
+
+        $check_out = Reserve::where('slot_number', $slot_number)->first();
+
+        $startTime = strtotime($check_out['created_at']);
+        $endTime = strtotime($check_out['updated_at']);
+        $totalTime = $endTime - $startTime;
+
+        if($check_out){
+            $check_out->updated_at = Carbon::now();
+            $check_out->save();
+
+            if(!($check_out->walk_in)){
+                if($totalTime <= 7200){
+                    $toPay = 0;
+                }else{
+                    $newStartTime = $startTime + 7200; // New Time For Reservee
+                    $newTotalTime = $endTime - $newStartTime;
+                    $newTotalTime /= 3600;
+                    if($newTotalTime < 1){
+                        $toPay = floor($newTotalTime + 1) * 25;
+                    }else{
+                        $toPay = round($newTotalTime) * 25;
+                    }
+                }
+            }else{
+                if($totalTime <= 7200){
+                    $toPay = 50;
+                }else{
+                    $toPay = round($totalTime/3600) * 25;
+                }
+            }
+    
+            $totalTime /= 3600;
+    
+            return view('staff.checkout_results')->with(['check_out' => $check_out, 'totalTime' => $totalTime, 'toPay' => $toPay, 'user_id' => $check_out->user_id]);
+        }else{
+            return back()->with('error', 'Could not find ' . $slot_number . '. <br/> Please check and try again.');
+        }
+
+    }
     
     public function checkOut($slot){
         $check_out = Reserve::where('slot_number', $slot)->first();
-        $check_out->user_id = 0;
-        $check_out->plate_number = ' ';
-        $check_out->status = 'free';
-        $check_out->save();
-
-        $reserve_logs = Reserve_Log::where(['created_at' => $check_out->created_at, 'slot_number' => $slot])->first();
-        $reserve_logs->updated_at = Carbon::now();
-        $reserve_logs->save();
         
-        return redirect(route('staffCheckOut'))->with('success', 'Successfully checked out.');
+        if($check_out->status == 'reserved'){
+            return redirect(route('staffCheckOut'))->with('error', "Cannot check out plate number $check_out->plate_number. <br/> It is not yet checked in.");
+        }else{
+            $check_out->user_id = 0;
+            $check_out->plate_number = ' ';
+            $check_out->status = 'free';
+            $check_out->save();
+
+            // Update Time Out
+            $reserve_logs = Reserve_Log::where(['created_at' => $check_out->created_at, 'slot_number' => $slot])->first();
+            $reserve_logs->updated_at = Carbon::now();
+            $reserve_logs->save();
+            
+            return redirect(route('staffCheckOut'))->with('success', 'Successfully checked out.');
+        }
     }
 
     public function checkOut2($slot, $id, $toPay){

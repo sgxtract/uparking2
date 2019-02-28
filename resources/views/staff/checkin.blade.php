@@ -30,14 +30,18 @@ Check In
                         </ul>
                     </div>
                     @endif
-                    <h4 class="text-center">Check In</h4>
+                    <h4 class="text-center display-4 mb-5 mt-2">Check In</h4>
                     <form action="{{ route('slotCheckInSearch') }}" method="POST">
                         @csrf
                         <div class="input-group col-xs-12">
-                            <input type="text" name="plate_number" class="form-control" placeholder="Search Plate No.">
+                                <select class="form-control" name="plate_number" id="">
+                                    @foreach ($vehicles as $vehicle)
+                                    <option>{{ $vehicle->plate_number }}</option>
+                                    @endforeach
+                                </select>
                             <span class="input-group-append">
                                 <button type="submit" class="btn btn-dark btn-fw">
-                                    <i class="mdi mdi-magnify"></i>Search</button>
+                                    <i class="mdi mdi-magnify"></i>Check in</button>
                             </span>
                         </div>
                     </form>

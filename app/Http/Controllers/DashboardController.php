@@ -26,7 +26,7 @@ class DashboardController extends Controller
     {
         if(Auth::user()->admin){
             return redirect(route('adminDashboard'));
-        }elseif(Auth::user()->author){
+        }elseif(Auth::user()->staff){
             return redirect(route('staffDashboard'));
         }else{
             return redirect(route('userDashboard'));

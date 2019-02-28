@@ -84,6 +84,13 @@
             </a>
         </li>
 
+        <li class="nav-item {{ Route::currentRouteName() == 'staffCheckOut' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('staffCheckOut') }}">
+                <i class="menu-icon mdi mdi-credit-card-plus"></i>
+                <span class="menu-title">Add Funds</span>
+            </a>
+        </li>
+
         <li class="nav-item {{ Route::currentRouteName() == 'staffWalkIn' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('staffWalkIn') }}">
                 <i class="menu-icon mdi mdi-walk"></i>
@@ -105,12 +112,12 @@
             </a>
         </li>
 
-        <li class="nav-item {{ Route::currentRouteName() == 'staffHistory' ? 'active' : '' }}">
+        {{-- <li class="nav-item {{ Route::currentRouteName() == 'staffHistory' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('staffHistory') }}">
                 <i class="menu-icon mdi mdi-calendar-clock"></i>
                 <span class="menu-title">History</span>
             </a>
-        </li>
+        </li> --}}
 
         @endif
 

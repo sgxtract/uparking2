@@ -83,7 +83,8 @@ Route::prefix('pay')->group(function(){
 Route::prefix('slot')->group(function(){
     Route::post('check-in', 'SlotController@checkIn')->name('slotCheckIn');
     Route::post('reserve', 'SlotController@reserve')->name('slotReserve');
-    Route::post('check-out', 'SlotController@checkOutSearch')->name('slotCheckOutSearch');
+    Route::post('check-out/byPlate', 'SlotController@checkOutSearch')->name('slotCheckOutSearch');
+    Route::post('check-out/bySlot', 'SlotController@checkOutSearch2')->name('slotCheckOutSearch2');
     Route::post('check-in/new', 'SlotController@checkInSearch')->name('slotCheckInSearch');
     Route::post('check-out/{slot}', 'SlotController@checkOut')->name('slotCheckOut');
     Route::post('check-out2/{slot}/{id}/{toPay}', 'SlotController@checkOut2')->name('slotCheckOut2');

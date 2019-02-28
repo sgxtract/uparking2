@@ -79,7 +79,7 @@ Login
                             <a href="#">Terms</a>
                         </li>
                     </ul>
-                    <p class="footer-text text-center">Copyright © 2018 Grawlix Corp. All rights reserved.</p>
+                    <p class="footer-text text-center">Copyright © 2019 Grawlix Corp. All rights reserved.</p>
                 </div>
             </div>
         </div>

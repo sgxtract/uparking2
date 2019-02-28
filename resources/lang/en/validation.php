@@ -137,6 +137,9 @@ return [
         ],
         'options' => [
             'required' => 'Select amount to continue.',
+        ],
+        'status' => [
+            
         ]
     ],
 
