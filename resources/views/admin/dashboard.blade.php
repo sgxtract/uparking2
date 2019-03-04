@@ -13,17 +13,17 @@ Admin Dashboard
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
-                                <i class="mdi mdi-car text-warning icon-lg"></i>
+                                <i class="mdi mdi-car text-primary icon-lg"></i>
                             </div>
                             <div class="float-right">
-                                <p class="mb-0 text-right">Total Vehicles</p>
+                                <p class="mb-0 text-right text-primary font-weight-bold">Total Vehicles</p>
                                 <div class="fluid-container">
                                     <h3 class="font-weight-medium text-right mb-0">{{ \App\Vehicle::all()->count() }}</h3>
                                 </div>
                             </div>
                         </div>
                         <p class="text-muted mt-3 mb-0">
-                            <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 65% lower growth
+                            <i class="mdi mdi-information-outline mr-1" aria-hidden="true"></i>Number of registered vehicles
                         </p>
                     </div>
                 </div>
@@ -33,17 +33,17 @@ Admin Dashboard
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
-                                <i class="mdi mdi-calendar-check text-success icon-lg"></i>
+                                <i class="mdi mdi-calendar-check text-warning icon-lg"></i>
                             </div>
                             <div class="float-right">
-                                <p class="mb-0 text-right">Total Reserves</p>
+                                <p class="mb-0 text-right text-primary font-weight-bold">Total Reserves</p>
                                 <div class="fluid-container">
-                                    <h3 class="font-weight-medium text-right mb-0">{{ \App\Reserve::all()->count() }}</h3>
+                                    <h3 class="font-weight-medium text-right mb-0">{{ \App\Reserve_Log::all()->count() }}</h3>
                                 </div>
                             </div>
                         </div>
                         <p class="text-muted mt-3 mb-0">
-                            <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> Product-wise sales
+                            <i class="mdi mdi-information-outline mr-1" aria-hidden="true"></i>Total number of reserves
                         </p>
                     </div>
                 </div>
@@ -53,17 +53,17 @@ Admin Dashboard
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
-                                <i class="mdi mdi-account-multiple text-info icon-lg"></i>
+                                <i class="mdi mdi-account-multiple text-success icon-lg"></i>
                             </div>
                             <div class="float-right">
-                                <p class="mb-0 text-right">Total Users</p>
+                                <p class="mb-0 text-right text-primary font-weight-bold">Total Users</p>
                                 <div class="fluid-container">
                                     <h3 class="font-weight-medium text-right mb-0">{{ \App\User::all()->count() }}</h3>
                                 </div>
                             </div>
                         </div>
                         <p class="text-muted mt-3 mb-0">
-                            <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Weekly Sales
+                            <i class="mdi mdi-information-outline mr-1" aria-hidden="true"></i>Number of registered users
                         </p>
                     </div>
                 </div>
@@ -71,19 +71,63 @@ Admin Dashboard
         </div>
 
         <div class="row">
-            <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card bg-dark">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
+                <div class="card card-statistics bg-dark text-white">
                     <div class="card-body">
-                        <h4 class="card-title text-white">Sales Report</h4>
-                        <canvas id="dashboard-area-chart" style="height:250px"></canvas>
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <i class="mdi mdi-car-side text-warning icon-lg"></i>
+                            </div>
+                            <div class="float-right">
+                                <p class="mb-0 text-right text-primary font-weight-bold">Reserves</p>
+                                <div class="fluid-container">
+                                    <h3 class="font-weight-medium text-right mb-0">{{ \App\Reserve::where('status', 'reserved')->count() }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-muted mt-3 mb-0">
+                            <i class="mdi mdi-information-outline mr-1" aria-hidden="true"></i> Current reserves
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card bg-dark">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
+                <div class="card card-statistics bg-dark text-white">
                     <div class="card-body">
-                        <h4 class="card-title text-white">Statistics Report</h4>
-                        <canvas id="dashboard-area-chart" style="height:250px"></canvas>
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <i class="mdi mdi-map-marker-off text-danger icon-lg"></i>
+                            </div>
+                            <div class="float-right">
+                                <p class="mb-0 text-right text-primary font-weight-bold">Occupied</p>
+                                <div class="fluid-container">
+                                    <h3 class="font-weight-medium text-right mb-0">{{ \App\Reserve::where('status', 'occupied')->count() }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-muted mt-3 mb-0">
+                            <i class="mdi mdi-information-outline mr-1" aria-hidden="true"></i>Current number of occupied slots
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
+                <div class="card card-statistics bg-dark text-white">
+                    <div class="card-body">
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <i class="mdi mdi-map-marker-radius text-light icon-lg"></i>
+                            </div>
+                            <div class="float-right">
+                                <p class="mb-0 text-right text-primary font-weight-bold">Available Slots</p>
+                                <div class="fluid-container">
+                                    <h3 class="font-weight-medium text-right mb-0">{{ \App\Reserve::where('status', 'free')->count() }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-muted mt-3 mb-0">
+                            <i class="mdi mdi-information-outline mr-1" aria-hidden="true"></i>Parking slots available
+                        </p>
                     </div>
                 </div>
             </div>

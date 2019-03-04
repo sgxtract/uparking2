@@ -11,6 +11,8 @@ use App\Log;
 use App\User;
 use App\Vehicle;
 use App\Wallet;
+use App\Reserve;
+use App\Reserve_Log;
 
 class AdminController extends Controller
 {
@@ -23,11 +25,28 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
+    public function salesReport(){
+        $logs = Reserve_log::all();
+        $payment = 0;
+        foreach($logs as $log){
+            $payment += $log->payment;
+        }
+        return view('admin.sales_report')->with('payment', $payment);
+    }
+
+    public function statisticsReport(){
+        $reserves = Reserve_Log::all();
+        $users = User::all();
+        $vehicles = Vehicle::all();
+        return view('admin.statistics_report')->with(['reserves' => $reserves, 'users' => $users, 'vehicles' => $vehicles]);
+    }
+
     public function vehicles(){
-        $vehicle = Vehicle::paginate(5);
+        $vehicle = Vehicle::all();
         return view('admin.vehicles')->with('vehicles', $vehicle);
     }
 
+    // Not use
     public function addVehicle($id){
 
         return $id;
@@ -57,22 +76,35 @@ class AdminController extends Controller
         // Post To Logs
         $logs = new Log;
         $logs->user_id = Auth::user()->id;
+        $logs->type = 'admin';
         $logs->description = 'admin removed vehicle';
         $logs->ip_address = \Request::ip();
-        $logs->action = 'removed vehicle';
+        $logs->action = 'removed';
         $logs->created_at = Carbon::now();
         $logs->save();
 
         return back()->with('success2', 'Vehicle removed successfully.');
     }
 
-    public function history(){
-        $logs = Log::paginate(5);
-        return view('admin.history')->with('logs', $logs);
+    // History Logs
+    public function userLogs(){
+        $logs = Log::all();
+        return view('admin.logs.user-logs')->with('logs', $logs);
     }
 
+    public function staffLogs(){
+        $logs = Log::where('type', 'staff')->get();
+        return view('admin.logs.staff-logs')->with('logs', $logs);
+    }
+
+    public function parkingLogs(){
+        $logs = Reserve_Log::all();
+        return view('admin.logs.parking-logs')->with('logs', $logs);
+    }
+    // End History Logs
+
     public function users(){
-        $users = User::paginate(5);
+        $users = User::all();
         return view('admin.users')->with('users', $users);
     }
 
@@ -98,7 +130,7 @@ class AdminController extends Controller
             'phone_number' => 'required|numeric|digits:11|unique:users'
         ]);
 
-        $user->password = bcrypt($request['password']);
+        $user->password = sha1($request['password']);
 
         if($request['staff']){
             $user->staff = true;
@@ -119,6 +151,17 @@ class AdminController extends Controller
         $wallet->balance = 0.00;
         $wallet->status = true;
         $wallet->save();
+
+        // Post To Logs
+        $email = strip_tags($request['email']);
+        $logs = new Log;
+        $logs->user_id = Auth::user()->id;
+        $logs->type = 'admin';
+        $logs->description = "created new user | email: $email";
+        $logs->ip_address = \Request::ip();
+        $logs->action = 'create';
+        $logs->created_at = Carbon::now();
+        $logs->save();
 
         return back()->with('success', 'New user successfully created.');
     }
@@ -151,11 +194,13 @@ class AdminController extends Controller
         $user->save();
 
         // Post To Logs
+        $name = strip_tags($request['name']);
         $logs = new Log;
         $logs->user_id = Auth::user()->id;
-        $logs->description = 'Admin Changes | ' . $user->name . ' ' . $user->last_name . ' Account';
+        $logs->type = 'admin';
+        $logs->description = "edited user account";
         $logs->ip_address = \Request::ip();
-        $logs->action = 'edited user account';
+        $logs->action = 'update';
         $logs->created_at = Carbon::now();
         $logs->save();
 
@@ -165,12 +210,23 @@ class AdminController extends Controller
     public function deleteUser($id){
         $user = User::where('id', $id)->first();
         $wallet = Wallet::where('user_id', $id)->first();
+        $name = $user->name;
         if($user->admin){
             return back()->with('error', 'This user of type admin cannot be deleted.');
         }
         $user->delete();
         $wallet->delete();
         $vehicle = Vehicle::where('user_id', $id)->delete();
+
+        // Post To Logs
+        $logs = new Log;
+        $logs->user_id = Auth::user()->id;
+        $logs->type = 'admin';
+        $logs->description = "deleted user | Name: $name";
+        $logs->ip_address = \Request::ip();
+        $logs->action = 'removed';
+        $logs->created_at = Carbon::now();
+        $logs->save();
 
         return back();
     }

@@ -7,7 +7,7 @@ User History
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -62,7 +62,7 @@ User History
             </div>
         </div>
 
-        <hr>
+        <hr> --}}
         
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
@@ -77,12 +77,12 @@ User History
                         <hr>
 
                         <div class="table-responsive">
-                            <table class="table table-hover table-dark">
+                            <table id="userHistory" class="table table-hover">
                                 <thead>
                                     <tr class="text-info">
                                         <th>Slot Number</th>
-                                        <th>Plate Number</th>
-                                        <th>Walk In</th>
+                                        <th>Vehicle</th>
+                                        <th>Payment</th>
                                         <th>Date</th>
                                         <th>Time In</th>
                                         <th>Time Out</th>
@@ -93,13 +93,7 @@ User History
                                         <tr>
                                             <td>{{ $log->slot_number }}</td>
                                             <td>{{ $log->plate_number }}</td>
-                                            <td>
-                                                @if ($log->walk_in)
-                                                    Yes
-                                                @else
-                                                    No
-                                                @endif
-                                            </td>
+                                            <td>₱ {{ number_format($log->payment, 2) }}</td>
                                             <td>
                                                 @php
                                                     $unixTime = strtotime($log->created_at);
@@ -122,7 +116,6 @@ User History
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $logs->links() }}
                         </div>
                         @endif
                     </div>
@@ -131,5 +124,11 @@ User History
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#userHistory').DataTable();
+    } );
+</script>
 
 @endsection

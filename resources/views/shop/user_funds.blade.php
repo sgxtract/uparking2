@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-Load Wallet
+User Funds
 @endsection
 
 @section('content')
@@ -33,14 +33,15 @@ Load Wallet
                                                 <p>To pay: </p>
                                             </div>
                                             <div class="col-md-6">
-                                                <p class="float-right">₱ {{ number_format($amount, 2, '.', ',') }}</p>
+                                                <p></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
-                                <a href="{{ route('pay.checkoutOrder',  [$amount, $id]) }}" class="btn btn-info btn-block"><i class="fab fa-paypal"></i> PayPal checkout</a>
+                                <a href="#" class="btn btn-info btn-block"><i class="fab fa-paypal"></i> PayPal checkout</a>
                             </div>
+                            {{-- {{ route('pay.checkoutOrder',  [$amount, $id]) }} --}}
                         </div>
                         {{-- Row 1 End --}}
                     </div>

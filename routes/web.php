@@ -38,6 +38,7 @@ Route::prefix('user')->group(function(){
     // User Slots
     Route::get('reserve', 'UserController@reserve')->name('userReserve')->middleware('verified');
     Route::post('slot/{id}', 'UserController@reserveSlot')->name('userReserveSlot');
+    Route::post('reserve/{id}/cancel', 'UserController@cancelReserve')->name('userCancelReserve');
 });
 
 // Staff Controller
@@ -50,12 +51,19 @@ Route::prefix('staff')->group(function(){
     // Staff Slots
     Route::get('walk-in', 'StaffController@walkIn')->name('staffWalkIn');
     Route::get('reserve', 'StaffController@reserve')->name('staffReserve');
+    Route::get('reserves/view', 'StaffController@reservesView')->name('staffReservesView');
+    Route::post('cancel/{id}/reserve', 'StaffController@cancelReserve')->name('staffCancelReserve');
+    // Add Funds to User
+    Route::get('add_funds', 'StaffController@addFunds')->name('staffAddFunds');
+    Route::get('add_funds/{id}/continue', 'StaffController@continueUserFunds')->name('staffContinueUserFunds');
 });
 
 // Admin Controller
 Route::prefix('admin')->group(function(){
     Route::get('dashboard', 'AdminController@dashboard')->name('adminDashboard');
-    Route::get('history', 'AdminController@history')->name('adminHistory');
+    Route::get('user-logs', 'AdminController@userLogs')->name('adminUserLogs');
+    Route::get('staff-logs', 'AdminController@staffLogs')->name('adminStaffLogs');
+    Route::get('parking-logs', 'AdminController@parkingLogs')->name('adminParkingLogs');
     // Admin Users
     Route::get('users', 'AdminController@users')->name('adminUsers');
     Route::get('user/{id}', 'AdminController@singleUser')->name('adminSingleUser');
@@ -70,6 +78,9 @@ Route::prefix('admin')->group(function(){
     // Admin Slots
     Route::get('reserve', 'AdminController@reserve')->name('adminReserve');
     Route::get('walk-in', 'AdminController@walkIn')->name('adminWalkIn');
+    // Admin Reports
+    Route::get('sales-report', 'AdminController@salesReport')->name('adminSalesReport');
+    Route::get('statistics-report', 'AdminController@statisticsReport')->name('adminStatisticsReport');
 });
 
 // Payment Controller
@@ -77,6 +88,9 @@ Route::prefix('pay')->group(function(){
     Route::get('checkout/{amount}/{id}', 'PaymentController@checkoutOrder')->name('pay.checkoutOrder');
     Route::post('checkout/{id}/continue', 'PaymentController@continueCheckOut')->name('pay.continueCheckOut');
     Route::get('confirm/{id}/execute', 'PaymentController@executeOrder')->name('pay.executeOrder');
+    // Staff Add Funds To User
+    Route::post('checkout/user/{id}', 'PaymentController@checkOutUserFunds')->name('pay.checkOutUserFunds');
+    Route::get('confirm/{id}/checkout/{amount}/', 'PaymentController@executeUserFunds')->name('pay.executeUserFunds');
 });
 
 // Slots Controller for method posts || Admin / Staff

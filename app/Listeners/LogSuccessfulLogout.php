@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Log;
-
+use App\User;
 class LogSuccessfulLogout
 {
     /**
@@ -30,8 +30,16 @@ class LogSuccessfulLogout
      */
     public function handle(Logout $event)
     {
+        $type = User::where('id', $event->user->id)->first();
         $logs = new Log;
         $logs->user_id = $event->user->id;
+        if($type->admin == true){
+            $logs->type = 'admin';
+        }else if($type->staff == true){
+            $logs->type = 'staff';
+        }else{
+            $logs->type = 'user';
+        }
         $logs->description = 'account access';
         $logs->ip_address = \Request::ip();
         $logs->action = 'logout';

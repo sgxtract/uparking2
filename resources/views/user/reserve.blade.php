@@ -545,7 +545,9 @@ Reserve (User)
                                                             <div class="input-group col-xs-12">
                                                                 <select class="form-control" name="plate_number" id="">
                                                                     @foreach ($vehicles as $vehicle)
-                                                                    <option>{{ $vehicle->plate_number }}</option>
+                                                                        @if ($vehicle->status == 'free')
+                                                                            <option>{{ $vehicle->plate_number }}</option>
+                                                                        @endif
                                                                     @endforeach
                                                                 </select>
 

@@ -11,7 +11,7 @@ Admin History
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title"><span class="mdi mdi-calendar-clock"></span> Admin History</h4>
+                        <h4 class="card-title"><span class="mdi mdi-calendar-clock"></span> User Logs</h4>
 
                         @if ($logs->isEmpty())
                             <h5 class="text-center mt-5">No records found.</h5>
@@ -20,7 +20,7 @@ Admin History
                         <hr>
 
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table id="user-logs" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>User</th>
@@ -33,7 +33,8 @@ Admin History
                                 </thead>
                                 <tbody>
                                     @foreach ($logs as $log)
-                                        <tr>
+                                    <tr>
+                                        @if ($log->type == 'user')
                                             <td>{{ $log->user->name . ' ' . $log->user->last_name }}</td>
                                             <td>{{ $log->description }}</td>
                                             <td>{{ $log->ip_address }}</td>
@@ -50,11 +51,21 @@ Admin History
                                                 @endphp
                                             </td>
                                             <td>{{ $log->action }}</td>
-                                        </tr>
+                                        @endif
+                                    </tr>
                                     @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Description</th>
+                                        <th>IP Address</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
                             </table>
-                            {{ $logs->links() }}
                         </div>
                         @endif
                     </div>
@@ -63,5 +74,11 @@ Admin History
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#user-logs').DataTable();
+    } );
+</script>
 
 @endsection

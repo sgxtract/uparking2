@@ -28,10 +28,10 @@ Admin Vehicles
                             <h5 class="text-center mt-5">No registered vehicle.</h5>
                         @else
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table id="adminVehicles" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>User</th>
+                                        <th>Owner</th>
                                         <th>Plate Number</th>
                                         <th>Type</th>
                                         <th>Action</th>
@@ -51,8 +51,15 @@ Admin Vehicles
                                     </tr>
                                     @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Owner</th>
+                                        <th>Plate Number</th>
+                                        <th>Type</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
                             </table>
-                            {{ $vehicles->links() }}
                         </div>
                         @endif
                     </div>
@@ -62,4 +69,11 @@ Admin Vehicles
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#adminVehicles').DataTable();
+    } );
+</script>
+
 @endsection

@@ -1,33 +1,53 @@
 @extends('layouts.admin')
 
 @section('title')
-Load Wallet
+Vehicle
 @endsection
 
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3"></div>
-            <div class="col-xl-6 col-lg-6 col-md-6 grid-margin">
-                <!--balance card-->
-                <div class="card bg-dark text-white">
-                    <div class="card-body">
-                        <h4 class="card-title text-white"><i class="menu-icon mdi mdi-wallet"></i> Load Wallet</h4>
-                        <a href="#" class="badge badge-warning add_funds">Add Funds <span class="mdi mdi-credit-card-plus"></span></a>
 
+            <div class="col-xl-6 col-lg-6 col-md-6 grid-margin">
+                <!--User Information Card-->
+                <div class="card">
+                    <div class="card-body">
+                        <h4>User Information</h4>
                         <hr>
+                        {{-- Name --}}
+                        <div class="row">
+                            <div class="col-md-3 font-weight-bold text-primary"><p>Name</p></div>
+                            <div class="col-md-9"><p>{{ $user->name . ' ' . $user->last_name }}</p></div>
+                        </div>
+                        {{-- Load Wallet --}}
+                        <div class="row">
+                            <div class="col-md-3 font-weight-bold text-primary"><p>Wallet</p></div>
+                            <div class="col-md-9"><p>₱ {{ number_format($wallet->balance, 2) }}</p></div>
+                        </div>
+                        {{-- Email --}}
+                        <div class="row">
+                            <div class="col-md-3 font-weight-bold text-primary"><p>Email</p></div>
+                            <div class="col-md-9"><p>{{ $user->email }}</p></div>
+                        </div>
+                        {{-- Vehicles --}}
+                        <div class="row">
+                            <div class="col-md-3 font-weight-bold text-primary"><p>Vehicle</p></div>
+                            <div class="col-md-9"><p>{{ \App\Vehicle::where('user_id', $id)->count() }}</p></div>
+                        </div>
+                    </div>
+                </div>
+                <!--User Information Card End-->
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 grid-margin stretch-card">
+                
+                <div class="card">
+                    <div class="card-body">
 
                         @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                        @endif
-
-                        @if (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
                         @endif
 
                         @if ($errors->any())
@@ -39,51 +59,16 @@ Load Wallet
                             </ul>
                         </div>
                         @endif
-
-                        @if (!($wallet->status))
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                Wallet not yet activated.
-                            </div>
-                        </div>
+                        
+                        <h4>Add Funds ₱</h4>
+                        <p class="class-description">
+                            <small>Select load amount.</small>
+                        </p>
                         <hr>
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <button type="button" class="btn btn-info">
-                                    Activate Online Wallet
-                                </button>
-                            </div>
-                        </div>
-                        @else
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4>Load Balance: ₱ {{ number_format($wallet->balance, 2, '.', ',') }}</h4>
-                                <p class="text-muted mt-3 mb-0">
-                                    <i class="mdi mdi-car-connected mr-1" aria-hidden="true"></i> Load balance must
-                                    have a minimum amount of ₱100.00 to reserve.
-                                </p>
-                            </div>
-                        </div>
-                        @endif
-                    </div>
-                </div>
-                <!--balance card ends-->
-            </div>
-        </div>
-
-        {{-- Add Funds Modal --}}
-        <div id="addFundsModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Select Amount</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body" id="">
                         <div class="row text-center">
                             <div class="col-md-12">
                                 <!-- Form Start -->
-                                <form action="{{ route('pay.continueCheckOut', $wallet->user_id) }}" method="POST"">
+                                <form action="{{ route('pay.checkOutUserFunds', $id) }}" method="POST"">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-3">
@@ -122,7 +107,7 @@ Load Wallet
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <button type="submit" class="btn btn-primary btn-sm btn-block">Continue</button>
+                                            <button type="submit" class="btn btn-primary btn-sm btn-block"><i class="fab fa-paypal"></i> PayPal checkout</button>
                                         </div>
                                     </div>
                                 </form>
@@ -130,13 +115,9 @@ Load Wallet
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
                 </div>
             </div>
         </div>
-        {{-- Add Funds Modal End --}}
     </div>
 </div>
 
@@ -145,13 +126,5 @@ Load Wallet
         var val = document.querySelector('input[name="options"]:checked').value;
         document.getElementById("toPay").innerHTML = val;
     }
-
-    $(document).ready(function () {
-        $('.add_funds').click(function () {
-            $('#addFundsModal').modal("show");
-        });
-    });
-
 </script>
-
 @endsection

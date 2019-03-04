@@ -5,6 +5,12 @@ User Dashboard
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
+        
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
         <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
                 <div class="card card-statistics bg-dark text-white">
@@ -181,7 +187,10 @@ User Dashboard
                                         <div class="row text-center">
                                             <div class="col-md-4"><p>{{ $reserve->slot_number }}</p></div>
                                             <div class="col-md-4"><p>{{ $reserve->plate_number }}</p></div>
-                                            <div class="col-md-4"><button class="btn btn-danger btn-sm btn-block">Cancel</button></div>
+                                            <div class="col-md-4">
+                                                <form style="display: none" method="POST" id="cancelReserve-{{ $reserve->slot_number }}" action="{{ route('userCancelReserve', $reserve->slot_number) }}">@csrf</form>
+                                                <a href="#" class="badge badge-danger" onclick="document.getElementById('cancelReserve-{{ $reserve->slot_number }}').submit()">Cancel</a>    
+                                            </div>
                                         </div>
                                     @endif
                                 @endforeach

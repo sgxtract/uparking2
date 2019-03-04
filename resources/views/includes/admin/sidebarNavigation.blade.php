@@ -10,7 +10,17 @@
                     <div class="text-wrapper">
                         <p class="profile-name">{{ Auth::user()->name . ' ' . Auth::user()->last_name }}</p>
                         <div>
-                            <small class="designation text-muted">{{ Auth::user()->name . ' ' . Auth::user()->last_name }}</small>
+                            <small class="designation text-muted">
+                                @if (Auth::user()->admin)
+                                    Administrator
+                                @endif
+                                @if (!Auth::user()->admin && Auth::user()->staff)
+                                    Staff
+                                @endif
+                                @if (!Auth::user()->admin && !Auth::user()->staff)
+                                    Online
+                                @endif
+                            </small>
                             <span class="status-indicator online"></span>
                         </div>
                     </div>
@@ -31,39 +41,72 @@
             </div>
         </li>
 
-        {{-- User Sidebar --}}
+        {{-- Admin Sidebar --}}
 
-        @if(Auth::user()->staff == false || Auth::user()->admin == true)
+        @if(Auth::user()->admin == true)
 
         <li class="nav-item">
-            <a class="nav-link">User</a>
+            <a class="nav-link">Administrator</a>
         </li>
 
-        <li class="nav-item {{ Route::currentRouteName() == 'userDashboard' ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('userDashboard') }}">
+        <li class="nav-item {{ Route::currentRouteName() == 'adminDashboard' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('adminDashboard') }}">
                 <i class="menu-icon mdi mdi-speedometer"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
 
-        <li class="nav-item {{ Route::currentRouteName() == 'userVehicle' ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('userVehicle') }}">
+        <li class="nav-item {{ Route::currentRouteName() == 'adminVehicles' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('adminVehicles') }}">
                 <i class="menu-icon mdi mdi-car"></i>
                 <span class="menu-title">Vehicle</span>
             </a>
         </li>
 
-        <li class="nav-item {{ Route::currentRouteName() == 'userBalance' ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('userBalance') }}">
-                <i class="menu-icon mdi mdi-wallet"></i>
-                <span class="menu-title">Load Wallet</span>
-            </a>
-        </li>
-
-        <li class="nav-item {{ Route::currentRouteName() == 'userHistory' ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('userHistory') }}">
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#history" aria-expanded="false" aria-controls="ui-basic">
                 <i class="menu-icon mdi mdi-calendar-clock"></i>
-                <span class="menu-title">History</span>
+                    <span class="menu-title">History</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="history">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('adminUserLogs') }}">User Logs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('adminStaffLogs') }}">Staff Logs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('adminParkingLogs') }}">Parking Logs</a>
+                    </li>
+                </ul>
+            </div>
+          </li>
+
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <i class="menu-icon mdi mdi-content-copy"></i>
+                    <span class="menu-title">Reports</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('adminSalesReport') }}">Sales Report</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('adminStatisticsReport') }}">Statistics Report</a>
+                    </li>
+                </ul>
+            </div>
+          </li>
+
+
+        <li class="nav-item {{ Route::currentRouteName() == 'adminUsers' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('adminUsers') }}">
+                <i class="menu-icon mdi mdi-account-multiple"></i>
+                <span class="menu-title">Users</span>
             </a>
         </li>
 
@@ -72,6 +115,8 @@
         {{-- Staff Sidebar --}}
 
         @if(Auth::user()->staff == true)
+
+        @if(Auth::user()->admin == false)
 
         <li class="nav-item">
             <a class="nav-link">Staff</a>
@@ -83,9 +128,11 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
+            
+        @endif
 
-        <li class="nav-item {{ Route::currentRouteName() == 'staffCheckOut' ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('staffCheckOut') }}">
+        <li class="nav-item {{ Route::currentRouteName() == 'staffAddFunds' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('staffAddFunds') }}">
                 <i class="menu-icon mdi mdi-credit-card-plus"></i>
                 <span class="menu-title">Add Funds</span>
             </a>
@@ -121,43 +168,44 @@
 
         @endif
 
-        {{-- Admin Sidebar --}}
+        {{-- User Sidebar --}}
 
-        @if(Auth::user()->admin == true)
+        @if(Auth::user()->staff == false && Auth::user()->admin == false)
 
         <li class="nav-item">
-            <a class="nav-link">Administrator</a>
+            <a class="nav-link">User</a>
         </li>
 
-        <li class="nav-item {{ Route::currentRouteName() == 'adminDashboard' ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('adminDashboard') }}">
+        <li class="nav-item {{ Route::currentRouteName() == 'userDashboard' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('userDashboard') }}">
                 <i class="menu-icon mdi mdi-speedometer"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
 
-        <li class="nav-item {{ Route::currentRouteName() == 'adminVehicles' ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('adminVehicles') }}">
+        <li class="nav-item {{ Route::currentRouteName() == 'userVehicle' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('userVehicle') }}">
                 <i class="menu-icon mdi mdi-car"></i>
                 <span class="menu-title">Vehicle</span>
             </a>
         </li>
 
-        <li class="nav-item {{ Route::currentRouteName() == 'adminHistory' ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('adminHistory') }}">
+        <li class="nav-item {{ Route::currentRouteName() == 'userBalance' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('userBalance') }}">
+                <i class="menu-icon mdi mdi-wallet"></i>
+                <span class="menu-title">Load Wallet</span>
+            </a>
+        </li>
+
+        <li class="nav-item {{ Route::currentRouteName() == 'userHistory' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('userHistory') }}">
                 <i class="menu-icon mdi mdi-calendar-clock"></i>
                 <span class="menu-title">History</span>
             </a>
         </li>
 
-        <li class="nav-item {{ Route::currentRouteName() == 'adminUsers' ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('adminUsers') }}">
-                <i class="menu-icon mdi mdi-account-multiple"></i>
-                <span class="menu-title">Users</span>
-            </a>
-        </li>
-
         @endif
+
     </ul>
 </nav>
 <!-- partial -->

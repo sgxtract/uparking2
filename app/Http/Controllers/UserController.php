@@ -73,6 +73,7 @@ class UserController extends Controller
             // Post To Logs
             $logs = new Log;
             $logs->user_id = Auth::user()->id;
+            $logs->type = "user";
             $logs->description = 'user profile #'. $user->id . ' | ' . $user->name . ' ' . $user->last_name;
             $logs->ip_address = \Request::ip();
             $logs->action = 'changed password';
@@ -85,6 +86,7 @@ class UserController extends Controller
         // Post To Logs
         $logs = new Log;
         $logs->user_id = Auth::user()->id;
+        $logs->type = "user";
         $logs->description = 'user profile #'. $user->id . ' | ' . $user->name . ' ' . $user->last_name;
         $logs->ip_address = \Request::ip();
         $logs->action = 'edited profile';
@@ -100,7 +102,7 @@ class UserController extends Controller
     }
 
     public function addVehicle(Request $request){
-
+        
         $validation = $request->validate([
             'plate_number' => 'required|alpha_num|unique:vehicles',
             'type' => 'required',
@@ -116,6 +118,7 @@ class UserController extends Controller
         // Post To Logs
         $logs = new Log;
         $logs->user_id = Auth::user()->id;
+        $logs->type = "user";
         $logs->description = 'added a vehicle | Plate no. : ' . strtoupper($request['plate_number']) . ' | Type: ' . $request['type'];
         $logs->ip_address = \Request::ip();
         $logs->action = 'registered a vehicle';
@@ -140,9 +143,10 @@ class UserController extends Controller
         // Post To Logs
         $logs = new Log;
         $logs->user_id = Auth::user()->id;
+        $logs->type = "user";
         $logs->description = 'updated vehicle information';
         $logs->ip_address = \Request::ip();
-        $logs->action = 'update vehicle';
+        $logs->action = 'update';
         $logs->created_at = Carbon::now();
         $logs->save();
 
@@ -156,9 +160,10 @@ class UserController extends Controller
         // Post To Logs
         $logs = new Log;
         $logs->user_id = Auth::user()->id;
-        $logs->description = 'user vehicle';
+        $logs->type = 'user';
+        $logs->description = 'removed a vehicle';
         $logs->ip_address = \Request::ip();
-        $logs->action = 'removed vehicle';
+        $logs->action = 'removed';
         $logs->created_at = Carbon::now();
         $logs->save();
 
@@ -171,8 +176,8 @@ class UserController extends Controller
     }
 
     public function history(){
-        $logs = Log::orderBy('created_at')->where('user_id', Auth::user()->id)->paginate(5);
-        $reserve_logs = Reserve_Log::orderBy('created_at')->where('user_id', Auth::user()->id)->paginate(5);
+        $logs = Log::where('user_id', Auth::user()->id)->get();
+        $reserve_logs = Reserve_Log::where('user_id', Auth::user()->id)->get();
         return view('user.history')->with(['logs' => $logs, 'reserve_logs' => $reserve_logs]);
     }
 
@@ -190,7 +195,7 @@ class UserController extends Controller
         // User Wallet
         $wallet = Wallet::where('user_id', $id)->first();
         $plate_number = strtoupper($request['plate_number']);
-        $slot_number = $request['slot_number'];
+        $slot_number = strip_tags($request['slot_number']);
         $vehicle = Vehicle::where('user_id', $id)->get();
 
         $add_funds = "Add Funds " . "<a href='".route('userBalance')."'>here.</a>";
@@ -226,13 +231,61 @@ class UserController extends Controller
                     $reserve_logs->slot_number = $slot_number;
                     $reserve_logs->plate_number = $plate_number;
                     $reserve_logs->walk_in = false;
+                    $reserve_logs->payment = 50;
                     $reserve_logs->created_at = Carbon::now();
                     $reserve_logs->save();
+
+                    // Vehicle Status
+                    $vehicleUpdate = Vehicle::where('plate_number', $plate_number)->first();
+                    $vehicleUpdate->status = 'reserved';
+                    $vehicleUpdate->save();
+
+                    // Post To Logs
+                    $logs = new Log;
+                    $logs->user_id = Auth::user()->id;
+                    $logs->type = 'user';
+                    $logs->description = "made a reservation @ $slot_number";
+                    $logs->ip_address = \Request::ip();
+                    $logs->action = 'reserved';
+                    $logs->created_at = Carbon::now();
+                    $logs->save();
     
                     return back()->with('success', "Reserved a vehicle with Plate Number : $plate_number at Slot Number : $slot_number");
                 }
             }
         }
 
+    }
+
+    public function cancelReserve($slot_number){
+        $cancel = Reserve::where('slot_number', $slot_number)->first();
+        
+        // Vehicle Status
+        $vehicle = Vehicle::where('plate_number', $cancel->plate_number)->first();
+        $vehicle->status = 'free';
+        $vehicle->save();
+
+        // Update Slot
+        $cancel->user_id = 0;
+        $cancel->plate_number = ' ';
+        $cancel->status = 'free';
+        $cancel->save();
+
+        // Update Time Out and Payment.
+        $reserve_logs = Reserve_Log::where(['created_at' => $cancel->created_at, 'slot_number' => $slot_number])->first();
+        $reserve_logs->updated_at = Carbon::now();
+        $reserve_logs->save();
+
+        // Post To Logs
+        $logs = new Log;
+        $logs->user_id = Auth::user()->id;
+        $logs->type = 'user';
+        $logs->description = "cancelled a reservation @ $slot_number";
+        $logs->ip_address = \Request::ip();
+        $logs->action = 'cancel';
+        $logs->created_at = Carbon::now();
+        $logs->save();
+
+        return redirect(route('userDashboard'))->with('success', 'You cancelled your reservation.');
     }
 }

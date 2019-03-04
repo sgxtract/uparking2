@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title"><span class="mdi mdi-account-multiple"></span> Admin Users</h4>
-                        <a href="{{ route('adminNewUser') }}" class="btn btn-info btn-sm">New User</a>
+                        <a href="{{ route('adminNewUser') }}" class="badge badge-info">Create new user <span class="mdi mdi-account-plus"></span></a>
                         @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
@@ -38,7 +38,7 @@
                         <hr>
 
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table id="adminUsers" class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -66,14 +66,13 @@
                                             <td>{{ \Carbon\Carbon::parse($user->updated_at)->diffForHumans() }}</td>
                                             <td>
                                                 <form style="display: none" method="POST" id="deleteUser-{{ $user->id }}" action="{{ route('adminDeleteUser', $user->id) }}">@csrf</form>
-                                                <a href="{{ route('adminEditUser', $user->id) }}" class="btn btn-warning btn-sm"><span class="mdi mdi-pencil"></span></a>
-                                                <button type="button" class="btn btn-danger btn-sm" onclick="document.getElementById('deleteUser-{{ $user->id }}').submit()"><span class="mdi mdi-delete-forever"></span></button>
+                                                <a href="{{ route('adminEditUser', $user->id) }}" class="badge badge-warning"><span class="mdi mdi-pencil"></span> Edit</a>
+                                                <a href="#" class="badge badge-danger" onclick="document.getElementById('deleteUser-{{ $user->id }}').submit()"><span class="mdi mdi-delete-forever"></span> Remove</a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $users->links() }}
                         </div>
                     </div>
                 </div>
@@ -81,4 +80,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#adminUsers').DataTable();
+    } );
+</script>
+
 @endsection

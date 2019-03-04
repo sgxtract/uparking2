@@ -5,9 +5,14 @@ Staff Dashboard
 @section('content')
 <div class="main-panel">
     <div class="content-wrapper">
+            @if (session('success'))
+            <div class="alert alert-success">
+                {!! session('success') !!}
+            </div>
+            @endif
         <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
-                <div class="card card-statistics bg-dark text-white">
+                <div class="card card-statistics">
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
@@ -20,14 +25,12 @@ Staff Dashboard
                                 </div>
                             </div>
                         </div>
-                        <p class="text-muted mt-3 mb-0">
-                            <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Current reserves
-                        </p>
+                        <a href="{{ route('staffReservesView') }}" class="btn btn-outline-warning btn-rounded btn-fw">View current reserves</a>
                     </div>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
-                <div class="card card-statistics bg-dark text-white">
+                <div class="card card-statistics">
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
@@ -47,7 +50,7 @@ Staff Dashboard
                 </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 grid-margin stretch-card">
-                <div class="card card-statistics bg-dark text-white">
+                <div class="card card-statistics">
                     <div class="card-body">
                         <div class="clearfix">
                             <div class="float-left">
@@ -69,7 +72,7 @@ Staff Dashboard
         </div>
         <div class="row">
             <div class="col-md-12 grid-margin">
-                <div class="card bg-dark text-white">
+                <div class="card">
                     <div class="card-body">
                         <div class="row d-none d-sm-flex mb-4">
                             <div class="col-4">
@@ -97,13 +100,12 @@ Staff Dashboard
     <!-- partial:partials/_footer.html -->
     <footer class="footer">
         <div class="container-fluid clearfix">
-            <span class="text-muted d-block text-center text-center">Copyright © 2018
-                <a href="http://www.tonagnis.com/" target="_blank">Grawlix Corp</a>. All rights reserved.</span>
+            <span class="text-muted d-block text-center text-center">Copyright © 2019
+                <a href="http://www.parking-ally.com/" target="_blank">Grawlix Corp</a>. All rights reserved.</span>
         </div>
     </footer>
     <!-- partial -->
 </div>
 <!-- main-panel ends -->
 
-{{-- {!! $chart->script() !!} --}}
 @endsection
