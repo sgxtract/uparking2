@@ -11,7 +11,7 @@ Admin History
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title"><span class="mdi mdi-calendar-clock"></span> Staff Logs</h4>
+                        <h4 class="card-title"><span class="mdi mdi-calendar-clock"></span> Parking Logs</h4>
 
                         @if ($logs->isEmpty())
                             <h5 class="text-center mt-5">No records found.</h5>

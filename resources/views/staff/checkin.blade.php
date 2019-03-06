@@ -30,6 +30,10 @@ Check In
                         </ul>
                     </div>
                     @endif
+
+                    @if ($vehicles->isEmpty())
+                        <h5 class="text-center mt-5">No reserves to check in.</h5>
+                    @else
                     <h4 class="text-center display-4 mb-5 mt-2">Check In</h4>
                     <form action="{{ route('slotCheckInSearch') }}" method="POST">
                         @csrf
@@ -45,6 +49,7 @@ Check In
                             </span>
                         </div>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>

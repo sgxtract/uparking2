@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>@yield('title', 'Laravel Blog Dashboard')</title>
+
+    
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/css/vendor.bundle.base.css') }}">
@@ -25,7 +27,8 @@
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"> --}}
 
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}" />
+    {{-- Favicon --}}
+    <link rel="shortcut icon" href="{{ asset('images/favicon/parking.ico') }}">
     {{-- Sweet Alert --}}
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>

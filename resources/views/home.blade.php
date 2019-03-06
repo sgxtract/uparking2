@@ -1,22 +1,32 @@
-@extends('layouts.app')
+@extends('layouts.master')
+
+@section('title')
+    Parking Ally
+@endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{{ asset($home->image) }}')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>{{ $home->title }}</h1>
+                    <span class="subheading">{{ $home->sub_title }}</span>
                 </div>
             </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <p>
+                {{ $home->description }}
+            </p>
         </div>
     </div>
 </div>

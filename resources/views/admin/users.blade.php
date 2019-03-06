@@ -46,7 +46,7 @@
                                         <th>Email</th>
                                         <th>Phone Number</th>
                                         <th>Date of Registration</th>
-                                        <th>Updated at</th>
+                                        <th>Last login</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -63,7 +63,7 @@
                                                     echo date('F j, Y @ g:i a', $unixTime);
                                                 @endphp
                                             </td>
-                                            <td>{{ \Carbon\Carbon::parse($user->updated_at)->diffForHumans() }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($user->last_sign_in_at)->diffForHumans() }}</td>
                                             <td>
                                                 <form style="display: none" method="POST" id="deleteUser-{{ $user->id }}" action="{{ route('adminDeleteUser', $user->id) }}">@csrf</form>
                                                 <a href="{{ route('adminEditUser', $user->id) }}" class="badge badge-warning"><span class="mdi mdi-pencil"></span> Edit</a>

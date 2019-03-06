@@ -10,6 +10,9 @@
 
   <title>@yield('title', 'Parking Ally')</title>
 
+  {{-- Favicon --}}
+  <link rel="fav icon" href="{{ asset('images/favicon/parking.ico') }}">
+
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}"  rel="stylesheet">
 

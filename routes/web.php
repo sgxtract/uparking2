@@ -81,6 +81,16 @@ Route::prefix('admin')->group(function(){
     // Admin Reports
     Route::get('sales-report', 'AdminController@salesReport')->name('adminSalesReport');
     Route::get('statistics-report', 'AdminController@statisticsReport')->name('adminStatisticsReport');
+    // Admin CMS
+    Route::prefix('cms')->group(function(){
+        Route::get('home', 'PublicController@homeCMS')->name('admin.homeCMS');
+        Route::get('about', 'PublicController@aboutCMS')->name('admin.aboutCMS');
+        Route::get('contact', 'PublicController@contactCMS')->name('admin.contactCMS');
+        // Post
+        Route::post('home/update', 'PublicController@changeHome')->name('admin.changeHome');
+        Route::post('about/update', 'PublicController@changeAbout')->name('admin.changeAbout');
+        Route::post('contact/update', 'PublicController@changeContact')->name('admin.changeContact');
+    });
 });
 
 // Payment Controller

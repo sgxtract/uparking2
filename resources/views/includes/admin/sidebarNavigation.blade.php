@@ -12,13 +12,13 @@
                         <div>
                             <small class="designation text-muted">
                                 @if (Auth::user()->admin)
-                                    Administrator
+                                Administrator
                                 @endif
                                 @if (!Auth::user()->admin && Auth::user()->staff)
-                                    Staff
+                                Staff
                                 @endif
                                 @if (!Auth::user()->admin && !Auth::user()->staff)
-                                    Online
+                                Online
                                 @endif
                             </small>
                             <span class="status-indicator online"></span>
@@ -26,17 +26,17 @@
                     </div>
                 </div>
                 @if(Auth::user()->admin)
-                    <button class="btn btn-success btn-block" onclick="location.href = '{{ route('adminReserve') }}';">Reserve
-                        <i class="mdi mdi-plus"></i>
-                    </button>
+                <button class="btn btn-success btn-block" onclick="location.href = '{{ route('adminReserve') }}';">Reserve
+                    <i class="mdi mdi-plus"></i>
+                </button>
                 @elseif(Auth::user()->staff)
-                    <button class="btn btn-success btn-block" onclick="location.href = '{{ route('staffReserve') }}';">Reserve
-                        <i class="mdi mdi-plus"></i>
-                    </button>
+                <button class="btn btn-success btn-block" onclick="location.href = '{{ route('staffReserve') }}';">Reserve
+                    <i class="mdi mdi-plus"></i>
+                </button>
                 @else
-                    <button class="btn btn-success btn-block" onclick="location.href = '{{ route('userReserve') }}';">Reserve
-                        <i class="mdi mdi-plus"></i>
-                    </button>
+                <button class="btn btn-success btn-block" onclick="location.href = '{{ route('userReserve') }}';">Reserve
+                    <i class="mdi mdi-plus"></i>
+                </button>
                 @endif
             </div>
         </li>
@@ -66,7 +66,7 @@
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#history" aria-expanded="false" aria-controls="ui-basic">
                 <i class="menu-icon mdi mdi-calendar-clock"></i>
-                    <span class="menu-title">History</span>
+                <span class="menu-title">History</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="history">
@@ -82,12 +82,12 @@
                     </li>
                 </ul>
             </div>
-          </li>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <i class="menu-icon mdi mdi-content-copy"></i>
-                    <span class="menu-title">Reports</span>
+                <span class="menu-title">Reports</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
@@ -100,7 +100,7 @@
                     </li>
                 </ul>
             </div>
-          </li>
+        </li>
 
 
         <li class="nav-item {{ Route::currentRouteName() == 'adminUsers' ? 'active' : '' }}">
@@ -128,8 +128,15 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-            
+
         @endif
+
+        <li class="nav-item {{ Route::currentRouteName() == 'staffReservesView' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('staffReservesView') }}">
+                <i class="menu-icon mdi mdi-parking"></i>
+                <span class="menu-title">Reserves</span>
+            </a>
+        </li>
 
         <li class="nav-item {{ Route::currentRouteName() == 'staffAddFunds' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('staffAddFunds') }}">
@@ -206,6 +213,28 @@
 
         @endif
 
+        @if (Auth::user()->admin == true)
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#cms" aria-expanded="false" aria-controls="cms">
+                <i class="menu-icon mdi mdi-page-layout-body"></i>
+                <span class="menu-title">Content Management</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="cms">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.homeCMS') }}">Edit Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.aboutCMS') }}">Edit About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.contactCMS') }}">Edit Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        @endif
     </ul>
 </nav>
 <!-- partial -->

@@ -30,6 +30,10 @@ Check Out
                         </ul>
                     </div>
                     @endif
+
+                    @if ($vehicles->isEmpty())
+                        <h5 class="text-center mt-5">No vehicles to check out.</h5>
+                    @else
                     <h4 class="text-center display-4 mb-5 mt-2">Check Out</h4>
                     <div class="row">
                         <form action="{{ route('slotCheckOutSearch2') }}" method="POST">
@@ -70,6 +74,7 @@ Check Out
                             </div>
                         </form>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

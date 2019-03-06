@@ -50,12 +50,10 @@ chart.render();
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
+                        <h4 class="card-header">Statistics Report</h4>
                         <div class="card-body">
-                            <h4 class="card-header">Statistics Report</h4>
-                            <div class="card-body">
-                                <h4 class="text-center mark font-weight-bold display-5 bg-warning">Volume</h4>
-                                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-                            </div>
+                            <h4 class="text-center mark font-weight-bold display-5 bg-warning">Volume</h4>
+                            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                         </div>
                     </div>
                 </div>

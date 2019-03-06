@@ -124,6 +124,7 @@ class AdminController extends Controller
         $user->email = strip_tags($request['email']);
         $user->phone_number = strip_tags($request['phone_number']);
         $user->created_at = Carbon::now();
+        $user->email_verified_at = Carbon::now();
 
         $validation = $request->validate([
             'password' => 'required|string|min:6|confirmed',
@@ -217,6 +218,7 @@ class AdminController extends Controller
         $user->delete();
         $wallet->delete();
         $vehicle = Vehicle::where('user_id', $id)->delete();
+        $logs = Log::where('user_id', $id)->delete();
 
         // Post To Logs
         $logs = new Log;
