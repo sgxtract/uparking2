@@ -76,9 +76,9 @@ User Dashboard
                 <div class="card card-weather">
                     <div class="card-body">
                         <div class="weather-date-location">
-                            <h3>Friday</h3>
+                            <h3>Saturday</h3>
                             <p class="text-gray">
-                                <span class="weather-date">01 March, 2019</span>
+                                <span class="weather-date">09 March, 2019</span>
                                 <span class="weather-location">Manila, Philippines</span>
                             </p>
                         </div>

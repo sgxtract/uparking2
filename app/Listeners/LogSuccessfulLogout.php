@@ -46,7 +46,7 @@ class LogSuccessfulLogout
         $logs->created_at = Carbon::now();
         $logs->save();
 
-        $event->user->status = false;
+        // $event->user->status = false;
         $event->user->save();
     }
 }

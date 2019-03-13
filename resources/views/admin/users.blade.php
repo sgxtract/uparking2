@@ -15,13 +15,13 @@
                         <a href="{{ route('adminNewUser') }}" class="badge badge-info">Create new user <span class="mdi mdi-account-plus"></span></a>
                         @if (session('success'))
                             <div class="alert alert-success">
-                                {{ session('success') }}
+                                {!! session('success') !!}
                             </div>
                         @endif
 
                         @if (session('error'))
                             <div class="alert alert-danger">
-                                {{ session('error') }}
+                                {!! session('error') !!}
                             </div>
                         @endif
 
@@ -45,7 +45,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Phone Number</th>
-                                        <th>Date of Registration</th>
+                                        <th>Status</th>
                                         <th>Last login</th>
                                         <th>Action</th>
                                     </tr>
@@ -58,20 +58,34 @@
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phone_number }}</td>
                                             <td>
-                                                @php
-                                                    $unixTime = strtotime($user->created_at);
-                                                    echo date('F j, Y @ g:i a', $unixTime);
-                                                @endphp
+                                                @if ($user->status)
+                                                    Activated
+                                                @else
+                                                    Deactivated
+                                                @endif
                                             </td>
                                             <td>{{ \Carbon\Carbon::parse($user->last_sign_in_at)->diffForHumans() }}</td>
                                             <td>
-                                                <form style="display: none" method="POST" id="deleteUser-{{ $user->id }}" action="{{ route('adminDeleteUser', $user->id) }}">@csrf</form>
                                                 <a href="{{ route('adminEditUser', $user->id) }}" class="badge badge-warning"><span class="mdi mdi-pencil"></span> Edit</a>
-                                                <a href="#" class="badge badge-danger" onclick="document.getElementById('deleteUser-{{ $user->id }}').submit()"><span class="mdi mdi-delete-forever"></span> Remove</a>
+                                                <form style="display: none" method="POST" id="activateUser-{{ $user->id }}" action="{{ route('adminActivateUser', $user->id) }}">@csrf</form>
+                                                <a href="#" class="badge badge-success" onclick="activate('{{ $user->id }}')"><span class="mdi mdi-key"></span> Activate</a>
+                                                <form style="display: none" method="POST" id="deactivateUser-{{ $user->id }}" action="{{ route('adminDeleteUser', $user->id) }}">@csrf</form>
+                                                <a href="#" class="badge badge-danger" onclick="deactivate('{{ $user->id }}')"><span class="mdi mdi-key-remove"></span> Deactivate</a>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th>Status</th>
+                                        <th>Last login</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -85,6 +99,46 @@
     $(document).ready(function() {
         $('#adminUsers').DataTable();
     } );
+
+    function deactivate($id){
+        swal({
+            title: "Are you sure?",
+            text: "Once deactivated, the user may not be able to login.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                document.getElementById('deactivateUser-' + $id).submit()
+                swal("The user has been deactivated.", {
+                icon: "success",
+                });
+            } else {
+                swal("The account is still active!");
+            }
+        });
+    }
+
+    function activate($id){
+        swal({
+            title: "Are you sure?",
+            text: "The user will be re-activated again and may use the account.",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                document.getElementById('activateUser-' + $id).submit()
+                swal("The user is now active.", {
+                icon: "success",
+                });
+            } else {
+                swal("The account is still deactivated.");
+            }
+        });
+    }
 </script>
 
 @endsection

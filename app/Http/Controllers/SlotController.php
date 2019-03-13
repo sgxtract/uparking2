@@ -120,88 +120,92 @@ class SlotController extends Controller
         $user_type = User::where('id', Auth::user()->id)->first();
 
         $validation = $request->validate([
-            'plate_number' => 'required|unique:reserves|alpha_num|min:6',
+            'plate_number' => 'required|unique:reserves|regex:/(^([a-zA-Z]{3}+[0-9]{3,4})?$)/u|min:6',
         ]);
-        
-        if($vehicle){
-            $reserve->user_id = $vehicle->user_id;
-            $reserve->plate_number = $plate_number;
-            $reserve->status = 'reserved';
-            $reserve->walk_in = true;
-            $reserve->created_at = Carbon::now();
-            $reserve->save();
 
-            // Reserve Logs
-            $reserve_logs = new Reserve_Log;
-            $reserve_logs->user_id = $vehicle->user_id;
-            $reserve_logs->slot_number = $slot_number;
-            $reserve_logs->plate_number = $plate_number;
-            $reserve_logs->walk_in = true;
-            $reserve_logs->payment = 50;
-            $reserve_logs->created_at = Carbon::now();
-            $reserve_logs->save();
-
-            // Vehicle Status
-            $vehicle->status = 'reserved';
-            $vehicle->save();
-
-            // Post To Logs
-            if($user_type->admin == true){
-                $logs = new Log;
-                $logs->user_id = Auth::user()->id;
-                $logs->type = 'admin';
-                $logs->description = "reserved vehicle | $plate_number @ $slot_number";
-                $logs->ip_address = \Request::ip();
-                $logs->action = 'reserved';
-                $logs->created_at = Carbon::now();
-                $logs->save();
-            }else{
-                $logs = new Log;
-                $logs->user_id = Auth::user()->id;
-                $logs->type = 'staff';
-                $logs->description = "reserved vehicle | $plate_number @ $slot_number";
-                $logs->ip_address = \Request::ip();
-                $logs->action = 'reserved';
-                $logs->created_at = Carbon::now();
-                $logs->save();
-            }
+        if($reserve->status == 'reserved' || $reserve->status == 'occupied'){
+            return back()->with('error', 'Slot already taken.');
         }else{
-            $reserve->user_id = '0';
-            $reserve->plate_number = $plate_number;
-            $reserve->status = 'reserved';
-            $reserve->walk_in = true;
-            $reserve->created_at = Carbon::now();
-            $reserve->save();
+            if($vehicle){
+                $reserve->user_id = $vehicle->user_id;
+                $reserve->plate_number = $plate_number;
+                $reserve->status = 'reserved';
+                $reserve->walk_in = true;
+                $reserve->created_at = Carbon::now();
+                $reserve->save();
 
-            // Reserve Logs
-            $reserve_logs = new Reserve_Log;
-            $reserve_logs->user_id = '0';
-            $reserve_logs->slot_number = $slot_number;
-            $reserve_logs->plate_number = $plate_number;
-            $reserve_logs->walk_in = true;
-            $reserve_logs->payment = 50;
-            $reserve_logs->created_at = Carbon::now();
-            $reserve_logs->save();
+                // Reserve Logs
+                $reserve_logs = new Reserve_Log;
+                $reserve_logs->user_id = $vehicle->user_id;
+                $reserve_logs->slot_number = $slot_number;
+                $reserve_logs->plate_number = $plate_number;
+                $reserve_logs->walk_in = true;
+                $reserve_logs->payment = 50;
+                $reserve_logs->created_at = Carbon::now();
+                $reserve_logs->save();
 
-            // Post To Logs
-            if($user_type->admin == true){
-                $logs = new Log;
-                $logs->user_id = Auth::user()->id;
-                $logs->type = 'admin';
-                $logs->description = "reserved vehicle | $plate_number @ $slot_number";
-                $logs->ip_address = \Request::ip();
-                $logs->action = 'reserved';
-                $logs->created_at = Carbon::now();
-                $logs->save();
+                // Vehicle Status
+                $vehicle->status = 'reserved';
+                $vehicle->save();
+
+                // Post To Logs
+                if($user_type->admin == true){
+                    $logs = new Log;
+                    $logs->user_id = Auth::user()->id;
+                    $logs->type = 'admin';
+                    $logs->description = "reserved vehicle | $plate_number @ $slot_number";
+                    $logs->ip_address = \Request::ip();
+                    $logs->action = 'reserved';
+                    $logs->created_at = Carbon::now();
+                    $logs->save();
+                }else{
+                    $logs = new Log;
+                    $logs->user_id = Auth::user()->id;
+                    $logs->type = 'staff';
+                    $logs->description = "reserved vehicle | $plate_number @ $slot_number";
+                    $logs->ip_address = \Request::ip();
+                    $logs->action = 'reserved';
+                    $logs->created_at = Carbon::now();
+                    $logs->save();
+                }
             }else{
-                $logs = new Log;
-                $logs->user_id = Auth::user()->id;
-                $logs->type = 'staff';
-                $logs->description = "reserved vehicle | $plate_number @ $slot_number";
-                $logs->ip_address = \Request::ip();
-                $logs->action = 'reserved';
-                $logs->created_at = Carbon::now();
-                $logs->save();
+                $reserve->user_id = '0';
+                $reserve->plate_number = $plate_number;
+                $reserve->status = 'reserved';
+                $reserve->walk_in = true;
+                $reserve->created_at = Carbon::now();
+                $reserve->save();
+
+                // Reserve Logs
+                $reserve_logs = new Reserve_Log;
+                $reserve_logs->user_id = '0';
+                $reserve_logs->slot_number = $slot_number;
+                $reserve_logs->plate_number = $plate_number;
+                $reserve_logs->walk_in = true;
+                $reserve_logs->payment = 50;
+                $reserve_logs->created_at = Carbon::now();
+                $reserve_logs->save();
+
+                // Post To Logs
+                if($user_type->admin == true){
+                    $logs = new Log;
+                    $logs->user_id = Auth::user()->id;
+                    $logs->type = 'admin';
+                    $logs->description = "reserved vehicle | $plate_number @ $slot_number";
+                    $logs->ip_address = \Request::ip();
+                    $logs->action = 'reserved';
+                    $logs->created_at = Carbon::now();
+                    $logs->save();
+                }else{
+                    $logs = new Log;
+                    $logs->user_id = Auth::user()->id;
+                    $logs->type = 'staff';
+                    $logs->description = "reserved vehicle | $plate_number @ $slot_number";
+                    $logs->ip_address = \Request::ip();
+                    $logs->action = 'reserved';
+                    $logs->created_at = Carbon::now();
+                    $logs->save();
+                }
             }
         }
 
@@ -410,8 +414,11 @@ class SlotController extends Controller
 
             // Vehicle Status
             $vehicle = Vehicle::where('plate_number', $check_out->plate_number)->first();
-            $vehicle->status = 'free';
-            $vehicle->save();
+
+            if($vehicle){
+                $vehicle->status = 'free';
+                $vehicle->save();
+            }
 
             // Update Slot
             $check_out->user_id = 0;

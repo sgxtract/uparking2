@@ -104,7 +104,7 @@ class UserController extends Controller
     public function addVehicle(Request $request){
         
         $validation = $request->validate([
-            'plate_number' => 'required|alpha_num|unique:vehicles',
+            'plate_number' => 'required|regex:/(^([a-zA-Z]{3}+[0-9]{3,4})?$)/u|unique:vehicles',
             'type' => 'required',
         ]);
 

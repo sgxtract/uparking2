@@ -80,7 +80,7 @@ class StaffController extends Controller
             $cancel->save();
 
             // Vehicle Status
-            $vehicle = Vehicle::where('plate_number', $cancel->plate_number)->first();
+            $vehicle = Vehicle::where('plate_number', $plate_number)->first();
             $vehicle->status = 'free';
             $vehicle->save();
 

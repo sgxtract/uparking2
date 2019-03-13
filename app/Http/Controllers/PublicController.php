@@ -40,11 +40,13 @@ class PublicController extends Controller
 
         $bg_img = $request->file('bg_img');
         
-        $fileName = $bg_img->getClientOriginalName();
-        $fileExtension = $bg_img->getClientOriginalExtension();
-        
-        $bg_img->move('images/cms/home', $fileName);
-        $home->image = 'images/cms/home/' . $fileName;
+        if($bg_img){
+            $fileName = $bg_img->getClientOriginalName();
+            $fileExtension = $bg_img->getClientOriginalExtension();
+            
+            $bg_img->move('images/cms/home', $fileName);
+            $home->image = 'images/cms/home/' . $fileName;
+        }
 
         $home->save();
 
@@ -79,12 +81,14 @@ class PublicController extends Controller
         $about->updated_at = Carbon::now();
 
         $bg_img = $request->file('bg_img');
-        
-        $fileName = $bg_img->getClientOriginalName();
-        $fileExtension = $bg_img->getClientOriginalExtension();
-        
-        $bg_img->move('images/cms/home', $fileName);
-        $about->image = 'images/cms/home/' . $fileName;
+
+        if($bg_img){
+            $fileName = $bg_img->getClientOriginalName();
+            $fileExtension = $bg_img->getClientOriginalExtension();
+            
+            $bg_img->move('images/cms/home', $fileName);
+            $about->image = 'images/cms/home/' . $fileName;
+        }
 
         $about->save();
 
@@ -115,13 +119,15 @@ class PublicController extends Controller
         $contact->updated_at = Carbon::now();
 
         $bg_img = $request->file('bg_img');
-        
-        $fileName = $bg_img->getClientOriginalName();
-        $fileExtension = $bg_img->getClientOriginalExtension();
-        
-        $bg_img->move('images/cms/home', $fileName);
-        $contact->image = 'images/cms/home/' . $fileName;
 
+        if($bg_img){
+            $fileName = $bg_img->getClientOriginalName();
+            $fileExtension = $bg_img->getClientOriginalExtension();
+            
+            $bg_img->move('images/cms/home', $fileName);
+            $contact->image = 'images/cms/home/' . $fileName;
+        }
+        
         $contact->save();
 
         // Post To Logs

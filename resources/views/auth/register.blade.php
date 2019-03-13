@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('title')
-    Register
+Register
 @endsection
 
 @section('content')
@@ -47,7 +47,7 @@
                                     @endif
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <div class="input-group">
                                     <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
@@ -110,12 +110,13 @@
                                 </div>
                             </div>
 
-                            <div class="form-group d-flex justify-content-center">
-                                <div class="form-check form-check-flat mt-0">
-                                    <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" checked> I agree to the terms
-                                    </label>
-                                </div>
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}"></div>
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                @endif
                             </div>
 
                             <div class="form-group">

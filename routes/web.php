@@ -72,6 +72,7 @@ Route::prefix('admin')->group(function(){
     Route::get('user/{id}/edit', 'AdminController@editUser')->name('adminEditUser');
     Route::post('user/{id}/edit', 'AdminController@editUserAccount')->name('adminEditUserAccount');
     Route::post('user/{id}/delete', 'AdminController@deleteUser')->name('adminDeleteUser');
+    Route::post('user/{id}/activate', 'AdminController@activateUser')->name('adminActivateUser');
     Route::get('vehicles', 'AdminController@vehicles')->name('adminVehicles');
     Route::post('vehicle/new', 'AdminController@addVehicle')->name('adminAddVehicle');
     Route::post('vehicle/{id}/remove', 'AdminController@removeVehicle')->name('adminRemoveVehicle');

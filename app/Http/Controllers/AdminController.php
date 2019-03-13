@@ -88,12 +88,12 @@ class AdminController extends Controller
 
     // History Logs
     public function userLogs(){
-        $logs = Log::all();
+        $logs = Log::where('type', 'user')->get();
         return view('admin.logs.user-logs')->with('logs', $logs);
     }
 
     public function staffLogs(){
-        $logs = Log::where('type', 'staff')->get();
+        $logs = Log::where(['type' => 'staff', 'type' => 'admin'])->get();
         return view('admin.logs.staff-logs')->with('logs', $logs);
     }
 
@@ -104,7 +104,7 @@ class AdminController extends Controller
     // End History Logs
 
     public function users(){
-        $users = User::all();
+        $users = User::where('admin', false)->get();
         return view('admin.users')->with('users', $users);
     }
 
@@ -208,29 +208,49 @@ class AdminController extends Controller
         return back()->with('success', 'User updated successfully.');
     }
 
+    public function activateUser($id){
+        $user = User::where('id', $id)->first();
+        $name = $user->name;
+        $user->status = true;
+        $user->save();
+
+        $logs = new Log;
+        $logs->user_id = Auth::user()->id;
+        $logs->type = 'admin';
+        $logs->description = "activated user | Name: $name";
+        $logs->ip_address = \Request::ip();
+        $logs->action = 'activate';
+        $logs->created_at = Carbon::now();
+        $logs->save();
+
+        return back()->with('success', 'Activated user <strong>' .  $name . ' ' . $user->last_name . '</strong>');
+    }
+
     public function deleteUser($id){
         $user = User::where('id', $id)->first();
-        $wallet = Wallet::where('user_id', $id)->first();
         $name = $user->name;
         if($user->admin){
             return back()->with('error', 'This user of type admin cannot be deleted.');
         }
-        $user->delete();
-        $wallet->delete();
-        $vehicle = Vehicle::where('user_id', $id)->delete();
-        $logs = Log::where('user_id', $id)->delete();
+        $user->status = false;
+        $user->save();
+
+        // $user->delete();
+        // $wallet->delete();
+        // $vehicle = Vehicle::where('user_id', $id)->delete();
+        // $logs = Log::where('user_id', $id)->delete();
 
         // Post To Logs
         $logs = new Log;
         $logs->user_id = Auth::user()->id;
         $logs->type = 'admin';
-        $logs->description = "deleted user | Name: $name";
+        $logs->description = "deactivated user | Name: $name";
         $logs->ip_address = \Request::ip();
-        $logs->action = 'removed';
+        $logs->action = 'deactivate';
         $logs->created_at = Carbon::now();
         $logs->save();
 
-        return back();
+        return back()->with('error', 'Deactivated user <strong>' .  $name . ' ' . $user->last_name . '</strong>');
     }
 
     public function reserve(){

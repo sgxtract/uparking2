@@ -20,7 +20,7 @@ Admin History
                         <hr>
 
                         <div class="table-responsive">
-                            <table id="user-logs" class="table table-striped">
+                            <table id="user_logs" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>User</th>
@@ -34,24 +34,22 @@ Admin History
                                 <tbody>
                                     @foreach ($logs as $log)
                                     <tr>
-                                        @if ($log->type == 'user')
-                                            <td>{{ $log->user->name . ' ' . $log->user->last_name }}</td>
-                                            <td>{{ $log->description }}</td>
-                                            <td>{{ $log->ip_address }}</td>
-                                            <td>
-                                                @php
-                                                    $unixTime = strtotime($log->created_at);
-                                                    echo date('F j, Y', $unixTime);
-                                                @endphp
-                                            </td>
-                                            <td>
-                                                @php
-                                                    $unixTime = strtotime($log->created_at);
-                                                    echo date('g:i a', $unixTime);
-                                                @endphp
-                                            </td>
-                                            <td>{{ $log->action }}</td>
-                                        @endif
+                                        <td>{{ $log->user->name . ' ' . $log->user->last_name }}</td>
+                                        <td>{{ $log->description }}</td>
+                                        <td>{{ $log->ip_address }}</td>
+                                        <td>
+                                            @php
+                                                $unixTime = strtotime($log->created_at);
+                                                echo date('F j, Y', $unixTime);
+                                            @endphp
+                                        </td>
+                                        <td>
+                                            @php
+                                                $unixTime = strtotime($log->created_at);
+                                                echo date('g:i a', $unixTime);
+                                            @endphp
+                                        </td>
+                                        <td>{{ $log->action }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -77,7 +75,7 @@ Admin History
 
 <script>
     $(document).ready(function() {
-        $('#user-logs').DataTable();
+        $('#user_logs').DataTable();
     } );
 </script>
 
