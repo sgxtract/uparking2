@@ -395,7 +395,7 @@ class SlotController extends Controller
     // }
     
     // Pay with cash
-    public function checkOut($slot){
+    public function checkOut($slot, $toPay){
         $check_out = Reserve::where('slot_number', $slot)->first();
         $user_type = User::where('id', Auth::user()->id)->first();
         $plate_number = $check_out->plate_number;
@@ -420,6 +420,7 @@ class SlotController extends Controller
 
             // Update Time Out
             $reserve_logs = Reserve_Log::where(['created_at' => $check_out->created_at, 'slot_number' => $slot])->first();
+            $reserve_logs->payment += $toPay;
             $reserve_logs->updated_at = Carbon::now();
             $reserve_logs->save();
 
@@ -451,6 +452,7 @@ class SlotController extends Controller
     // Pay with wallet
     public function checkOut2($slot, $id, $toPay){
         $wallet = Wallet::where('user_id', $id)->first();
+        $user_type = User::where('id', Auth::user()->id)->first();
         if($wallet){
             if($wallet->balance < $toPay){
                 return redirect(route('staffCheckOut'))->with('error', 'Insufficient load balance.');

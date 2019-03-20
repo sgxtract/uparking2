@@ -100,7 +100,7 @@ Check Out
                         </div>
                         <hr>
                         @if ($toPay == 0)
-                            <form style="display: none" method="POST" id="checkout" action="{{ route('slotCheckOut', $check_out->slot_number) }}">@csrf</form>
+                            <form style="display: none" method="POST" id="checkout" action="{{ route('slotCheckOut', [$check_out->slot_number, $toPay]) }}">@csrf</form>
                             <button type="button" class="btn btn-success btn-block btn-sm" onclick="document.getElementById('checkout').submit()"><i
                                     class="mdi mdi-cash-multiple"></i>Checkout</button>
                                     <a href="{{ route('staffCheckOut') }}" class="btn btn-light btn-block">Back</a>
@@ -123,7 +123,7 @@ Check Out
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <form style="display: none" method="POST" id="checkout" action="{{ route('slotCheckOut', $check_out->slot_number) }}">@csrf</form>
+                                                    <form style="display: none" method="POST" id="checkout" action="{{ route('slotCheckOut', [$check_out->slot_number, $toPay]) }}">@csrf</form>
                                                     <button type="button" class="btn btn-success btn-block btn-sm" onclick="document.getElementById('checkout').submit()"><i
                                                             class="mdi mdi-cash-multiple"></i>Cash</button>
 
