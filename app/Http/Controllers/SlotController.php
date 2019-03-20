@@ -41,7 +41,7 @@ class SlotController extends Controller
             $reserve_logs->slot_number = $slot_number;
             $reserve_logs->plate_number = $plate_number;
             $reserve_logs->walk_in = true;
-            $reserve_logs->payment = 0;
+            $reserve_logs->payment = 50;
             $reserve_logs->created_at = Carbon::now();
             $reserve_logs->save();
 
