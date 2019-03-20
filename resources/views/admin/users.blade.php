@@ -67,10 +67,13 @@
                                             <td>{{ \Carbon\Carbon::parse($user->last_sign_in_at)->diffForHumans() }}</td>
                                             <td>
                                                 <a href="{{ route('adminEditUser', $user->id) }}" class="badge badge-warning"><span class="mdi mdi-pencil"></span> Edit</a>
-                                                <form style="display: none" method="POST" id="activateUser-{{ $user->id }}" action="{{ route('adminActivateUser', $user->id) }}">@csrf</form>
-                                                <a href="#" class="badge badge-success" onclick="activate('{{ $user->id }}')"><span class="mdi mdi-key"></span> Activate</a>
-                                                <form style="display: none" method="POST" id="deactivateUser-{{ $user->id }}" action="{{ route('adminDeleteUser', $user->id) }}">@csrf</form>
-                                                <a href="#" class="badge badge-danger" onclick="deactivate('{{ $user->id }}')"><span class="mdi mdi-key-remove"></span> Deactivate</a>
+                                                @if ($user->status)
+                                                    <form style="display: none" method="POST" id="deactivateUser-{{ $user->id }}" action="{{ route('adminDeleteUser', $user->id) }}">@csrf</form>
+                                                    <a href="#" class="badge badge-danger" onclick="deactivate('{{ $user->id }}')"><span class="mdi mdi-key-remove"></span> Deactivate</a>
+                                                @else
+                                                    <form style="display: none" method="POST" id="activateUser-{{ $user->id }}" action="{{ route('adminActivateUser', $user->id) }}">@csrf</form>
+                                                    <a href="#" class="badge badge-success" onclick="activate('{{ $user->id }}')"><span class="mdi mdi-key"></span> Activate</a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

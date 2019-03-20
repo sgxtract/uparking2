@@ -6,36 +6,90 @@ Check In
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="row">
-            <div class="col-xl-3 col-lg-3 col-md-3"></div>
-            <div class="col-xl-6 col-lg-6 col-md-6">
-                <div class="form-group">
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="display-4">Check In</h4>
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
 
-                    @if (session('error'))
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        
+                        @if ($errors->any())
                         <div class="alert alert-danger">
-                            {{ session('error') }}
+                            <ul class="list-ticked">
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                    @endif
-                    
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul class="list-ticked">
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
+                        @endif
 
-                    @if ($vehicles->isEmpty())
-                        <h5 class="text-center mt-5">No reserves to check in.</h5>
-                    @else
-                    <h4 class="text-center display-4 mb-5 mt-2">Check In</h4>
-                    <form action="{{ route('slotCheckInSearch') }}" method="POST">
+                        <hr>
+
+                        @if ($vehicles->isEmpty())
+                            <h5 class="text-center mt-5">No reserves to check in.</h5>
+                        @else
+                            <div class="table-responsive">
+                                <table id="checkIn" class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Plate Number</th>
+                                            <th>Slot Number</th>
+                                            <th>Status</th>
+                                            <th>Time Reserved</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($vehicles as $vehicle)
+                                        <tr>
+                                            <td>
+                                                @if ($vehicle->user_id == 0)
+                                                    Guest
+                                                @else
+                                                    {{ $vehicle->user->name . ' ' . $vehicle->user->last_name }}
+                                                @endif
+                                            </td>
+                                            <td>{{ $vehicle->plate_number }}</td>
+                                            <td>{{ $vehicle->slot_number }}</td>
+                                            <td>{{ $vehicle->status }}</td>
+                                            <td>{{ $vehicle->created_at }}</td>
+                                            <td>
+                                                <a href="{{ route('slotCheckInSearch', $vehicle->plate_number) }}" class="badge badge-warning">Check In</a>
+                                                <form style="display: none" method="POST" id="cancelReserve-{{ $vehicle->slot_number }}" action="{{ route('staffCancelReserve', $vehicle->slot_number) }}">@csrf</form>
+                                                <a href="#" class="badge badge-danger" onclick="document.getElementById('cancelReserve-{{ $vehicle->slot_number }}').submit()">Cancel</a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Plate Number</th>
+                                            <th>Slot Number</th>
+                                            <th>Status</th>
+                                            <th>Time Reserved</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- <form action="{{ route('slotCheckInSearch') }}" method="POST">
                         @csrf
                         <div class="input-group col-xs-12">
                                 <select class="form-control" name="plate_number" id="">
@@ -48,11 +102,7 @@ Check In
                                     <i class="mdi mdi-magnify"></i>Check in</button>
                             </span>
                         </div>
-                    </form>
-                    @endif
-                </div>
-            </div>
-        </div>
+                    </form> --}}
 
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
@@ -67,4 +117,10 @@ Check In
     <!-- main-panel ends -->
 
     {{-- {!! $chart->script() !!} --}}
+
+    <script>
+        $(document).ready(function() {
+            $('#checkIn').DataTable();
+        } );
+    </script>
     @endsection

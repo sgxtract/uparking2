@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserUpdate;
 use App\Http\Requests\AddVehicle;
 use Carbon\Carbon;
+use Carbon\CarbonInterval;
 use App\Log;
 use App\User;
 use App\Vehicle;
@@ -26,12 +27,175 @@ class AdminController extends Controller
     }
 
     public function salesReport(){
-        $logs = Reserve_log::all();
-        $payment = 0;
+
+        $dt = Carbon::today();
+        $logs = Reserve_Log::all();
+        // Days
+        $sunday = $monday = $tuesday = $wednesday = $thursday = $friday = $saturday = 0;
+
         foreach($logs as $log){
-            $payment += $log->payment;
+            if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::SUNDAY){
+                $sunday += $log->payment;
+            }
+            if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::MONDAY){
+                $monday += $log->payment;
+            }
+            if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::TUESDAY){
+                $tuesday += $log->payment;
+            }
+            if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::WEDNESDAY){
+                $wednesday += $log->payment;
+            }
+            if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::THURSDAY){
+                $thursday += $log->payment;
+            }
+            if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::FRIDAY){
+                $friday += $log->payment;
+            }
+            if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::SATURDAY){
+                $saturday += $log->payment;
+            }
         }
-        return view('admin.sales_report')->with('payment', $payment);
+
+        // Weeks
+        $weeklyStart = Carbon::now()->startOfWeek();
+        $weekly = 0;
+
+        $weeklyLogs = Reserve_Log::whereBetween('created_at', [$weeklyStart, $weeklyStart->copy()->addDays(6)])->get();
+
+        foreach($weeklyLogs as $weeklyLog){
+            $weekly += $weeklyLog->payment;
+        }
+
+        $data = [
+            'sunday' => $sunday,
+            'monday' => $monday,
+            'tuesday' => $tuesday,
+            'wednesday' => $wednesday,
+            'thursday' => $thursday,
+            'friday' => $friday,
+            'saturday' => $saturday,
+            'weekly' => $weekly,
+        ];
+
+        // Months
+        $monthStart = Carbon::now()->month;
+        $monthlyLogs = Reserve_Log::all();
+
+        $january = $february = $march = $april = $may = $june = $july = $august = $september = $october = $november = $december = 0;
+
+        foreach($monthlyLogs as $monthlyLog){
+            if(Carbon::parse($monthlyLog->created_at)->month == 1){
+                $january += $monthlyLog->payment;
+            }
+            if(Carbon::parse($monthlyLog->created_at)->month == 2){
+                $february += $monthlyLog->payment;
+            }
+            if(Carbon::parse($monthlyLog->created_at)->month == 3){
+                $march += $monthlyLog->payment;
+            }
+            if(Carbon::parse($monthlyLog->created_at)->month == 4){
+                $april += $monthlyLog->payment;
+            }
+            if(Carbon::parse($monthlyLog->created_at)->month == 5){
+                $may += $monthlyLog->payment;
+            }
+            if(Carbon::parse($monthlyLog->created_at)->month == 6){
+                $june += $monthlyLog->payment;
+            }
+            if(Carbon::parse($monthlyLog->created_at)->month == 7){
+                $july += $monthlyLog->payment;
+            }
+            if(Carbon::parse($monthlyLog->created_at)->month == 8){
+                $august += $monthlyLog->payment;
+            }
+            if(Carbon::parse($monthlyLog->created_at)->month == 9){
+                $september += $monthlyLog->payment;
+            }
+            if(Carbon::parse($monthlyLog->created_at)->month == 10){
+                $october += $monthlyLog->payment;
+            }
+            if(Carbon::parse($monthlyLog->created_at)->month == 11){
+                $november += $monthlyLog->payment;
+            }
+            if(Carbon::parse($monthlyLog->created_at)->month == 12){
+                $december += $monthlyLog->payment;
+            }
+        }
+
+        $data2 = [
+            'jan' => $january,
+            'feb' => $february,
+            'mar' => $march,
+            'apr' => $april,
+            'may' => $may,
+            'jun' => $june,
+            'jul' => $july,
+            'aug' => $august,
+            'sep' => $september,
+            'oct' => $october,
+            'nov' => $november,
+            'dec' => $december,
+        ];
+
+        return view('admin.sales_report')->with(['data' => $data, 'data2' => $data2]);
+
+        // BREAK
+
+        $dateDay = \Carbon\Carbon::now();//use your date to get month and year
+        $getData = Reserve_Log::all();
+
+        $dates=[];
+        
+        foreach($getData as $data){
+            if($data->isMonday()===true){
+                $dates[] = ($data->created_at);
+            }
+        }
+        return $dates;
+
+        $year = $dateDay->year;
+        $month = $dateDay->month;
+        $days = $dateDay->daysInMonth;
+
+        $mondays=[];
+        $tuesdays=[];
+
+        foreach (range(1, $days) as $day) {
+            $date = \Carbon\Carbon::createFromDate($year, $month, $day);
+            if ($date->isMonday()===true) {
+                $mondays[]=($logs_daily->day);
+            }
+        }
+
+        return $logs_daily;
+
+        $startWeek = Carbon::today()->subWeek()->startOfWeek();
+        $endWeek = Carbon::today()->subWeek()->endOfWeek();
+
+        $startMonth = Carbon::today()->subMonth()->startOfMonth();
+        $endMonth = Carbon::today()->subMonth()->endOfMonth();
+
+        $logs_daily = Reserve_Log::whereDate('created_at', Carbon::today())->get();
+        $logs_weekly = Reserve_Log::whereBetween('created_at', [$startWeek, $endWeek])->get();
+        $logs_monthly = Reserve_Log::whereBetween('created_at', [$startWeek, $endWeek])->get();
+
+        $daily = 0;
+        $weekly = 0;
+        $monthly = 0;
+
+        foreach($logs_daily as $log_daily){
+            $daily += $log_daily->payment;
+        }
+
+        foreach($logs_weekly as $log_weekly){
+            $weekly += $log_weekly->payment;
+        }
+
+        foreach($logs_monthly as $log_monthly){
+            $monthly += $log_monthly->payment;
+        }
+        return view('admin.sales_report2')->with(['daily' => $daily, 'weekly' => $weekly, 'monthly' => $monthly]);
     }
 
     public function statisticsReport(){

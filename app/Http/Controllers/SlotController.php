@@ -213,20 +213,16 @@ class SlotController extends Controller
     }
 
     // Check In
-    public function checkInSearch(Request $request){
+    public function checkInSearch($p_num){
 
-        $plate_number = strip_tags(strtoupper($request['plate_number']));
-        $vehicle = Vehicle::where('plate_number', $plate_number)->first();
-        $check_in = Reserve::where('plate_number', $plate_number)->first();
-
-        $validation = $request->validate([
-            'plate_number' => 'required|alpha_num|min:6',
-        ]);
+        $plate_number = Vehicle::where('plate_number', $p_num)->first();
+        $check_in = Reserve::where('plate_number', $p_num)->first();
+        $vehicle = Vehicle::where('plate_number', $p_num)->first();
 
         if(!$check_in){
-            return back()->with('error', 'There is no reservation found for ' . $plate_number);
+            return back()->with('error', 'There is no reservation found for ' . $p_num);
         }else{
-            if($plate_number == $check_in->plate_number && $check_in->status == 'reserved'){
+            if($p_num == $check_in->plate_number && $check_in->status == 'reserved'){
                 if($check_in){
                     if($vehicle){
                         $user = User::where('id', $check_in->user_id)->first();
@@ -236,14 +232,12 @@ class SlotController extends Controller
                         return view('staff.checkin_results2')->with('check_in', $check_in);
                     }
                 }else{
-                    return back()->with('error', 'There is no reservation found for ' . $plate_number);
+                    return back()->with('error', 'There is no reservation found for ' . $p_num);
                 }
             }else{
-                return back()->with('error', 'Plate number ' . $plate_number . ' is already checked in.');
+                return back()->with('error', 'Plate number ' . $p_num . ' is already checked in.');
             }
-        }   
-
-        
+        }
     }
 
     // Check In Reserve
@@ -313,11 +307,9 @@ class SlotController extends Controller
     }
 
     // Check Out by Plate Number
-    public function checkOutSearch(Request $request){
+    public function checkOutSearch($p_num){
 
-        $plate_number = strip_tags(strtoupper($request['plate_number']));
-
-        $check_out = Reserve::where('plate_number', $plate_number)->first();
+        $check_out = Reserve::where('plate_number', $p_num)->first();
 
         $startTime = strtotime($check_out['created_at']);
         $endTime = strtotime($check_out['updated_at']);
@@ -352,55 +344,55 @@ class SlotController extends Controller
     
             return view('staff.checkout_results')->with(['check_out' => $check_out, 'totalTime' => $totalTime, 'toPay' => $toPay, 'user_id' => $check_out->user_id]);
         }else{
-            return back()->with('error', 'Could not find ' . $plate_number . '. <br/> Please check and try again.');
+            return back()->with('error', 'Could not find ' . $p_num . '. <br/> Please check and try again.');
         }
 
     }
 
-    // Check Out by Slot Number
-    public function checkOutSearch2(Request $request){
+    // Check Out by Slot Number (Not Used)
+    // public function checkOutSearch2(Request $request){
 
-        $slot_number = strip_tags($request['slot_number']);
+    //     $slot_number = strip_tags($request['slot_number']);
 
-        $check_out = Reserve::where('slot_number', $slot_number)->first();
+    //     $check_out = Reserve::where('slot_number', $slot_number)->first();
 
-        $startTime = strtotime($check_out['created_at']);
-        $endTime = strtotime($check_out['updated_at']);
-        $totalTime = $endTime - $startTime;
+    //     $startTime = strtotime($check_out['created_at']);
+    //     $endTime = strtotime($check_out['updated_at']);
+    //     $totalTime = $endTime - $startTime;
 
-        if($check_out){
-            $check_out->updated_at = Carbon::now();
-            $check_out->save();
+    //     if($check_out){
+    //         $check_out->updated_at = Carbon::now();
+    //         $check_out->save();
 
-            if(!($check_out->walk_in)){
-                if($totalTime <= 7200){
-                    $toPay = 0;
-                }else{
-                    $newStartTime = $startTime + 7200; // New Time For Reservee
-                    $newTotalTime = $endTime - $newStartTime;
-                    $newTotalTime /= 3600;
-                    if($newTotalTime < 1){
-                        $toPay = floor($newTotalTime + 1) * 25;
-                    }else{
-                        $toPay = round($newTotalTime) * 25;
-                    }
-                }
-            }else{
-                if($totalTime <= 7200){
-                    $toPay = 50;
-                }else{
-                    $toPay = round($totalTime/3600) * 25;
-                }
-            }
+    //         if(!($check_out->walk_in)){
+    //             if($totalTime <= 7200){
+    //                 $toPay = 0;
+    //             }else{
+    //                 $newStartTime = $startTime + 7200; // New Time For Reservee
+    //                 $newTotalTime = $endTime - $newStartTime;
+    //                 $newTotalTime /= 3600;
+    //                 if($newTotalTime < 1){
+    //                     $toPay = floor($newTotalTime + 1) * 25;
+    //                 }else{
+    //                     $toPay = round($newTotalTime) * 25;
+    //                 }
+    //             }
+    //         }else{
+    //             if($totalTime <= 7200){
+    //                 $toPay = 50;
+    //             }else{
+    //                 $toPay = round($totalTime/3600) * 25;
+    //             }
+    //         }
     
-            $totalTime /= 3600;
+    //         $totalTime /= 3600;
     
-            return view('staff.checkout_results')->with(['check_out' => $check_out, 'totalTime' => $totalTime, 'toPay' => $toPay, 'user_id' => $check_out->user_id]);
-        }else{
-            return back()->with('error', 'Could not find ' . $slot_number . '. <br/> Please check and try again.');
-        }
+    //         return view('staff.checkout_results')->with(['check_out' => $check_out, 'totalTime' => $totalTime, 'toPay' => $toPay, 'user_id' => $check_out->user_id]);
+    //     }else{
+    //         return back()->with('error', 'Could not find ' . $slot_number . '. <br/> Please check and try again.');
+    //     }
 
-    }
+    // }
     
     // Pay with cash
     public function checkOut($slot){
