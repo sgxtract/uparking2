@@ -33,27 +33,29 @@ class AdminController extends Controller
         // Days
         $sunday = $monday = $tuesday = $wednesday = $thursday = $friday = $saturday = 0;
 
-        foreach($logs as $log){
-            if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::SUNDAY){
-                $sunday += $log->payment;
-            }
-            if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::MONDAY){
-                $monday += $log->payment;
-            }
-            if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::TUESDAY){
-                $tuesday += $log->payment;
-            }
-            if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::WEDNESDAY){
-                $wednesday += $log->payment;
-            }
-            if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::THURSDAY){
-                $thursday += $log->payment;
-            }
-            if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::FRIDAY){
-                $friday += $log->payment;
-            }
-            if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::SATURDAY){
-                $saturday += $log->payment;
+        if($dt){
+            foreach($logs as $log){
+                if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::SUNDAY){
+                    $sunday += $log->payment;
+                }
+                if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::MONDAY){
+                    $monday += $log->payment;
+                }
+                if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::TUESDAY){
+                    $tuesday += $log->payment;
+                }
+                if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::WEDNESDAY){
+                    $wednesday += $log->payment;
+                }
+                if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::THURSDAY){
+                    $thursday += $log->payment;
+                }
+                if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::FRIDAY){
+                    $friday += $log->payment;
+                }
+                if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::SATURDAY){
+                    $saturday += $log->payment;
+                }
             }
         }
 
@@ -139,70 +141,56 @@ class AdminController extends Controller
         ];
 
         return view('admin.sales_report')->with(['data' => $data, 'data2' => $data2]);
-
-        // BREAK
-
-        $dateDay = \Carbon\Carbon::now();//use your date to get month and year
-        $getData = Reserve_Log::all();
-
-        $dates=[];
-        
-        foreach($getData as $data){
-            if($data->isMonday()===true){
-                $dates[] = ($data->created_at);
-            }
-        }
-        return $dates;
-
-        $year = $dateDay->year;
-        $month = $dateDay->month;
-        $days = $dateDay->daysInMonth;
-
-        $mondays=[];
-        $tuesdays=[];
-
-        foreach (range(1, $days) as $day) {
-            $date = \Carbon\Carbon::createFromDate($year, $month, $day);
-            if ($date->isMonday()===true) {
-                $mondays[]=($logs_daily->day);
-            }
-        }
-
-        return $logs_daily;
-
-        $startWeek = Carbon::today()->subWeek()->startOfWeek();
-        $endWeek = Carbon::today()->subWeek()->endOfWeek();
-
-        $startMonth = Carbon::today()->subMonth()->startOfMonth();
-        $endMonth = Carbon::today()->subMonth()->endOfMonth();
-
-        $logs_daily = Reserve_Log::whereDate('created_at', Carbon::today())->get();
-        $logs_weekly = Reserve_Log::whereBetween('created_at', [$startWeek, $endWeek])->get();
-        $logs_monthly = Reserve_Log::whereBetween('created_at', [$startWeek, $endWeek])->get();
-
-        $daily = 0;
-        $weekly = 0;
-        $monthly = 0;
-
-        foreach($logs_daily as $log_daily){
-            $daily += $log_daily->payment;
-        }
-
-        foreach($logs_weekly as $log_weekly){
-            $weekly += $log_weekly->payment;
-        }
-
-        foreach($logs_monthly as $log_monthly){
-            $monthly += $log_monthly->payment;
-        }
-        return view('admin.sales_report2')->with(['daily' => $daily, 'weekly' => $weekly, 'monthly' => $monthly]);
     }
 
     public function statisticsReport(){
-        $reserves = Reserve_Log::all();
-        $users = User::all();
-        $vehicles = Vehicle::all();
-        return view('admin.statistics_report')->with(['reserves' => $reserves, 'users' => $users, 'vehicles' => $vehicles]);
+        $stats = Reserve_Log::all();
+        $totalRevenue = 0;
+        $totalTransactions = count($stats);
+
+        foreach($stats as $stat){
+            $totalRevenue += $stat->payment;
+        }
+
+        $averageTicketValue = $totalRevenue / $totalTransactions;
+        $averageLengthOfStay = 0;
+
+        if($averageTicketValue > 0 && round($averageTicketValue) < 50 ){
+            $averageLengthOfStay = 2; // Hours
+        }else if($averageTicketValue > 50 && round($averageTicketValue) < 75 ){
+            $averageLengthOfStay = 3; // Hours
+        }else if($averageTicketValue > 75 && round($averageTicketValue) < 100 ){
+            $averageLengthOfStay = 4; // Hours
+        }else if($averageTicketValue > 100 && round($averageTicketValue) < 125 ){
+            $averageLengthOfStay = 5; // Hours
+        }else if($averageTicketValue > 125 && round($averageTicketValue) < 150 ){
+            $averageLengthOfStay = 6; // Hours
+        }else if($averageTicketValue > 150 && round($averageTicketValue) < 175 ){
+            $averageLengthOfStay = 7; // Hours
+        }else if($averageTicketValue > 175 && round($averageTicketValue) < 200 ){
+            $averageLengthOfStay = 8; // Hours
+        }else if($averageTicketValue > 200 && round($averageTicketValue) < 225 ){
+            $averageLengthOfStay = 9; // Hours
+        }else if($averageTicketValue > 225 && round($averageTicketValue) < 250 ){
+            $averageLengthOfStay = 10; // Hours
+        }else if($averageTicketValue > 250 && round($averageTicketValue) < 275 ){
+            $averageLengthOfStay = 11; // Hours
+        }else if($averageTicketValue > 275 && round($averageTicketValue) < 300 ){
+            $averageLengthOfStay = 12; // Hours
+        }else{
+            $averageLengthOfStay = 13; // Hours
+        }
+
+        // Frequency of Use
+        $frequency = $totalTransactions / 62;
+
+        $data = [
+            'avt' => round($averageTicketValue),
+            'als' => $averageLengthOfStay,
+            'frq' => $frequency,
+        ];
+
+        return view('admin.statistics_report')->with('data', $data);
     }
 
     public function vehicles(){

@@ -9,14 +9,8 @@
 <script type="text/javascript">
 window.onload = function () {
 
-var users = parseInt("{{ $users->count() }}", 10);
-var vehicles = parseInt("{{ $vehicles->count() }}", 10);
-var reserves = parseInt("{{ $reserves->count() }}", 10);
-
 var data = [
-    { label: "Total Users", count: users },
-    { label: "Total Vehicles", count: vehicles },
-    { label: "Total Reserves", count: reserves },
+    { label: "Average", count: parseInt("{{ $data['avt'] }}", 10) },
 
 ];
 
@@ -26,34 +20,104 @@ $.each(data, function (i, item){
     dps.push({label: item.label, y: item.count});
 });
 
-var chart = new CanvasJS.Chart("chartContainer", {
+// Average Ticket Value
+var chart = new CanvasJS.Chart("atvChart", {
 	theme: "light2", // "light2", "dark1", "dark2"
 	animationEnabled: true, // change to true		
 	title:{
-		text: "Statistics Report"
-	},
+		text: "Average Ticket Value"
+    },
+    axisY: {
+		includeZero: false,
+        prefix: "₱"
+    },
 	data: [
 	{
 		// Change type to "bar", "area", "spline", "pie",etc.
-		type: "column",
+        type: "column",
+        color: "#7ad9ff",
+		percentFormatString: "#0.##",
 		dataPoints: dps
 	}
 	]
 });
+
+// Frequency of Use
+var chart2 = new CanvasJS.Chart("freqChart", {
+        theme: "light2", // "light2", "dark1", "dark2"
+        animationEnabled: true, // change to true		
+        title:{
+            text: "Frequency of Use"
+        },
+        axisY: {
+		    includeZero: true,
+        },
+        data: [
+        {
+            // Change type to "bar", "area", "spline", "pie",etc.
+            type: "pie",
+            color: "#ee6572",
+            dataPoints: [
+                { label: "Frequency",  y: parseFloat("{{ $data['frq'] }}")  },
+            ]
+        }
+        ]
+    });
+
+    // Average Length of Stay
+    var chart3 = new CanvasJS.Chart("alsChart", {
+        theme: "light2", // "light2", "dark1", "dark2"
+        animationEnabled: true, // change to true		
+        title:{
+            text: "Average Length of Stay"
+        },
+        axisY: {
+		    includeZero: false,
+        },
+        data: [
+        {
+            // Change type to "bar", "area", "spline", "pie",etc.
+            type: "bar",
+            dataPoints: [
+                { label: "Hours", y: parseInt("{{ $data['als'] }}", 10) },
+            ]
+        }
+        ]
+    });
+
 chart.render();
+chart2.render();
+chart3.render();
 
 }
 </script>
 
     <div class="main-panel">
         <div class="content-wrapper">
+            <h4 class="text-center mark font-weight-bold display-5 bg-warning mb-4">Statistics Report</h4>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-lg-6 col-md-6 grid-margin stretch-card">
                     <div class="card">
-                        <h4 class="card-header">Statistics Report</h4>
                         <div class="card-body">
-                            <h4 class="text-center mark font-weight-bold display-5 bg-warning">Volume</h4>
-                            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                            <div id="atvChart" style="height: 370px; width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="alsChart" style="height: 370px; width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        <div class="row">
+                <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="freqChart" style="height: 370px; width: 100%;"></div>
                         </div>
                     </div>
                 </div>
