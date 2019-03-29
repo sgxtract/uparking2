@@ -62,7 +62,12 @@ Check In
                                             <td>{{ $vehicle->plate_number }}</td>
                                             <td>{{ $vehicle->slot_number }}</td>
                                             <td>{{ $vehicle->status }}</td>
-                                            <td>{{ $vehicle->created_at }}</td>
+                                            <td>
+                                                @php
+                                                    $unixTime = strtotime($vehicle->created_at);
+                                                    echo date('F d, Y - g:ia', $unixTime);
+                                                @endphp
+                                            </td>
                                             <td>
                                                 <a href="{{ route('slotCheckInSearch', $vehicle->plate_number) }}" class="badge badge-warning">Check In</a>
                                                 <form style="display: none" method="POST" id="cancelReserve-{{ $vehicle->slot_number }}" action="{{ route('staffCancelReserve', $vehicle->slot_number) }}">@csrf</form>

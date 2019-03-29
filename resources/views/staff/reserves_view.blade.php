@@ -23,7 +23,8 @@
                                         <tr>
                                             <th>Slot Number</th>
                                             <th>Plate Number</th>
-                                            <th>Time of Reservation</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -32,6 +33,12 @@
                                         <tr>
                                             <td>{{ $reserve->slot_number }}</td>
                                             <td>{{ $reserve->plate_number }}</td>
+                                            <td>
+                                                @php
+                                                    $unixTime = strtotime($reserve->created_at);
+                                                    echo date('F d, Y', $unixTime);
+                                                @endphp
+                                            </td>
                                             <td>
                                                 @php
                                                     $unixTime = strtotime($reserve->created_at);
@@ -49,7 +56,8 @@
                                         <tr>
                                             <th>Slot Number</th>
                                             <th>Plate Number</th>
-                                            <th>Time of Reservation</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
