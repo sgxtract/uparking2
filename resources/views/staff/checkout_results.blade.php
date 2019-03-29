@@ -99,7 +99,7 @@ Check Out
                             </div>
                         </div>
                         <hr>
-                        @if ($toPay == 0)
+                        @if ($toPay == 0 || $check_out->walk_in)
                             <form style="display: none" method="POST" id="checkout" action="{{ route('slotCheckOut', [$check_out->slot_number, $toPay]) }}">@csrf</form>
                             <button type="button" class="btn btn-success btn-block btn-sm" onclick="document.getElementById('checkout').submit()"><i
                                     class="mdi mdi-cash-multiple"></i>Checkout</button>

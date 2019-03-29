@@ -98,6 +98,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('adminStatisticsReport') }}">Statistics Report</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('adminIncomeSalesReport') }}">Income Sales Report</a>
+                    </li>
                 </ul>
             </div>
         </li>

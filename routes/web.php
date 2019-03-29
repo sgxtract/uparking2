@@ -81,6 +81,7 @@ Route::prefix('admin')->group(function(){
     Route::get('walk-in', 'AdminController@walkIn')->name('adminWalkIn');
     // Admin Reports
     Route::get('sales-report', 'AdminController@salesReport')->name('adminSalesReport');
+    Route::get('income-sales-report', 'AdminController@incomeSalesReport')->name('adminIncomeSalesReport');
     Route::get('statistics-report', 'AdminController@statisticsReport')->name('adminStatisticsReport');
     // Admin CMS
     Route::prefix('cms')->group(function(){

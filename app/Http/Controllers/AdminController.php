@@ -26,6 +26,70 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
+    public function incomeSalesReport(){
+        $dt = Carbon::today();
+        $logs = Reserve_Log::all();
+        $ctr0 = $ctr1 = $ctr2 = $ctr3 = $ctr4 = $ctr5 = $ctr6 = 0;
+        // Days
+        $sunday = $monday = $tuesday = $wednesday = $thursday = $friday = $saturday = 0;
+
+        if($dt){
+            foreach($logs as $log){
+                if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::SUNDAY){
+                    $ctr0 += 1;
+                    $sunday += $log->payment;
+                }
+                if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::MONDAY){
+                    $ctr1 += 1;
+                    $monday += $log->payment;
+                }
+                if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::TUESDAY){
+                    $ctr2 += 1;
+                    $tuesday += $log->payment;
+                }
+                if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::WEDNESDAY){
+                    $ctr3 += 1;
+                    $wednesday += $log->payment;
+                }
+                if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::THURSDAY){
+                    $ctr4 += 1;
+                    $thursday += $log->payment;
+                }
+                if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::FRIDAY){
+                    $ctr5 += 1;
+                    $friday += $log->payment;
+                }
+                if(Carbon::parse($log->created_at)->dayOfWeek == Carbon::SATURDAY){
+                    $ctr6 += 1;
+                    $saturday += $log->payment;
+                }
+            }
+        }
+
+        $data = [
+            'sunday' => $sunday,
+            'monday' => $monday,
+            'tuesday' => $tuesday,
+            'wednesday' => $wednesday,
+            'thursday' => $thursday,
+            'friday' => $friday,
+            'saturday' => $saturday,
+        ];
+
+        $dataCtr = [
+            'sun' => $ctr0,
+            'mon' => $ctr1,
+            'tue' => $ctr2,
+            'wed' => $ctr3,
+            'thu' => $ctr4,
+            'fri' => $ctr5,
+            'sat' => $ctr6,
+        ];
+
+        return view('admin.income_sales_report')->with(['data' => $data, 'dataCtr' => $dataCtr]);
+
+    }
+
     public function salesReport(){
 
         $dt = Carbon::today();
